@@ -20,6 +20,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    androidExtensions {
+        experimental = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -50,4 +54,6 @@ dependencies {
     //Firebase Authentication
     implementation platform('com.google.firebase:firebase-bom:29.3.0')
     implementation 'com.google.firebase:firebase-auth-ktx'
+    //FireStore
+    implementation 'com.google.firebase:firebase-firestore-ktx'
 }

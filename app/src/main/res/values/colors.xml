@@ -13,6 +13,7 @@
     
     <color name="colorSnackbarError">#F72400</color>
     <color name="colorSnackbarSuccess">#8BC34A</color>
+    <color name="lightGrey">#F1F1F1</color>
 </resources>
 
 <!--    FFBB86FC-->
