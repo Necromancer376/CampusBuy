@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "199985373885",
+    "project_id": "campusbuy-79e1a",
+    "storage_bucket": "campusbuy-79e1a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199985373885:android:4ff564a2c436646e43cdd4",
+        "android_client_info": {
+          "package_name": "com.example.campusbuy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "199985373885-rvaeel660fung4bd6hns140gqpls25bf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6dKnQQphojsucdCd73lRzbFw1RNgjqpU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "199985373885-rvaeel660fung4bd6hns140gqpls25bf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

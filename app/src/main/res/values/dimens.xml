@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="splash_title_text_size">50sp</dimen>
+    <dimen name="button_background_radius">10dp</dimen>
+
+    <dimen name="auth_header_image_height">200dp</dimen>
+    <dimen name="auth_logo_width_size">220dp</dimen>
+    <dimen name="auth_logo_height_size">200dp</dimen>
+    <dimen name="title_textSize">24sp</dimen>
+    <dimen name="edittext_textSize">16sp</dimen>
+    <dimen name="edittext_padding">16dp</dimen>
+    <dimen name="clickable_textview_padding">5dp</dimen>
+    <dimen name="forgot_password_textSize">14sp</dimen>
+    <dimen name="btn_textSize">20sp</dimen>
+    <dimen name="btn_padding">8dp</dimen>
+    <dimen name="lbl_textview_textSize">16sp</dimen>
+
+    <dimen name="toolbar_title_padding">-25dp</dimen>
+    <dimen name="toolbar_title_textSize">18sp</dimen>
+    <dimen name="txt_terms_marginStart">10dp</dimen>
+    <dimen name="txt_terms_textSize">14sp</dimen>
+    <dimen name="btn_padding_top_bottom">8dp</dimen>
+
+    <dimen name="progress_dialog_content_padding">10dp</dimen>
+    <dimen name="progress_bar_size">50dp</dimen>
+    <dimen name="progress_text_margin">16dp</dimen>
+    <dimen name="progress_textSize">16sp</dimen>
+    
+    <dimen name="forgot_password_title_textSize">18sp</dimen>
+    <dimen name="forgot_password_description_textSize">14sp</dimen>
+
+</resources>

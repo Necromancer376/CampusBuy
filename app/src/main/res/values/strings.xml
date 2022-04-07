@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">CampusBuy</string>
+    <string name="app_name_show">Campus Buy</string>
+
+    <string name="content_description">image</string>
+    <string name="title_login">LOGIN</string>
+    <string name="lbl_forgot_password">Forgot Password?</string>
+    <string name="btn_login">Login</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="register">Register</string>
+
+    <string name="create_account">CREATE AN ACCOUNT</string>
+    <string name="hint_last_name">Last name</string>
+    <string name="hint_first_name">First name</string>
+    <string name="hint_regno">RegNo</string>
+    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="agree_to_terms">I Agree To The <u>Terms &amp; Conditions</u></string>
+    <string name="btn_lbl_register">Register</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="login"><u>Login</u></string>
+
+    <string name="err_msg_enter_first_name">Please enter first name.</string>
+    <string name="err_msg_enter_last_name">Please enter last name.</string>
+    <string name="err_msg_enter_email">Please enter email.</string>
+    <string name="err_msg_enter_password">Please enter password.</string>
+    <string name="err_msg_enter_confirm_password">Please enter confirm password.</string>
+    <string name="err_msg_password_don_t_match">Password and Confirm password do not match.</string>
+    <string name="err_msg_agree_terms">Please agree to terms and conditions.</string>
+
+    <string name="please_wait">Please Wait&#8230;</string>
+
+    <string name="title_forgot_password">FORGOT PASSWORD</string>
+    <string name="forgot_password_description">Enter your e-mail address we\'ll send you an email to reset password</string>
+    <string name="btn_lbl_submit">Submit</string>
+    
+    <string name="email_sent_success">Email sent successfully to reset your password!</string>
+
+</resources>
