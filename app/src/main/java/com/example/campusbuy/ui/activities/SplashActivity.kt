@@ -1,4 +1,4 @@
-package com.example.campusbuy.activities
+package com.example.campusbuy.ui.activities
 
 import android.content.Intent
 import android.os.Build
@@ -28,7 +28,7 @@ class SplashActivity : AppCompatActivity() {
         @Suppress("DEPRECATION")
         Handler().postDelayed(
             {
-                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                startActivity(Intent(this@SplashActivity, DashboardActivity::class.java))
                 finish()
             },
             1000

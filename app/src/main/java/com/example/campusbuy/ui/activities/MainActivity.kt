@@ -1,4 +1,4 @@
-package com.example.campusbuy.activities
+package com.example.campusbuy.ui.activities
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity

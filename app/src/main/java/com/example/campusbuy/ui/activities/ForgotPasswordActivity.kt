@@ -1,6 +1,5 @@
-package com.example.campusbuy.activities
+package com.example.campusbuy.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.campusbuy.R

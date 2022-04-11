@@ -7,6 +7,7 @@
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/drawable/button_background.xml" value="0.2555" />
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/drawable/user_image_background.xml" value="0.243" />
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/layout/activity_base.xml" value="0.25" />
+        <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/layout/activity_main.xml" value="0.23703703703703705" />
@@ -14,6 +15,7 @@
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/layout/activity_splash.xml" value="0.21851851851851853" />
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/layout/activity_user_profile.xml" value="0.19907407407407407" />
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/layout/dialog_progress.xml" value="0.25" />
+        <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/layout/fragment_notifications.xml" value="0.25" />
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2555" />
       </map>
     </option>

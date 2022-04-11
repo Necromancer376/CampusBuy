@@ -25,7 +25,7 @@
     <dimen name="progress_bar_size">50dp</dimen>
     <dimen name="progress_text_margin">16dp</dimen>
     <dimen name="progress_textSize">16sp</dimen>
-    
+
     <dimen name="forgot_password_title_textSize">18sp</dimen>
     <dimen name="forgot_password_description_textSize">14sp</dimen>
 
@@ -34,4 +34,7 @@
     <dimen name="profile_user_image_size">150dp</dimen>
     <dimen name="profile_user_image_margin_top">50dp</dimen>
     <dimen name="profile_user_photo_margin">3dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 </resources>

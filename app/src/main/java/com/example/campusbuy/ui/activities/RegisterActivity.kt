@@ -1,6 +1,5 @@
-package com.example.campusbuy.activities
+package com.example.campusbuy.ui.activities
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
