@@ -9,6 +9,7 @@ import com.example.campusbuy.ui.activities.LoginActivity
 import com.example.campusbuy.ui.activities.RegisterActivity
 import com.example.campusbuy.ui.activities.UserProfileActivity
 import com.example.campusbuy.models.User
+import com.example.campusbuy.ui.activities.SettingsActivity
 import com.example.campusbuy.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -75,11 +76,18 @@ class FireStoreClass {
                     is LoginActivity -> {
                         activity.userLoggedInSuccess(user)
                     }
+                    is SettingsActivity -> {
+                        activity.userDetailsSuccess(user)
+                    }
                 }
             }
             .addOnFailureListener { e ->
                 when(activity) {
                     is LoginActivity -> {
+                        activity.hideProgressDialog()
+                    }
+
+                    is SettingsActivity -> {
                         activity.hideProgressDialog()
                     }
                 }

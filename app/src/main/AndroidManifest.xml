@@ -13,7 +13,9 @@
         android:theme="@style/Theme.CampusBuy">
         <activity
             android:name=".ui.activities.SettingsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoFullScreen" />
         <activity
             android:name=".ui.activities.DashboardActivity"
             android:exported="false"

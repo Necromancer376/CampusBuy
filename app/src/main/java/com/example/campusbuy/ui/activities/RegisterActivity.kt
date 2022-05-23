@@ -1,5 +1,6 @@
 package com.example.campusbuy.ui.activities
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
@@ -138,5 +139,8 @@ class RegisterActivity : BaseActivity() {
             Toast.LENGTH_LONG
         ).show()
 
+        val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

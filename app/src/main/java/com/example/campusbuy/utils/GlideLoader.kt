@@ -9,7 +9,7 @@ import java.io.IOException
 
 class GlideLoader(val context: Context) {
 
-    fun loadUserPicture(imageURI: Uri, imageView: ImageView) {
+    fun loadUserPicture(imageURI: Any, imageView: ImageView) {
         try {
             Glide
                 .with(context)
