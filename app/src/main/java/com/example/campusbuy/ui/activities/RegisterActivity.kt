@@ -61,10 +61,10 @@ class RegisterActivity : BaseActivity() {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_first_name), true)
                 false
             }
-            TextUtils.isEmpty(et_last_name.text.toString().trim{ it <= ' ' }) -> {
-                showErrorSnackBar(resources.getString(R.string.err_msg_enter_last_name), true)
-                false
-            }
+//            TextUtils.isEmpty(et_last_name.text.toString().trim{ it <= ' ' }) -> {
+//                showErrorSnackBar(resources.getString(R.string.err_msg_enter_last_name), true)
+//                false
+//            }
             TextUtils.isEmpty(et_email.text.toString().trim{ it <= ' ' }) -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_email), true)
                 false

@@ -42,7 +42,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         et_email_profile.setText(mUserDetails.email)
 
         if(mUserDetails.profileCompleted == 0) {
-            tv_title.text = resources.getString(R.string.title_complete_profile)
+            tv_title_user_profile.text = resources.getString(R.string.title_complete_profile)
 
             et_first_name_profile.isEnabled = true
             et_last_name_profile.isEnabled = true
