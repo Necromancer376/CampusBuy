@@ -1,11 +1,18 @@
 package com.example.campusbuy.utils
 
 import android.app.Activity
-import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Matrix
 import android.net.Uri
 import android.provider.MediaStore
 import android.webkit.MimeTypeMap
+import androidx.exifinterface.media.ExifInterface
+import java.io.ByteArrayOutputStream
+import java.io.IOException
+import java.util.Collections.rotate
+
 
 object Constants {
     const val USERS: String = "users"
@@ -34,6 +41,17 @@ object Constants {
         activity.startActivityForResult(intentCamera, CAMERA)
     }
 
+    fun getImageUriFromBitmap(context: Context, bitmap: Bitmap): Uri{
+        val bytes = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = MediaStore.Images.Media.insertImage(context.contentResolver, bitmap, "Title", null)
+        return Uri.parse(path.toString())
+    }
+
+    fun Bitmap.rotate(degrees: Float): Bitmap {
+        val matrix = Matrix().apply { postRotate(degrees) }
+        return Bitmap.createBitmap(this, 0, 0, width, height, matrix, true)
+    }
 
     fun getFileExtension(activity: Activity, uri: Uri?): String? {
 

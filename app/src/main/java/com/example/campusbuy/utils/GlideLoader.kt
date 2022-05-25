@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.Rotate
 import com.example.campusbuy.R
 import java.io.IOException
 
@@ -27,7 +28,7 @@ class GlideLoader(val context: Context) {
         try {
             Glide
                 .with(context)
-                .load(imageURI)
+                .asBitmap().load(imageURI)
                 .centerCrop()
                 .into(imageView)
         }

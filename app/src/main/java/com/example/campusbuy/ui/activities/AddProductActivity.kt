@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.campusbuy.R
 import com.example.campusbuy.utils.Constants
+import com.example.campusbuy.utils.Constants.rotate
 import com.example.campusbuy.utils.GlideLoader
 import kotlinx.android.synthetic.main.activity_add_product.*
 import java.io.IOException
@@ -114,17 +116,17 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode == Activity.RESULT_OK) {
-            if(requestCode == Constants.CAMERA || requestCode == Constants.PICK_IMAGE_REQUEST_CODE) {
+        if(resultCode == Activity.RESULT_OK) {
+            if(requestCode == Constants.CAMERA) {
                 if(data != null) {
                     try {
 //                        val mSelectedImageFileUri = data!!.extras!!.get("data")!!
-                        mSelectedImageFileUri = data.data!!
-                        GlideLoader(this@AddProductActivity).loadProductPicture(mSelectedImageFileUri!!, iv_product_image)
+                        val imgBitmap = data!!.extras!!.get("data") as Bitmap
+                        val newImgBitmap = imgBitmap.rotate(90f)
+                        GlideLoader(this@AddProductActivity).loadProductPicture(newImgBitmap, iv_product_image)
                     }
                     catch (e: IOException) {
                         e.printStackTrace()
@@ -135,22 +137,22 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                     }
                 }
             }
-//            else if(requestCode == Constants.PICK_IMAGE_REQUEST_CODE) {
-//                if(data != null) {
-//                    try {
-//                        val mSelectedImageFileUri = data.data!!
-//                        GlideLoader(this).loadUserPicture(mSelectedImageFileUri, iv_product_image)
-//                    }
-//                    catch (e: IOException) {
-//                        e.printStackTrace()
-//                        Toast.makeText(
-//                            this@AddProductActivity,
-//                            resources.getString(R.string.image_selection_failed),
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                    }
-//                }
-//            }
+            else if(requestCode == Constants.PICK_IMAGE_REQUEST_CODE) {
+                if(data != null) {
+                    try {
+                        mSelectedImageFileUri = data.data!!
+                        GlideLoader(this).loadProductPicture(mSelectedImageFileUri!!, iv_product_image)
+                    }
+                    catch (e: IOException) {
+                        e.printStackTrace()
+                        Toast.makeText(
+                            this@AddProductActivity,
+                            resources.getString(R.string.image_selection_failed),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
         }
     }
 }
