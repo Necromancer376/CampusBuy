@@ -59,8 +59,12 @@
     <dimen name="settings_button_marginTopBottom">25dp</dimen>
 
     <dimen name="toolbar_title_paddingStart">-25dp</dimen>
-    <dimen name="toolbar_title_text_size">28sp</dimen>
+    <dimen name="toolbar_title_text_size">24sp</dimen>
     <dimen name="txt_terms_condition_marginStart">10dp</dimen>
     <dimen name="txt_terms_and_condition_textSize">14sp</dimen>
     <dimen name="button_paddingTop_Bottom">8dp</dimen>
+
+    <dimen name="add_product_header_image_height">250dp</dimen>
+    <dimen name="add_update_product_icon_padding">16dp</dimen>
+
 </resources>

@@ -3,6 +3,7 @@
     package="com.example.campusbuy">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:allowBackup="true"
@@ -11,6 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CampusBuy">
+
+        <activity
+            android:name=".ui.activities.AddProductActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoFullScreen" />
         <activity
             android:name=".ui.activities.SettingsActivity"
             android:exported="false"

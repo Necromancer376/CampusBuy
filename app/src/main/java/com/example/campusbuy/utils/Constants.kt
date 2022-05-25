@@ -1,6 +1,7 @@
 package com.example.campusbuy.utils
 
 import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.provider.MediaStore
@@ -13,6 +14,8 @@ object Constants {
     const val EXTRA_USER_DETAILS: String = "extra_user_details"
     const val READ_STORAGE_PERMISSION_CODE = 2
     const val PICK_IMAGE_REQUEST_CODE = 1
+    const val CAMERA_PERMISSION_CODE = 1
+    const val CAMERA = 2
 
     const val MOBILE: String = "mobile"
     const val FIRSTNAME: String = "firstName"
@@ -22,13 +25,15 @@ object Constants {
     const val COMPLETE_PROFILE: String = "profileCompleted"
 
     fun showImageChooser(activity: Activity) {
-        val gallaryIntent = Intent(
-            Intent.ACTION_PICK,
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-        )
-
+        val gallaryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         activity.startActivityForResult(gallaryIntent, PICK_IMAGE_REQUEST_CODE)
     }
+
+    fun takePicture(activity: Activity) {
+        val intentCamera = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        activity.startActivityForResult(intentCamera, CAMERA)
+    }
+
 
     fun getFileExtension(activity: Activity, uri: Uri?): String? {
 

@@ -62,4 +62,11 @@
     <string name="lbl_edit">Edit</string>
     <string name="lbl_addresses">Addresses</string>
     <string name="btn_lbl_logout">Logout</string>
+    <string name="action_add_prodtct">Add Product</string>
+
+    <string name="title_add_product">ADD PRODUCT</string>
+    <string name="et_hint_product_title">Product Title</string>
+    <string name="et_hint_product_price">Product Price (₹)</string>
+    <string name="et_hint_product_description">Product Description</string>
+    <string name="et_hint_product_tag">Product Tag (book, technology, utility, etc)</string>
 </resources>

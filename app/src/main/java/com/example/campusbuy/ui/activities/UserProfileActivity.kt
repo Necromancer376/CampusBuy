@@ -16,8 +16,6 @@ import com.example.campusbuy.firestore.FireStoreClass
 import com.example.campusbuy.models.User
 import com.example.campusbuy.utils.Constants
 import com.example.campusbuy.utils.GlideLoader
-import kotlinx.android.synthetic.main.activity_settings.*
-import kotlinx.android.synthetic.main.activity_settings.view.*
 import kotlinx.android.synthetic.main.activity_user_profile.*
 import kotlinx.android.synthetic.main.activity_user_profile.iv_user_photo
 import java.io.IOException
