@@ -8,14 +8,13 @@ import android.graphics.Matrix
 import android.net.Uri
 import android.provider.MediaStore
 import android.webkit.MimeTypeMap
-import androidx.exifinterface.media.ExifInterface
 import java.io.ByteArrayOutputStream
-import java.io.IOException
-import java.util.Collections.rotate
 
 
 object Constants {
     const val USERS: String = "users"
+    const val PRODUCTS: String = "products"
+
     const val CAMPUSBUY_PREFERENCES: String = "CampusBuyPrefs"
     const val LOGGED_IN_USERNAME: String = "logged_in_username"
     const val EXTRA_USER_DETAILS: String = "extra_user_details"
@@ -30,6 +29,11 @@ object Constants {
     const val USER_PROFILE_IMAGE = "User_Profile_Image"
     const val IMAGE: String = "image"
     const val COMPLETE_PROFILE: String = "profileCompleted"
+
+    const val PRODUCT_IMAGE: String = "Product_Image"
+
+    const val USER_ID: String = "user_id"
+
 
     fun showImageChooser(activity: Activity) {
         val gallaryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)

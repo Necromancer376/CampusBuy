@@ -5,15 +5,16 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
-import com.example.campusbuy.ui.activities.LoginActivity
-import com.example.campusbuy.ui.activities.RegisterActivity
-import com.example.campusbuy.ui.activities.UserProfileActivity
+import androidx.fragment.app.Fragment
+import com.example.campusbuy.models.Product
 import com.example.campusbuy.models.User
-import com.example.campusbuy.ui.activities.SettingsActivity
+import com.example.campusbuy.ui.activities.*
+import com.example.campusbuy.ui.fragments.ProductsFragment
 import com.example.campusbuy.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
@@ -125,9 +126,9 @@ class FireStoreClass {
             }
     }
 
-    fun uploadImageToCloudStorage(activity: Activity, imageFileUri: Uri?) {
+    fun uploadImageToCloudStorage(activity: Activity, imageFileUri: Uri?, imageType: String) {
         val sRef: StorageReference = FirebaseStorage.getInstance().reference.child(
-            Constants.USER_PROFILE_IMAGE + System.currentTimeMillis() + "." +
+            imageType + System.currentTimeMillis() + "." +
                     Constants.getFileExtension(activity, imageFileUri)
         )
         sRef.putFile(imageFileUri!!)
@@ -143,12 +144,19 @@ class FireStoreClass {
                             is UserProfileActivity -> {
                                 activity.imageUploadSuccess(uri.toString())
                             }
+
+                            is AddProductActivity -> {
+                                activity.imageUploadSuccess(uri.toString())
+                            }
                         }
                     }
             }
             .addOnFailureListener { exception ->
                 when(activity) {
                     is UserProfileActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                    is AddProductActivity -> {
                         activity.hideProgressDialog()
                     }
                 }
@@ -158,6 +166,46 @@ class FireStoreClass {
                     exception.message,
                     exception
                 )
+            }
+    }
+
+    fun uploadProductDetails(activity: AddProductActivity, productInfo: Product) {
+        mFirestore.collection(Constants.PRODUCTS)
+            .document()
+            .set(productInfo, SetOptions.merge())
+            .addOnSuccessListener {
+                activity.productUploadSuccess()
+            }
+            .addOnFailureListener { e->
+                activity.hideProgressDialog()
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while adding product",
+                    e
+                )
+            }
+    }
+
+    fun getProductsList(fragment: Fragment) {
+        mFirestore.collection(Constants.PRODUCTS)
+            .whereEqualTo(Constants.USER_ID, getCurrentUserId())
+            .get()
+            .addOnSuccessListener { document ->
+                Log.e("Products list", document.documents.toString())
+                val productsList: ArrayList<Product> = ArrayList()
+
+                for(i in document.documents) {
+                    val product = i.toObject(Product::class.java)
+                    product!!.product_id = i.id
+
+                    productsList.add(product)
+                }
+
+                when(fragment) {
+                    is ProductsFragment -> {
+                        fragment.successProductsListFromFireStore(productsList)
+                    }
+                }
             }
     }
 

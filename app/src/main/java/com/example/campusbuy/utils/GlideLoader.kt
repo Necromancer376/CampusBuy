@@ -28,8 +28,7 @@ class GlideLoader(val context: Context) {
         try {
             Glide
                 .with(context)
-                .asBitmap().load(imageURI)
-                .centerCrop()
+                .load(imageURI)
                 .into(imageView)
         }
         catch(e: IOException) {

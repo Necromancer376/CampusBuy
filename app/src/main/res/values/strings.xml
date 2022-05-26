@@ -69,4 +69,17 @@
     <string name="et_hint_product_price">Product Price (₹)</string>
     <string name="et_hint_product_description">Product Description</string>
     <string name="et_hint_product_tag">Product Tag (book, technology, utility, etc)</string>
+
+    <string name="err_msg_select_product_image">Please Select Product Image</string>
+    <string name="err_msg_enter_product_title">Please Enter Product Title</string>
+    <string name="err_msg_enter_product_price">Please Enter Product Price</string>
+    <string name="err_msg_enter_product_description">Please Enter Product Description</string>
+    <string name="err_msg_enter_product_tag">Please Enter Product Tag</string>
+
+    <string name="product_upload_success_msg">Product Uploaded Successfully</string>
+
+    <string name="no_products_added_yet">No Products Added yet</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

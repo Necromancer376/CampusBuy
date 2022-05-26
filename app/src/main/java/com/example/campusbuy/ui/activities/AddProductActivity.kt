@@ -2,17 +2,22 @@ package com.example.campusbuy.ui.activities
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.campusbuy.R
+import com.example.campusbuy.firestore.FireStoreClass
+import com.example.campusbuy.models.Product
 import com.example.campusbuy.utils.Constants
+import com.example.campusbuy.utils.Constants.getImageUriFromBitmap
 import com.example.campusbuy.utils.Constants.rotate
 import com.example.campusbuy.utils.GlideLoader
 import kotlinx.android.synthetic.main.activity_add_product.*
@@ -21,6 +26,7 @@ import java.io.IOException
 class AddProductActivity : BaseActivity(), View.OnClickListener {
 
     private var mSelectedImageFileUri: Uri? = null
+    private var mProductImageURL: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +36,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
 
         iv_add_update_product_galary.setOnClickListener(this@AddProductActivity)
         iv_add_update_product.setOnClickListener(this@AddProductActivity)
+        btn_submit_product.setOnClickListener(this@AddProductActivity)
     }
 
     private fun setupActionBar() {
@@ -80,10 +87,17 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                         )
                     }
                 }
+
+                R.id.btn_submit_product -> {
+                    if(validateProductDetails()) {
+                        uploadProductImage()
+                    }
+                }
             }
         }
     }
 
+    // Image related functions
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -123,10 +137,10 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             if(requestCode == Constants.CAMERA) {
                 if(data != null) {
                     try {
-//                        val mSelectedImageFileUri = data!!.extras!!.get("data")!!
                         val imgBitmap = data!!.extras!!.get("data") as Bitmap
                         val newImgBitmap = imgBitmap.rotate(90f)
-                        GlideLoader(this@AddProductActivity).loadProductPicture(newImgBitmap, iv_product_image)
+                        mSelectedImageFileUri = getImageUriFromBitmap(this, newImgBitmap)
+                        GlideLoader(this@AddProductActivity).loadProductPicture(mSelectedImageFileUri!!, iv_product_image)
                     }
                     catch (e: IOException) {
                         e.printStackTrace()
@@ -154,5 +168,77 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                 }
             }
         }
+    }
+
+    //Edit text Functions
+    private fun validateProductDetails(): Boolean {
+        return when {
+            mSelectedImageFileUri == null -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_select_product_image), true)
+                false
+            }
+            TextUtils.isEmpty(et_product_title.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_product_title), true)
+                false
+            }
+            TextUtils.isEmpty(et_product_price.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_product_price), true)
+                false
+            }
+            TextUtils.isEmpty(et_product_description.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_product_description), true)
+                false
+            }
+            TextUtils.isEmpty(et_product_tag.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_product_tag), true)
+                false
+            }
+            else -> {
+                true
+            }
+        }
+    }
+
+    //Uploading to firestore
+
+    private fun uploadProductImage() {
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FireStoreClass().uploadImageToCloudStorage(this, mSelectedImageFileUri, Constants.PRODUCT_IMAGE)
+    }
+
+    fun productUploadSuccess() {
+        hideProgressDialog()
+        Toast.makeText(
+            this@AddProductActivity,
+            resources.getString(R.string.product_upload_success_msg),
+            Toast.LENGTH_SHORT
+        ).show()
+        finish()
+    }
+
+    fun imageUploadSuccess(imageURL: String) {
+
+        showErrorSnackBar("uploaded ${imageURL}", false)
+        mProductImageURL = imageURL
+        uploadProductDetails()
+    }
+
+    private fun uploadProductDetails() {
+
+        val username = this.getSharedPreferences(
+            Constants.CAMPUSBUY_PREFERENCES, Context.MODE_PRIVATE)
+            .getString(Constants.LOGGED_IN_USERNAME, "")!!
+
+        val product = Product(
+            FireStoreClass().getCurrentUserId(),
+            username,
+            et_product_title.text.toString().trim{ it <= ' '},
+            et_product_price.text.toString().trim{ it <= ' '},
+            et_product_description.text.toString().trim{ it <= ' '},
+            et_product_tag.text.toString().trim{ it <= ' '},
+            mProductImageURL
+        )
+
+        FireStoreClass().uploadProductDetails(this@AddProductActivity, product)
     }
 }
