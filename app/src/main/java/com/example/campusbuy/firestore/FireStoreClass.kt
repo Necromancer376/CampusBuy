@@ -51,6 +51,21 @@ class FireStoreClass {
         return currentId
     }
 
+    fun getCurrentCampus(): String {
+//        var wrapper = String(){ var campus: String = "" }
+        var currentCampus: String = ""
+        mFirestore.collection(Constants.USERS)
+            .document(getCurrentUserId())
+            .get()
+            .addOnSuccessListener { document ->
+
+                val user = document.toObject(User::class.java)!!
+                user.campus.also { currentCampus = it }
+            }
+
+        return currentCampus
+    }
+
     fun getUserDetails(activity: Activity) {
 
         mFirestore.collection(Constants.USERS)

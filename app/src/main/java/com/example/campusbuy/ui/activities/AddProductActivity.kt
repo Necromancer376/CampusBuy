@@ -232,11 +232,12 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
         val product = Product(
             FireStoreClass().getCurrentUserId(),
             username,
-            et_product_title.text.toString().trim{ it <= ' '},
-            et_product_price.text.toString().trim{ it <= ' '},
-            et_product_description.text.toString().trim{ it <= ' '},
-            et_product_tag.text.toString().trim{ it <= ' '},
-            mProductImageURL
+            et_product_title.text.toString().trim { it <= ' ' },
+            et_product_price.text.toString().trim { it <= ' ' },
+            et_product_description.text.toString().trim { it <= ' ' },
+            et_product_tag.text.toString().trim { it <= ' ' },
+            mProductImageURL,
+            FireStoreClass().getCurrentCampus()
         )
 
         FireStoreClass().uploadProductDetails(this@AddProductActivity, product)

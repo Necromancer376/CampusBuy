@@ -134,6 +134,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         }
 
         userHashMap[Constants.COMPLETE_PROFILE] = 1
+        userHashMap[Constants.CAMPUS] = "VIT Vellore"
 
         FireStoreClass().updateUserDetails(this, userHashMap)
     }

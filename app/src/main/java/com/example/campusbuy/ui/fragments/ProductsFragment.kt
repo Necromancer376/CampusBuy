@@ -48,6 +48,7 @@ class ProductsFragment : BaseFragment() {
     }
 
     // Fragment necessary functions
+    
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
