@@ -15,7 +15,7 @@
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/drawable/ic_vector_settings.xml" value="0.2335" />
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/drawable/item_grey_border_background.xml" value="0.229" />
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/drawable/user_image_background.xml" value="0.243" />
-        <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/layout/activity_add_product.xml" value="0.25" />
+        <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/layout/activity_add_product.xml" value="0.26851851851851855" />
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/layout/activity_base.xml" value="0.25" />
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
@@ -30,6 +30,7 @@
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/layout/fragment_notifications.xml" value="0.25" />
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/layout/fragment_orders.xml" value="0.25" />
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/layout/fragment_products.xml" value="0.25" />
+        <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/layout/item_list_layout.xml" value="0.34074074074074073" />
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/menu/add_product_menu.xml" value="0.25" />
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
         <entry key="..\:/Users/malha/Documents/AndroidStudioProjects/CampusBuy/app/src/main/res/menu/dashboard_menu.xml" value="0.264" />

@@ -57,7 +57,7 @@
                     android:layout_height="match_parent"
                     android:background="@color/colorImageViewBackground"
                     android:contentDescription="@string/content_description"
-                    android:scaleType="fitXY" />
+                    />
                 
                 <ImageView
                     android:id="@+id/iv_add_update_product"
