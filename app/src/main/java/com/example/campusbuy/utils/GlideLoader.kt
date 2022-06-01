@@ -29,7 +29,7 @@ class GlideLoader(val context: Context) {
             Glide
                 .with(context)
                 .load(imageURI)
-                .crop
+                .centerCrop()
                 .into(imageView)
         }
         catch(e: IOException) {

@@ -49,9 +49,10 @@
     <dimen name="settings_edit_label_textSize">14sp</dimen>
     <dimen name="settings_name_marginTop">30dp</dimen>
     <dimen name="settings_name_textSize">22sp</dimen>
+    <dimen name="settings_information_text_size">18sp</dimen>
     <dimen name="settings_info_marginTop">15dp</dimen>
-    <dimen name="settings_info_textSize">18sp</dimen>
     <dimen name="settings_address_margin">16dp</dimen>
+    <dimen name="settings_info_textSize">18sp</dimen>
     <dimen name="settings_address_padding">16dp</dimen>
     <dimen name="settings_lbl_addresses_margin">3dp</dimen>
     <dimen name="settings_lbl_addresses_textSize">18sp</dimen>
@@ -75,7 +76,7 @@
     <dimen name="item_image_width">80dp</dimen>
     <dimen name="item_image_height">70dp</dimen>
     <dimen name="item_image_title_price_margin">10dp</dimen>
-    <dimen name="rv_item_price_marginTop">dp</dimen>
+    <dimen name="rv_item_price_marginTop">2dp</dimen>
     <dimen name="rv_item_name_TextSize">14sp</dimen>
     <dimen name="rv_item_price_TextSize">12sp</dimen>
 

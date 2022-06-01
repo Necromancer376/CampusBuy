@@ -237,7 +237,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             et_product_description.text.toString().trim { it <= ' ' },
             et_product_tag.text.toString().trim { it <= ' ' },
             mProductImageURL,
-            FireStoreClass().getCurrentCampus()
+            FireStoreClass().getCurrentCampus(),
         )
 
         FireStoreClass().uploadProductDetails(this@AddProductActivity, product)

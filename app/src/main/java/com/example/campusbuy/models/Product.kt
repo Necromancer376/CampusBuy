@@ -13,9 +13,9 @@ data class Product (
     val tag: String = "",
     val image: String = "",
     var campus: String = "",
-    var product_id: String = "",
-    var interested: ArrayList<User>,
-    var bidders: ArrayList<User>,
     var seenCount: Int = 0,
-    var isSold: Boolean = false
+    var isSold: Boolean = false,
+    var interested: ArrayList<User> = ArrayList<User>(),
+    var bidders: ArrayList<User> = ArrayList<User>(),
+    var product_id: String = ""
 ): Parcelable

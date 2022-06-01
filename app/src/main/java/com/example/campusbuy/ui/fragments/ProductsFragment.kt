@@ -2,14 +2,15 @@ package com.example.campusbuy.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.campusbuy.R
 import com.example.campusbuy.databinding.FragmentProductsBinding
 import com.example.campusbuy.firestore.FireStoreClass
 import com.example.campusbuy.models.Product
 import com.example.campusbuy.ui.activities.AddProductActivity
+import com.example.campusbuy.ui.adapters.myProductsListAdapter
+import kotlinx.android.synthetic.main.fragment_products.*
 
 
 class ProductsFragment : BaseFragment() {
@@ -29,8 +30,19 @@ class ProductsFragment : BaseFragment() {
     fun successProductsListFromFireStore(productsList: ArrayList<Product>) {
         hideProgressDialog()
 
-        for(i in productsList) {
-            Log.i("product name", i.title)
+        if(productsList.size > 0) {
+            rv_my_product_items.visibility = View.VISIBLE
+            tv_no_products_found.visibility = View.GONE
+
+            rv_my_product_items.layoutManager = LinearLayoutManager(activity)
+            rv_my_product_items.setHasFixedSize(true)
+
+            val adapterProducts = myProductsListAdapter(requireActivity(), productsList)
+            rv_my_product_items.adapter = adapterProducts
+        }
+        else{
+            rv_my_product_items.visibility = View.GONE
+            tv_no_products_found.visibility = View.VISIBLE
         }
     }
 
