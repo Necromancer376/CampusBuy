@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.campusbuy.R
 //import com.example.campusbuy.activities.databinding.FragmentDashboardBinding
 import com.example.campusbuy.databinding.FragmentDashboardBinding
+import com.example.campusbuy.firestore.FireStoreClass
 import com.example.campusbuy.models.Product
 import com.example.campusbuy.ui.activities.SettingsActivity
 
@@ -22,6 +23,12 @@ class DashboardFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        getDashboardItemsList()
     }
 
     override fun onCreateView(
@@ -66,5 +73,11 @@ class DashboardFragment : BaseFragment() {
         for(i in dashboardItemList) {
             Log.i("Item Title ", i.title)
         }
+    }
+
+    private fun getDashboardItemsList() {
+        showProgressDialog(resources.getString(R.string.please_wait))
+
+        FireStoreClass().getDashboardItemsList(this@DashboardFragment)
     }
 }
