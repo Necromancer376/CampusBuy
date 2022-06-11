@@ -14,10 +14,7 @@
         android:id="@+id/iv_dashboard_item_image"
         android:layout_width="match_parent"
         android:layout_height="@dimen/item_dashboard_image_height"
-        android:layout_marginStart="@dimen/item_dashboard_image_margin"
-        android:layout_marginTop="@dimen/item_dashboard_image_margin"
-        android:layout_marginEnd="@dimen/item_dashboard_image_margin"
-        android:layout_marginBottom="@dimen/item_dashboard_image_margin"
+        android:layout_margin="@dimen/item_dashboard_image_margin"
         android:background="@color/colorImageViewBackground"
         android:contentDescription="@string/content_description"
         android:minHeight="@dimen/item_dashboard_image_height"
@@ -31,35 +28,72 @@
         android:background="@color/colorBorder" />
 
     <LinearLayout
-        android:id="@+id/ll_dashboard_item_details"
+        android:id="@+id/ll_dashboard_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/view_divider"
         android:background="@color/dashboard_item_details_bg"
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:layout_below="@id/view_divider"
         android:paddingStart="@dimen/dashboard_item_paddingStartEnd"
         android:paddingTop="@dimen/dashboard_item_paddingTopBottom"
         android:paddingEnd="@dimen/dashboard_item_paddingStartEnd"
         android:paddingBottom="@dimen/dashboard_item_paddingTopBottom">
 
-        <com.example.campusbuy.utils.CBTextViewBold
-            android:id="@+id/tv_dashboard_item_title"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/ll_dashboard_item_details"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:textColor="@color/item_value_text_color"
-            android:textSize="@dimen/dashboard_item_textSize"
-            android:textStyle="bold"
-            tools:text="Item Name" />
+            android:layout_width="0dp"
+            android:background="@color/dashboard_item_details_bg"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/dashboard_item_paddingStartEnd"
+            android:paddingTop="@dimen/dashboard_item_paddingTopBottom"
+            android:paddingEnd="@dimen/dashboard_item_paddingStartEnd"
+            android:paddingBottom="@dimen/dashboard_item_paddingTopBottom">
 
-        <com.example.campusbuy.utils.CBTextView
-            android:id="@+id/tv_dashboard_item_price"
-            android:layout_width="match_parent"
+            <com.example.campusbuy.utils.CBTextViewBold
+                android:id="@+id/tv_dashboard_item_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/item_value_text_color"
+                android:textSize="@dimen/dashboard_item_textSize"
+                android:textStyle="bold"
+                tools:text="Item Name" />
+
+            <com.example.campusbuy.utils.CBTextView
+                android:id="@+id/tv_dashboard_item_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dashboard_item_price_marginTop"
+                android:textColor="@color/item_value_text_color"
+                android:textSize="@dimen/dashboard_item_textSize"
+                android:textStyle="bold"
+                tools:text="₹100.00" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_dashboard_extra_details"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dashboard_item_price_marginTop"
-            android:textColor="@color/item_value_text_color"
-            android:textSize="@dimen/dashboard_item_textSize"
-            android:textStyle="bold"
-            tools:text="₹100.00" />
+            android:layout_width="0dp"
+            android:background="@color/dashboard_item_details_bg"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/dashboard_item_paddingStartEnd"
+            android:paddingTop="@dimen/dashboard_item_paddingTopBottom"
+            android:paddingEnd="@dimen/dashboard_item_paddingStartEnd"
+            android:paddingBottom="@dimen/dashboard_item_paddingTopBottom">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/item_dashboard_viewd_image_size"
+                    android:layout_height="@dimen/item_dashboard_viewd_image_size"
+                    android:src="@drawable/ic_viewed"
+                    />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-
 </RelativeLayout>
