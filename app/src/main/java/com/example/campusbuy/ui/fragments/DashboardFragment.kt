@@ -2,17 +2,17 @@ package com.example.campusbuy.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.campusbuy.R
 //import com.example.campusbuy.activities.databinding.FragmentDashboardBinding
 import com.example.campusbuy.databinding.FragmentDashboardBinding
 import com.example.campusbuy.firestore.FireStoreClass
 import com.example.campusbuy.models.Product
 import com.example.campusbuy.ui.activities.SettingsActivity
+import com.example.campusbuy.ui.adapters.DashboardItemsListAdapter
+import kotlinx.android.synthetic.main.fragment_dashboard.*
+import kotlinx.android.synthetic.main.item_dashboard_layout.view.*
 
 class DashboardFragment : BaseFragment() {
 
@@ -70,8 +70,19 @@ class DashboardFragment : BaseFragment() {
     fun successDashBoardItemsList(dashboardItemList: ArrayList<Product>) {
         hideProgressDialog()
 
-        for(i in dashboardItemList) {
-            Log.i("Item Title ", i.title)
+        if(dashboardItemList.isNotEmpty()) {
+            rv_dashboard_items.visibility = View.VISIBLE
+            tv_no_dashboard_items_found.visibility = View.GONE
+
+            rv_dashboard_items.layoutManager = GridLayoutManager(activity, 2)
+            rv_dashboard_items.setHasFixedSize(true)
+
+            val adapterDashBoardProducts = DashboardItemsListAdapter(requireActivity(), dashboardItemList)
+            rv_dashboard_items.adapter = adapterDashBoardProducts
+        }
+        else{
+            rv_dashboard_items.visibility = View.GONE
+            tv_no_dashboard_items_found.visibility = View.VISIBLE
         }
     }
 

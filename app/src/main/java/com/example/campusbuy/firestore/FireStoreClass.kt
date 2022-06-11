@@ -233,7 +233,7 @@ class FireStoreClass {
 
     fun getDashboardItemsList(fragment: DashboardFragment) {
         mFirestore.collection(Constants.PRODUCTS)
-//            .whereNotEqualTo(Constants.USER_ID, getCurrentUserId())
+            .whereNotEqualTo(Constants.USER_ID, getCurrentUserId())
             .get()
             .addOnSuccessListener { document ->
                 Log.e("Products list", document.documents.toString())
