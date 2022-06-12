@@ -35,6 +35,7 @@ class DashboardItemsListAdapter(
             holder.itemView.tv_dashboard_item_title.text = model.title
             holder.itemView.tv_dashboard_item_price.text = model.price
             holder.itemView.tv_dashboard_viewed_count.text = model.seenCount.toString()
+            holder.itemView.tv_dashboard_interested_count.text = model.interested.size.toString()
         }
     }
 

@@ -93,12 +93,32 @@
                 <ImageView
                     android:layout_width="@dimen/item_dashboard_viewd_image_size"
                     android:layout_height="@dimen/item_dashboard_viewd_image_size"
-                    android:src="@drawable/ic_viewed" />
+                    android:src="@drawable/ic_viewed"
+                    android:layout_marginHorizontal="5dp" />
                 <TextView
                     android:id="@+id/tv_dashboard_viewed_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="right|center_vertical"
+                android:paddingHorizontal="10dp">
+
+                <ImageView
+                    android:layout_width="@dimen/item_dashboard_viewd_image_size"
+                    android:layout_height="@dimen/item_dashboard_viewd_image_size"
+                    android:src="@drawable/ic_interested"
+                    android:layout_marginHorizontal="5dp" />
+                <TextView
+                    android:id="@+id/tv_dashboard_interested_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3" />
             </LinearLayout>
 
         </LinearLayout>

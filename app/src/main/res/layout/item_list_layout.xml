@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingHorizontal="3dp">
 
     <LinearLayout
         android:id="@+id/ll_item_image"
@@ -27,39 +28,88 @@
         android:id="@+id/ll_product_details"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/item_image_title_price_margin"
-        android:layout_marginEnd="@dimen/item_image_title_price_margin"
-        android:gravity="center"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toStartOf="@id/ib_delete_product"
         app:layout_constraintStart_toEndOf="@id/ll_item_image"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
-
-        <com.example.campusbuy.utils.CBTextViewBold
-            android:id="@+id/tv_item_name"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/item_value_text_color"
-            android:textSize="@dimen/rv_item_name_TextSize"
-            tools:text="Name" />
+            android:layout_marginStart="@dimen/item_image_title_price_margin"
+            android:layout_marginEnd="@dimen/item_image_title_price_margin"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <com.example.campusbuy.utils.CBTextView
-            android:id="@+id/tv_item_price"
-            android:layout_width="match_parent"
+            <com.example.campusbuy.utils.CBTextViewBold
+                android:id="@+id/tv_item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/item_value_text_color"
+                android:textSize="@dimen/rv_item_name_TextSize"
+                tools:text="Name" />
+
+            <com.example.campusbuy.utils.CBTextView
+                android:id="@+id/tv_item_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/rv_item_price_marginTop"
+                android:textColor="@color/item_value_text_color"
+                android:textSize="@dimen/rv_item_price_TextSize"
+                android:textStyle="bold"
+                tools:text="₹100.00" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_product_extra_details"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/rv_item_price_marginTop"
-            android:textColor="@color/item_value_text_color"
-            android:textSize="@dimen/rv_item_price_TextSize"
-            android:textStyle="bold"
-            tools:text="₹100.00" />
-    </LinearLayout>
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/dashboard_item_paddingStartEnd"
+            android:paddingTop="@dimen/dashboard_item_paddingTopBottom"
+            android:paddingEnd="@dimen/dashboard_item_paddingStartEnd"
+            android:paddingBottom="@dimen/dashboard_item_paddingTopBottom">
 
-    <LinearLayout
-        android:id="@+id/ll_visited"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="right|center_vertical"
+                android:paddingHorizontal="10dp">
 
+                <ImageView
+                    android:layout_width="@dimen/item_dashboard_viewd_image_size"
+                    android:layout_height="@dimen/item_dashboard_viewd_image_size"
+                    android:src="@drawable/ic_viewed"
+                    android:layout_marginHorizontal="5dp" />
+                <TextView
+                    android:id="@+id/tv_product_viewed_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="right|center_vertical"
+                android:paddingHorizontal="10dp">
+
+                <ImageView
+                    android:layout_width="@dimen/item_dashboard_viewd_image_size"
+                    android:layout_height="@dimen/item_dashboard_viewd_image_size"
+                    android:src="@drawable/ic_interested"
+                    android:layout_marginHorizontal="5dp" />
+                <TextView
+                    android:id="@+id/tv_product_interested_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3" />
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
     <ImageButton

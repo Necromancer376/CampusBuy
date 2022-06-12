@@ -31,6 +31,8 @@ class myProductsListAdapter(
             GlideLoader(context).loadProductPicture(model.image, holder.itemView.iv_item_image)
             holder.itemView.tv_item_name.text = model.title
             holder.itemView.tv_item_price.text = "₹${model.price}"
+            holder.itemView.tv_product_viewed_count.text = model.seenCount.toString()
+            holder.itemView.tv_product_interested_count.text = model.interested.size.toString()
         }
     }
 
