@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingHorizontal="3dp">
+    android:paddingHorizontal="5dp">
 
     <LinearLayout
         android:id="@+id/ll_item_image"
@@ -108,7 +108,6 @@
                     android:layout_height="wrap_content"
                     android:text="3" />
             </LinearLayout>
-
         </LinearLayout>
     </LinearLayout>
 
@@ -121,9 +120,8 @@
         android:foreground="?attr/selectableItemBackgroundBorderless"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ll_product_details"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="@dimen/delete_icon_padding"
+        android:src="@drawable/ic_vector_delete"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-<!--    android:padding="@dimen/delete_icon_padding"-->
-<!--    android:src="@drawable/ic_vector_delete"-->

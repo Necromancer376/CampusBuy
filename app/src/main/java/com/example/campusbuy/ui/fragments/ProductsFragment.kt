@@ -46,6 +46,10 @@ class ProductsFragment : BaseFragment() {
         }
     }
 
+    fun deleteProduct(productId: String) {
+
+    }
+
     private fun getProductsListFromFireStore() {
         showProgressDialog(resources.getString(R.string.please_wait))
 

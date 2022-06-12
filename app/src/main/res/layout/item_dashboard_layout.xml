@@ -120,7 +120,6 @@
                     android:layout_height="wrap_content"
                     android:text="3" />
             </LinearLayout>
-
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

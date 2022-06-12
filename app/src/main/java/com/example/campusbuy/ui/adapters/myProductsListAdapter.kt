@@ -33,6 +33,10 @@ class myProductsListAdapter(
             holder.itemView.tv_item_price.text = "₹${model.price}"
             holder.itemView.tv_product_viewed_count.text = model.seenCount.toString()
             holder.itemView.tv_product_interested_count.text = model.interested.size.toString()
+
+            holder.itemView.ib_delete_product.setOnClickListener{
+                //TODO delete
+            }
         }
     }
 
