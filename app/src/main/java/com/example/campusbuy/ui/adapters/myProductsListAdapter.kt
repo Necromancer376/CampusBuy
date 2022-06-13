@@ -7,12 +7,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campusbuy.R
 import com.example.campusbuy.models.Product
+import com.example.campusbuy.ui.fragments.ProductsFragment
 import com.example.campusbuy.utils.GlideLoader
 import kotlinx.android.synthetic.main.item_list_layout.view.*
 
 class myProductsListAdapter(
     private val context: Context,
-    private var list: ArrayList<Product>
+    private var list: ArrayList<Product>,
+    private val fragment: ProductsFragment
+
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MyViewHolder(
@@ -35,7 +38,7 @@ class myProductsListAdapter(
             holder.itemView.tv_product_interested_count.text = model.interested.size.toString()
 
             holder.itemView.ib_delete_product.setOnClickListener{
-                //TODO delete
+                fragment.deleteProduct(model.product_id)
             }
         }
     }
