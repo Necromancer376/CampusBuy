@@ -65,7 +65,7 @@
     <string name="action_add_prodtct">Add Product</string>
 
     <string name="title_add_product">ADD PRODUCT</string>
-    <string name="et_hint_product_title">Product Title</string>
+    <string name="et_hint_product_title">Product Title (keep it short)</string>
     <string name="et_hint_product_price">Product Price (₹)</string>
     <string name="et_hint_product_description">Product Description</string>
     <string name="et_hint_product_tag">Product Tag (book, technology, utility, etc)</string>
@@ -89,5 +89,8 @@
     <string name="delete_dialog_message">Are you sure you want to delete the product?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+
+    <string name="title_product_details">PRODUCT DETAILS</string>
+    <string name="lbl_product_description">Product Description</string>
 
 </resources>

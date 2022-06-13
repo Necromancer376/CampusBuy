@@ -60,7 +60,7 @@
     <dimen name="settings_button_marginTopBottom">25dp</dimen>
 
     <dimen name="toolbar_title_paddingStart">-25dp</dimen>
-    <dimen name="toolbar_title_text_size">24sp</dimen>
+    <dimen name="toolbar_title_text_size">22sp</dimen>
     <dimen name="txt_terms_condition_marginStart">10dp</dimen>
     <dimen name="txt_terms_and_condition_textSize">14sp</dimen>
     <dimen name="button_paddingTop_Bottom">8dp</dimen>
@@ -92,4 +92,14 @@
 
     <dimen name="item_dashboard_viewd_image_size">15dp</dimen>
     <dimen name="delete_icon_padding">5dp</dimen>
+
+    <dimen name="product_detail_image_height">250dp</dimen>
+    <dimen name="product_details_title_price_marginTop">16dp</dimen>
+    <dimen name="product_details_title_price_padding">16dp</dimen>
+    <dimen name="product_details_title_textSize">16sp</dimen>
+    <dimen name="product_details_price_textSize">14sp</dimen>
+    <dimen name="product_details_label_textSize">16sp</dimen>
+    <dimen name="product_details_label_margin">16dp</dimen>
+    <dimen name="product_details_description_textSize">14sp</dimen>
+
 </resources>
