@@ -254,4 +254,21 @@ class FireStoreClass {
                     "error while getting dashboard items")
             }
     }
+
+    fun deleteProduct(fragment: ProductsFragment, productId: String) {
+        mFirestore.collection(Constants.PRODUCTS)
+            .document(productId)
+            .delete()
+            .addOnSuccessListener {
+                fragment.productDeleteSuccess()
+            }
+            .addOnFailureListener { e ->
+                fragment.hideProgressDialog()
+                Log.e(
+                    fragment.requireActivity().javaClass.simpleName,
+                    "error while deleating",
+                    e
+                )
+            }
+    }
 }

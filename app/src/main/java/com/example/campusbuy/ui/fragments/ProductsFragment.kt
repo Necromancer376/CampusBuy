@@ -1,8 +1,10 @@
 package com.example.campusbuy.ui.fragments
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.campusbuy.R
 import com.example.campusbuy.databinding.FragmentProductsBinding
@@ -37,7 +39,7 @@ class ProductsFragment : BaseFragment() {
             rv_my_product_items.layoutManager = LinearLayoutManager(activity)
             rv_my_product_items.setHasFixedSize(true)
 
-            val adapterProducts = myProductsListAdapter(requireActivity(), productsList)
+            val adapterProducts = myProductsListAdapter(requireActivity(), productsList, this)
             rv_my_product_items.adapter = adapterProducts
         }
         else{
@@ -47,7 +49,40 @@ class ProductsFragment : BaseFragment() {
     }
 
     fun deleteProduct(productId: String) {
+        showAlertDeleteDialog(productId)
+    }
 
+    private fun showAlertDeleteDialog(productId: String) {
+        val builder = AlertDialog.Builder(requireActivity())
+
+        builder.setTitle(resources.getString(R.string.delete_dialog_title))
+        builder.setMessage(resources.getString(R.string.delete_dialog_message))
+        builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+        builder.setPositiveButton(resources.getString(R.string.yes)) { dialogInterface, _ ->
+            showProgressDialog(resources.getString(R.string.please_wait))
+            FireStoreClass().deleteProduct(this, productId)
+            dialogInterface.dismiss()
+        }
+        builder.setNegativeButton(resources.getString(R.string.no)) { dialogInterface, _ ->
+            dialogInterface.dismiss()
+        }
+
+        val alterDialog: AlertDialog = builder.create()
+        alterDialog.setCancelable(false)
+        alterDialog.show()
+    }
+
+    fun productDeleteSuccess() {
+        hideProgressDialog()
+
+        Toast.makeText(
+            requireActivity(),
+            resources.getString(R.string.product_delete_success_msg),
+            Toast.LENGTH_SHORT
+        ).show()
+
+        getProductsListFromFireStore()
     }
 
     private fun getProductsListFromFireStore() {

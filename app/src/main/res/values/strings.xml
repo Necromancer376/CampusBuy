@@ -84,4 +84,10 @@
 
     <string name="no_dashboard_items_found">No Items Found</string>
 
+    <string name="product_delete_success_msg">Your product was deleted successfully</string>
+    <string name="delete_dialog_title">Delete</string>
+    <string name="delete_dialog_message">Are you sure you want to delete the product?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
 </resources>
