@@ -111,11 +111,28 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                
+                android:orientation="horizontal"
+                android:layout_marginTop="40dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_details_description"
+                android:paddingHorizontal="50dp">
+
                 <com.example.campusbuy.utils.CBButton
-                    android:layout_width=""
-                    android:layout_height=""
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_background"
+                    android:layout_marginHorizontal="10dp"
+                    android:text="interested" />
+
+                <com.example.campusbuy.utils.CBButton
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_background"
+                    android:layout_marginHorizontal="10dp"
+                    android:text="buy"/>
             </LinearLayout>
                 
         </androidx.constraintlayout.widget.ConstraintLayout>
