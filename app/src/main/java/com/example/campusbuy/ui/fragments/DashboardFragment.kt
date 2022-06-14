@@ -23,7 +23,6 @@ class DashboardFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        requireActivity().window.statusBarColor = Color.BLACK
         setHasOptionsMenu(true)
     }
 
