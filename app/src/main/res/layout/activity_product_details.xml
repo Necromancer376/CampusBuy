@@ -111,31 +111,98 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="40dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/tv_product_details_description"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_product_details_description"
-                android:paddingHorizontal="50dp">
+                android:layout_marginTop="20dp">
 
-                <com.example.campusbuy.utils.CBButton
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_background"
-                    android:layout_marginHorizontal="10dp"
-                    android:text="interested" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="10dp">
 
-                <com.example.campusbuy.utils.CBButton
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
+                    <ImageView
+                        android:layout_width="@dimen/product_details_image_icon_size"
+                        android:layout_height="@dimen/product_details_image_icon_size"
+                        android:src="@drawable/ic_viewed"
+                        android:layout_marginHorizontal="5dp" />
+
+                    <com.example.campusbuy.utils.CBTextViewBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Viewed by:"
+                        android:textSize="@dimen/product_details_stats_textSize"
+                        android:layout_marginHorizontal="5dp" />
+
+                    <TextView
+                        android:id="@+id/tv_product_details_viewed_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:textSize="@dimen/product_details_stats_textSize"
+                        android:layout_marginHorizontal="5dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_background"
-                    android:layout_marginHorizontal="10dp"
-                    android:text="buy"/>
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:layout_width="@dimen/product_details_image_icon_size"
+                        android:layout_height="@dimen/product_details_image_icon_size"
+                        android:src="@drawable/ic_interested"
+                        android:layout_marginHorizontal="5dp" />
+
+                    <com.example.campusbuy.utils.CBTextViewBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Interested:"
+                        android:textSize="@dimen/product_details_stats_textSize"
+                        android:layout_marginHorizontal="5dp"/>
+                    <TextView
+                        android:id="@+id/tv_product_details_interested_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3"
+                        android:layout_marginHorizontal="5dp"/>
+                </LinearLayout>
+
             </LinearLayout>
-                
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--<LinearLayout-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:orientation="horizontal"-->
+<!--android:layout_marginTop="40dp"-->
+<!--app:layout_constraintStart_toStartOf="parent"-->
+<!--app:layout_constraintEnd_toEndOf="parent"-->
+<!--app:layout_constraintTop_toBottomOf="@id/tv_product_details_description"-->
+<!--android:paddingHorizontal="50dp">-->
+
+<!--<com.example.campusbuy.utils.CBButton-->
+<!--    android:layout_weight="1"-->
+<!--    android:layout_width="0dp"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:background="@drawable/button_background"-->
+<!--    android:layout_marginHorizontal="10dp"-->
+<!--    android:text="interested" />-->
+
+<!--<com.example.campusbuy.utils.CBButton-->
+<!--    android:layout_weight="1"-->
+<!--    android:layout_width="0dp"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:background="@drawable/button_background"-->
+<!--    android:layout_marginHorizontal="10dp"-->
+<!--    android:text="buy"/>-->
+<!--</LinearLayout>-->
+<!-- -->

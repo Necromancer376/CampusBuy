@@ -101,5 +101,7 @@
     <dimen name="product_details_label_textSize">16sp</dimen>
     <dimen name="product_details_label_margin">16dp</dimen>
     <dimen name="product_details_description_textSize">14sp</dimen>
+    <dimen name="product_details_image_icon_size">20dp</dimen>
+    <dimen name="product_details_stats_textSize">16sp</dimen>
 
 </resources>

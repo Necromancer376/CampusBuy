@@ -1,12 +1,14 @@
 package com.example.campusbuy.ui.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campusbuy.R
 import com.example.campusbuy.models.Product
+import com.example.campusbuy.ui.activities.ProductDetailsActivity
 import com.example.campusbuy.ui.fragments.ProductsFragment
 import com.example.campusbuy.utils.GlideLoader
 import kotlinx.android.synthetic.main.item_list_layout.view.*
@@ -39,6 +41,11 @@ class myProductsListAdapter(
 
             holder.itemView.ib_delete_product.setOnClickListener{
                 fragment.deleteProduct(model.product_id)
+            }
+
+            holder.itemView.setOnClickListener {
+                val intent = Intent(context, ProductDetailsActivity::class.java)
+                context.startActivity(intent)
             }
         }
     }
