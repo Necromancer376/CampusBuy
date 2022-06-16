@@ -50,7 +50,7 @@
                 android:layout_height="@dimen/product_detail_image_height"
                 android:background="@color/colorImageViewBackground"
                 android:contentDescription="@string/content_description"
-                android:scaleType="fitXY"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
