@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campusbuy.R
 import com.example.campusbuy.models.Product
+import com.example.campusbuy.ui.activities.CheckProductDetailsActivity
 import com.example.campusbuy.ui.activities.ProductDetailsActivity
 import com.example.campusbuy.utils.Constants
 import com.example.campusbuy.utils.GlideLoader
@@ -50,7 +51,7 @@ class DashboardItemsListAdapter(
 //            }
 
             holder.itemView.setOnClickListener {
-                val intent = Intent(context, ProductDetailsActivity::class.java)
+                val intent = Intent(context, CheckProductDetailsActivity::class.java)
                 intent.putExtra(Constants.EXTRA_PRODUCT_ID, model.product_id)
                 context.startActivity(intent)
             }
