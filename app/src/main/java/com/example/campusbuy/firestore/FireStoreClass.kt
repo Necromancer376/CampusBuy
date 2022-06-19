@@ -295,4 +295,28 @@ class FireStoreClass {
 
             }
     }
+
+    fun getCheckProductDetaiils(activity: CheckProductDetailsActivity, productId: String) {
+
+        mFirestore.collection(Constants.PRODUCTS)
+            .document(productId)
+            .get()
+            .addOnSuccessListener { document ->
+
+                Log.e(activity.javaClass.simpleName, document.toString())
+                val product = document.toObject(Product::class.java)
+                if(product != null) {
+                    activity.productDetailsSuccess(product)
+                }
+            }
+            .addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "error while deleating",
+                    e
+                )
+
+            }
+    }
 }

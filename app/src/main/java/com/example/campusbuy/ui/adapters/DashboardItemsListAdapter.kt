@@ -1,12 +1,15 @@
 package com.example.campusbuy.ui.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campusbuy.R
 import com.example.campusbuy.models.Product
+import com.example.campusbuy.ui.activities.ProductDetailsActivity
+import com.example.campusbuy.utils.Constants
 import com.example.campusbuy.utils.GlideLoader
 import kotlinx.android.synthetic.main.item_dashboard_layout.view.*
 
@@ -40,10 +43,16 @@ class DashboardItemsListAdapter(
             holder.itemView.tv_dashboard_viewed_count.text = model.seenCount.toString()
             holder.itemView.tv_dashboard_interested_count.text = model.interested.size.toString()
 
+//            holder.itemView.setOnClickListener {
+//                if(onClickListener != null) {
+//                    onClickListener!!.onClick(position, model)
+//                }
+//            }
+
             holder.itemView.setOnClickListener {
-                if(onClickListener != null) {
-                    onClickListener!!.onClick(position, model)
-                }
+                val intent = Intent(context, ProductDetailsActivity::class.java)
+                intent.putExtra(Constants.EXTRA_PRODUCT_ID, model.product_id)
+                context.startActivity(intent)
             }
         }
     }
