@@ -10,8 +10,10 @@ import com.example.campusbuy.R
 import com.example.campusbuy.databinding.FragmentDashboardBinding
 import com.example.campusbuy.firestore.FireStoreClass
 import com.example.campusbuy.models.Product
+import com.example.campusbuy.ui.activities.ProductDetailsActivity
 import com.example.campusbuy.ui.activities.SettingsActivity
 import com.example.campusbuy.ui.adapters.DashboardItemsListAdapter
+import com.example.campusbuy.utils.Constants
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.item_dashboard_layout.view.*
 
@@ -80,6 +82,14 @@ class DashboardFragment : BaseFragment() {
 
             val adapterDashBoardProducts = DashboardItemsListAdapter(requireActivity(), dashboardItemList)
             rv_dashboard_items.adapter = adapterDashBoardProducts
+
+            adapterDashBoardProducts.setOnClickListener(object: DashboardItemsListAdapter.OnClickListener {
+                override fun onClick(position: Int, product: Product) {
+                    val intent = Intent(context, ProductDetailsActivity::class.java)
+                    intent.putExtra(Constants.EXTRA_PRODUCT_ID, product.product_id)
+                    context?.startActivity(intent)
+                }
+            })
         }
         else{
             rv_dashboard_items.visibility = View.GONE
