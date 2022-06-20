@@ -10,6 +10,7 @@ import com.example.campusbuy.R
 import com.example.campusbuy.databinding.FragmentDashboardBinding
 import com.example.campusbuy.firestore.FireStoreClass
 import com.example.campusbuy.models.Product
+import com.example.campusbuy.ui.activities.CheckProductDetailsActivity
 import com.example.campusbuy.ui.activities.ProductDetailsActivity
 import com.example.campusbuy.ui.activities.SettingsActivity
 import com.example.campusbuy.ui.adapters.DashboardItemsListAdapter
@@ -85,7 +86,7 @@ class DashboardFragment : BaseFragment() {
 
             adapterDashBoardProducts.setOnClickListener(object: DashboardItemsListAdapter.OnClickListener {
                 override fun onClick(position: Int, product: Product) {
-                    val intent = Intent(context, ProductDetailsActivity::class.java)
+                    val intent = Intent(context, CheckProductDetailsActivity::class.java)
                     intent.putExtra(Constants.EXTRA_PRODUCT_ID, product.product_id)
                     context?.startActivity(intent)
                 }

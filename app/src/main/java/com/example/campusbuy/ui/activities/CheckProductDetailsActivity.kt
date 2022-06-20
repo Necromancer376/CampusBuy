@@ -8,12 +8,6 @@ import com.example.campusbuy.models.Product
 import com.example.campusbuy.utils.Constants
 import com.example.campusbuy.utils.GlideLoader
 import kotlinx.android.synthetic.main.activity_check_product_details.*
-import kotlinx.android.synthetic.main.activity_product_details.iv_product_detail_image
-import kotlinx.android.synthetic.main.activity_product_details.tv_product_details_description
-import kotlinx.android.synthetic.main.activity_product_details.tv_product_details_interested_count
-import kotlinx.android.synthetic.main.activity_product_details.tv_product_details_price
-import kotlinx.android.synthetic.main.activity_product_details.tv_product_details_title
-import kotlinx.android.synthetic.main.activity_product_details.tv_product_details_viewed_count
 
 class CheckProductDetailsActivity : BaseActivity() {
 
@@ -48,7 +42,7 @@ class CheckProductDetailsActivity : BaseActivity() {
         hideProgressDialog()
         GlideLoader(this@CheckProductDetailsActivity).loadProductPicture(
             product.image,
-            iv_product_detail_image
+            iv_check_product_detail_image
         )
         tv_check_product_details_title.text = product.title
         tv_check_product_details_price.text = product.price
