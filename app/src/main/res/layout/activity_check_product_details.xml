@@ -185,7 +185,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ll_stats"
-            android:paddingHorizontal="30dp">
+            android:paddingHorizontal="20dp">
 
             <com.example.campusbuy.utils.CBButton
                 android:id="@+id/btn_interested"
@@ -193,6 +193,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_background"
+                android:foreground="?attr/selectableItemBackground"
                 android:layout_marginHorizontal="20dp"
                 android:text="interested" />
 
@@ -202,6 +203,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_background"
+                android:foreground="?attr/selectableItemBackground"
                 android:layout_marginHorizontal="20dp"
                 android:text="buy"/>
             </LinearLayout>
