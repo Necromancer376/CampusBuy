@@ -8,6 +8,7 @@ import android.os.Handler
 import android.view.WindowInsets
 import android.view.WindowManager
 import com.example.campusbuy.R
+import com.google.firebase.auth.FirebaseAuth
 
 
 class SplashActivity : AppCompatActivity() {
@@ -28,8 +29,16 @@ class SplashActivity : AppCompatActivity() {
         @Suppress("DEPRECATION")
         Handler().postDelayed(
             {
-                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-                finish()
+                val user = FirebaseAuth.getInstance().currentUser
+
+                if(user != null) {
+                    startActivity(Intent(this@SplashActivity, DashboardActivity::class.java))
+                    finish()
+                }
+                else {
+                    startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                    finish()
+                }
             },
             1000
         )
