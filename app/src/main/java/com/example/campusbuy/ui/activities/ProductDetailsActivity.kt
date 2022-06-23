@@ -21,7 +21,6 @@ class ProductDetailsActivity : BaseActivity() {
 
         if(intent.hasExtra(Constants.EXTRA_PRODUCT_ID)) {
             mProductId = intent.getStringExtra(Constants.EXTRA_PRODUCT_ID)!!
-            Log.i("Product id", mProductId)
         }
         getProductDetails()
     }

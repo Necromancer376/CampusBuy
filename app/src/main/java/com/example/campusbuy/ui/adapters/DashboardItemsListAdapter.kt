@@ -44,17 +44,18 @@ class DashboardItemsListAdapter(
             holder.itemView.tv_dashboard_viewed_count.text = model.seenCount.toString()
             holder.itemView.tv_dashboard_interested_count.text = model.interested.size.toString()
 
-            holder.itemView.setOnClickListener {
-                if(onClickListener != null) {
-                    onClickListener!!.onClick(position, model)
-                }
-            }
-
 //            holder.itemView.setOnClickListener {
-//                val intent = Intent(context, CheckProductDetailsActivity::class.java)
-//                intent.putExtra(Constants.EXTRA_PRODUCT_ID, model.product_id)
-//                context.startActivity(intent)
+//                if(onClickListener != null) {
+//                    onClickListener!!.onClick(position, model)
+//                }
 //            }
+
+            holder.itemView.setOnClickListener {
+                val intent = Intent(context, CheckProductDetailsActivity::class.java)
+                intent.putExtra(Constants.EXTRA_PRODUCT_ID, model.product_id)
+                intent.putExtra(Constants.EXTRA_PRODUCT_OWNER_ID, model.user_id)
+                context.startActivity(intent)
+            }
         }
     }
 

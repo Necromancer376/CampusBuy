@@ -21,8 +21,12 @@ class CheckProductDetailsActivity : BaseActivity() {
 
         if(intent.hasExtra(Constants.EXTRA_PRODUCT_ID)) {
             mProductId = intent.getStringExtra(Constants.EXTRA_PRODUCT_ID)!!
-            Log.i("Product id", mProductId)
         }
+        var productOwnerId: String = ""
+        if(intent.hasExtra(Constants.EXTRA_PRODUCT_OWNER_ID)) {
+            productOwnerId = intent.getStringExtra(Constants.EXTRA_PRODUCT_OWNER_ID)!!
+        }
+        
         getProductDetails()
     }
 

@@ -84,13 +84,13 @@ class DashboardFragment : BaseFragment() {
             val adapterDashBoardProducts = DashboardItemsListAdapter(requireActivity(), dashboardItemList)
             rv_dashboard_items.adapter = adapterDashBoardProducts
 
-            adapterDashBoardProducts.setOnClickListener(object: DashboardItemsListAdapter.OnClickListener {
-                override fun onClick(position: Int, product: Product) {
-                    val intent = Intent(context, CheckProductDetailsActivity::class.java)
-                    intent.putExtra(Constants.EXTRA_PRODUCT_ID, product.product_id)
-                    context?.startActivity(intent)
-                }
-            })
+//            adapterDashBoardProducts.setOnClickListener(object: DashboardItemsListAdapter.OnClickListener {
+//                override fun onClick(position: Int, product: Product) {
+//                    val intent = Intent(context, CheckProductDetailsActivity::class.java)
+//                    intent.putExtra(Constants.EXTRA_PRODUCT_ID, product.product_id)
+//                    context?.startActivity(intent)
+//                }
+//            })
         }
         else{
             rv_dashboard_items.visibility = View.GONE

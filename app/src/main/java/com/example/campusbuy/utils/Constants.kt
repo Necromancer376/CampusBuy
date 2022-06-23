@@ -36,6 +36,7 @@ object Constants {
     const val USER_ID: String = "user_id"
 
     const val EXTRA_PRODUCT_ID = "extra_product_id"
+    const val EXTRA_PRODUCT_OWNER_ID = "extra_product_owner_id"
 
 
     fun showImageChooser(activity: Activity) {
