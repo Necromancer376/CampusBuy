@@ -187,15 +187,15 @@
             app:layout_constraintTop_toBottomOf="@id/ll_stats"
             android:paddingHorizontal="20dp">
 
-            <com.example.campusbuy.utils.CBButton
-                android:id="@+id/btn_interested"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_background"
-                android:foreground="?attr/selectableItemBackground"
-                android:layout_marginHorizontal="20dp"
-                android:text="interested" />
+<!--            <com.example.campusbuy.utils.CBButton-->
+<!--                android:id="@+id/btn_interested"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/button_background"-->
+<!--                android:foreground="?attr/selectableItemBackground"-->
+<!--                android:layout_marginHorizontal="20dp"-->
+<!--                android:text="interested" />-->
 
             <com.example.campusbuy.utils.CBButton
                 android:id="@+id/btn_buy"
@@ -205,7 +205,7 @@
                 android:background="@drawable/button_background"
                 android:foreground="?attr/selectableItemBackground"
                 android:layout_marginHorizontal="20dp"
-                android:text="offer"/>
+                android:text="@string/offer_button_text"/>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
