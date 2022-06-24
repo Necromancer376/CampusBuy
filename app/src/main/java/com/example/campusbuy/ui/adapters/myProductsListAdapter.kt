@@ -12,6 +12,7 @@ import com.example.campusbuy.ui.activities.ProductDetailsActivity
 import com.example.campusbuy.ui.fragments.ProductsFragment
 import com.example.campusbuy.utils.Constants
 import com.example.campusbuy.utils.GlideLoader
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.item_list_layout.view.*
 
 class myProductsListAdapter(
@@ -21,6 +22,10 @@ class myProductsListAdapter(
 
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+
+        val user = FirebaseAuth.getInstance().currentUser
+
+
         return MyViewHolder(
             LayoutInflater.from(context).inflate(
                 R.layout.item_list_layout,

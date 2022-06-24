@@ -12,5 +12,6 @@ class User (
     val image: String = "",
     val mobile: Long = 0L,
     val profileCompleted: Int = 0,
-    val campus: String = ""
+    val campus: String = "",
+    var sellingProducts: ArrayList<Product> = ArrayList<Product>()
 ): Parcelable
