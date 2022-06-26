@@ -1,7 +1,7 @@
 package com.example.campusbuy.ui.activities
 
 import android.os.Bundle
-import android.util.Log
+import android.view.View
 import com.example.campusbuy.R
 import com.example.campusbuy.firestore.FireStoreClass
 import com.example.campusbuy.models.Product
@@ -9,7 +9,7 @@ import com.example.campusbuy.utils.Constants
 import com.example.campusbuy.utils.GlideLoader
 import kotlinx.android.synthetic.main.activity_check_product_details.*
 
-class CheckProductDetailsActivity : BaseActivity() {
+class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
 
     private var mProductId: String = ""
 
@@ -26,8 +26,10 @@ class CheckProductDetailsActivity : BaseActivity() {
         if(intent.hasExtra(Constants.EXTRA_PRODUCT_OWNER_ID)) {
             productOwnerId = intent.getStringExtra(Constants.EXTRA_PRODUCT_OWNER_ID)!!
         }
-        
+
         getProductDetails()
+
+        btn_offer_chat.setOnClickListener(this)
     }
 
     private fun setupActionBar() {
@@ -58,5 +60,9 @@ class CheckProductDetailsActivity : BaseActivity() {
     private fun getProductDetails() {
         showProgressDialog(resources.getString(R.string.please_wait))
         FireStoreClass().getCheckProductDetaiils(this@CheckProductDetailsActivity, mProductId)
+    }
+
+    override fun onClick(p0: View?) {
+
     }
 }
