@@ -60,6 +60,8 @@
                 tools:text="₹100.00" />
         </LinearLayout>
 
+
+
         <LinearLayout
             android:id="@+id/ll_product_extra_details"
             android:layout_weight="1"

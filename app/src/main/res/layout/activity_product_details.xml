@@ -164,7 +164,7 @@
                     <com.example.campusbuy.utils.CBTextViewBold
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Interested:"
+                        android:text="Offers:"
                         android:textSize="@dimen/product_details_stats_textSize"
                         android:layout_marginHorizontal="5dp"/>
                     <TextView
