@@ -94,5 +94,6 @@
     <string name="lbl_product_description">Product Description</string>
 
     <string name="offer_button_text">offer &amp; chat</string>
+    <string name="see_product_chats_text">See Offers</string>
 
 </resources>
