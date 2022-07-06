@@ -7,7 +7,7 @@
     tools:context=".ui.activities.ProductChatActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_product_details_activity"
+        android:id="@+id/toolbar_product_chat_activity"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@drawable/background_gradient"
@@ -26,7 +26,36 @@
             android:textColor="@color/black"
             android:textSize="@dimen/toolbar_title_text_size"
             android:textStyle="bold" />
-
     </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_product_chat_activity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="10dp"
+        android:orientation="horizontal" >
+
+        <com.example.campusbuy.utils.CBEditText
+            android:layout_weight="11"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/chat_send_button_background"
+            android:src="@drawable/iv_send_msg"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
