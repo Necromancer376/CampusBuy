@@ -12,6 +12,8 @@ import kotlinx.android.synthetic.main.activity_check_product_details.*
 class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
 
     private var mProductId: String = ""
+    private lateinit var mProductDetails: Product
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +47,8 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
     }
 
     fun productDetailsSuccess(product: Product) {
+        mProductDetails = product
+
         hideProgressDialog()
         GlideLoader(this@CheckProductDetailsActivity).loadProductPicture(
             product.image,
