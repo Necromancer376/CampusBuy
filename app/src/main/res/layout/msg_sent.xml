@@ -10,8 +10,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="10dp"
         android:layout_marginVertical="5dp"
-        android:layout_alignParentRight="true"
-        >
+        android:layout_alignParentRight="true" >
 
         <com.example.campusbuy.utils.CBTextView
             android:id="@+id/txt_sent_msg"

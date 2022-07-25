@@ -10,5 +10,6 @@ class Message (
     val title: String = "",
     val price: String = "",
     val image: String = "",
+    val message: String = "",
     val id: String = ""
 ): Parcelable

@@ -38,6 +38,9 @@ object Constants {
     const val EXTRA_PRODUCT_ID = "extra_product_id"
     const val EXTRA_PRODUCT_OWNER_ID = "extra_product_owner_id"
 
+    const val ITEM_RECIEVED = 1
+    const val ITEM_SENT = 2
+
 
     fun showImageChooser(activity: Activity) {
         val gallaryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)

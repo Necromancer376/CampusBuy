@@ -10,11 +10,10 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="20dp"
         android:layout_marginVertical="5dp"
-        android:layout_alignParentLeft="true"
-        >
+        android:layout_alignParentLeft="true" >
 
         <com.example.campusbuy.utils.CBTextView
-            android:id="@+id/txt_sent_msg"
+            android:id="@+id/txt_recieved_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="this is a recieved msg"

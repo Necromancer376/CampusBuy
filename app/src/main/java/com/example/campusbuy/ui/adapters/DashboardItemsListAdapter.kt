@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.campusbuy.R
 import com.example.campusbuy.models.Product
 import com.example.campusbuy.ui.activities.CheckProductDetailsActivity
-import com.example.campusbuy.ui.activities.ProductDetailsActivity
 import com.example.campusbuy.utils.Constants
 import com.example.campusbuy.utils.GlideLoader
 import kotlinx.android.synthetic.main.item_dashboard_layout.view.*
