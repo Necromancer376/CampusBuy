@@ -9,8 +9,7 @@ import com.example.campusbuy.models.Message
 import com.example.campusbuy.R
 import com.example.campusbuy.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.msg_sent.view.*
-import kotlinx.android.synthetic.main.msg_recieved.view.*
+
 
 class MessageAdapter(
     val context: Context,
@@ -44,6 +43,7 @@ class MessageAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
+
         val currentMessage = messageList[position]
 
         if(FirebaseAuth.getInstance().currentUser?.uid.equals(currentMessage.user_id)) {
@@ -64,6 +64,7 @@ class MessageAdapter(
     }
 
     class RecievedViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+
         val recievedMessage = itemView.findViewById<com.example.campusbuy.utils.CBTextView>(R.id.txt_recieved_msg)
     }
 }
