@@ -60,7 +60,7 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
         tv_check_product_details_description.text = product.description
         tv_check_product_details_viewed_count.text = product.seenCount.toString()
         tv_check_product_details_interested_count.text = product.interested.size.toString()
-    } 
+    }
 
     private fun getProductDetails() {
         showProgressDialog(resources.getString(R.string.please_wait))

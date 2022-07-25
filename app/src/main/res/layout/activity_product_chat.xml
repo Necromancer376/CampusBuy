@@ -48,14 +48,21 @@
         <com.example.campusbuy.utils.CBEditText
             android:layout_weight="11"
             android:layout_width="0dp"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@drawable/message_box_background"
+            android:paddingHorizontal="10dp"
+            android:hint="Type a message" />
 
         <ImageView
             android:layout_weight="2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@drawable/chat_send_button_background"
-            android:src="@drawable/iv_send_msg"/>
+            android:gravity="center"
+            android:padding="5dp"
+            android:src="@drawable/iv_send_msg"
+            android:background="@drawable/chat_send_button_background"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    android:background="@drawable/chat_send_button_background"-->
