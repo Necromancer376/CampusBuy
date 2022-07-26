@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campusbuy.models.Message
 import com.example.campusbuy.R
+import com.example.campusbuy.firestore.FireStoreClass
 import com.example.campusbuy.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 
@@ -46,7 +47,7 @@ class MessageAdapter(
 
         val currentMessage = messageList[position]
 
-        if(FirebaseAuth.getInstance().currentUser?.uid.equals(currentMessage.user_id)) {
+        if(FireStoreClass().getCurrentUserId().equals(currentMessage.user_id)) {
             return Constants.ITEM_SENT
         }
         else {
