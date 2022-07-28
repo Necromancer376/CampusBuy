@@ -24,6 +24,7 @@ object Constants {
     const val CAMERA = 2
 
     const val MOBILE: String = "mobile"
+    const val USER_NAME: String = "user_name"
     const val FIRSTNAME: String = "firstName"
     const val LASTNAME: String = "lastName"
     const val USER_PROFILE_IMAGE = "User_Profile_Image"
@@ -34,6 +35,7 @@ object Constants {
     const val PRODUCT_IMAGE: String = "Product_Image"
 
     const val USER_ID: String = "user_id"
+    const val PRODUCT_ID: String = "product_id"
 
     const val EXTRA_PRODUCT_ID = "extra_product_id"
     const val EXTRA_PRODUCT_OWNER_ID = "extra_product_owner_id"

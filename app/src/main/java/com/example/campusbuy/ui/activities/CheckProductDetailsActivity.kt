@@ -68,6 +68,10 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-        startActivity(Intent(this@CheckProductDetailsActivity, ProductChatActivity::class.java))
+        val internt_chat = Intent(this@CheckProductDetailsActivity, ProductChatActivity::class.java)
+        internt_chat.putExtra(Constants.USER_ID, mProductDetails.user_id)
+        internt_chat.putExtra(Constants.USER_NAME, mProductDetails.user_name)
+        internt_chat.putExtra(Constants.PRODUCT_ID, mProductDetails.product_id)
+        startActivity(internt_chat)
     }
 }
