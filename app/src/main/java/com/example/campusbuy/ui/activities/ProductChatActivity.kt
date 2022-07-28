@@ -39,7 +39,7 @@ class ProductChatActivity : AppCompatActivity() {
 
             val message = edt_message_box.text.toString()
             val messageObject = Message(senderUid, message, productId!!)
-
+            
         }
     }
 }
