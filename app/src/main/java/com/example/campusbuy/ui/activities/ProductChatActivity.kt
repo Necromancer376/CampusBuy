@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.example.campusbuy.R
 import com.example.campusbuy.firestore.FireStoreClass
 import com.example.campusbuy.models.Message
+import com.example.campusbuy.models.User
 import com.example.campusbuy.ui.adapters.MessageAdapter
 import com.example.campusbuy.utils.Constants
 import com.google.firebase.database.DatabaseReference
@@ -15,6 +16,7 @@ class ProductChatActivity : AppCompatActivity() {
     private lateinit var messageAdapter: MessageAdapter
     private lateinit var messageList: ArrayList<Message>
     private lateinit var mDBref: DatabaseReference
+    private lateinit var mUserDetails: User
 
     var recieverRoom: String? = null
     var senderRoom: String? = null
@@ -33,6 +35,8 @@ class ProductChatActivity : AppCompatActivity() {
 
         messageList = ArrayList()
         messageAdapter = MessageAdapter(this@ProductChatActivity, messageList)
+
+        mUserDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
 
 
         btn_send_msg.setOnClickListener {
