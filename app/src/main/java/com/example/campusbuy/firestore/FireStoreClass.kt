@@ -319,4 +319,29 @@ class FireStoreClass {
 
             }
     }
+
+    fun upadteProductInterestedList(activity: Activity, productId: String, userHashMap: HashMap<String, Any>) {
+        mFirestore.collection(Constants.PRODUCTS)
+            .document(productId)
+            .update(userHashMap)
+            .addOnSuccessListener {e ->
+                when(activity) {
+                    is CheckProductDetailsActivity -> {
+                        activity.updateInterestedArray()
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                when(activity) {
+                    is CheckProductDetailsActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while updating profile",
+                    e
+                )
+            }
+    }
 }

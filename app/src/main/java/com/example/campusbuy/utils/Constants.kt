@@ -33,6 +33,7 @@ object Constants {
     const val COMPLETE_PROFILE: String = "profileCompleted"
 
     const val PRODUCT_IMAGE: String = "Product_Image"
+    const val PRODUCT_INTERSTED: String= "interested"
 
     const val USER_ID: String = "user_id"
     const val PRODUCT_ID: String = "product_id"
