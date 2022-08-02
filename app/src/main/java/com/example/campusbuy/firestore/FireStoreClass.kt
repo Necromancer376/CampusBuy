@@ -327,7 +327,7 @@ class FireStoreClass {
             .addOnSuccessListener {e ->
                 when(activity) {
                     is CheckProductDetailsActivity -> {
-                        activity.updateInterestedArray()
+                        activity.productInterestedSuccess()
                     }
                 }
             }

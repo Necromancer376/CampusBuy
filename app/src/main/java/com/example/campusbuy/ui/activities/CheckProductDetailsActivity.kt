@@ -72,13 +72,8 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-//        mProductDetails.interested.add(mUserDetails) TODO fix backend for this
-        val internt_chat = Intent(this@CheckProductDetailsActivity, ProductChatActivity::class.java)
-        internt_chat.putExtra(Constants.USER_ID, mProductDetails.user_id)
-        internt_chat.putExtra(Constants.USER_NAME, mProductDetails.user_name)
-        internt_chat.putExtra(Constants.PRODUCT_ID, mProductDetails.product_id)
-        internt_chat.putExtra(Constants.EXTRA_USER_DETAILS, mUserDetails)
-        startActivity(internt_chat)
+//        mProductDetails.interested.add(mUserDetails)
+        updateInterestedArray()
     }
 
     private fun getUserDetails() {
@@ -86,15 +81,20 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
         FireStoreClass().getUserDetails(this@CheckProductDetailsActivity)
     }
 
-    fun userDetailsSuccess(user: User) {
-
-        mUserDetails = user
-        hideProgressDialog()
+    fun productInterestedSuccess() {
+        val internt_chat = Intent(this@CheckProductDetailsActivity, ProductChatActivity::class.java)
+        internt_chat.putExtra(Constants.USER_ID, mProductDetails.user_id)
+        internt_chat.putExtra(Constants.USER_NAME, mProductDetails.user_name)
+        internt_chat.putExtra(Constants.PRODUCT_ID, mProductDetails.product_id)
+        internt_chat.putExtra(Constants.EXTRA_USER_DETAILS, mUserDetails)
+        startActivity(internt_chat)
+        finish()
     }
 
     fun updateInterestedArray() {
         val userHashMap = HashMap<String, Any>()
         userHashMap[Constants.PRODUCT_INTERSTED] = mUserDetails
 
+        FireStoreClass().upadteProductInterestedList(this@CheckProductDetailsActivity, mProductDetails.product_id, userHashMap)
     }
 }
