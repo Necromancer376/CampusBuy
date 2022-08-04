@@ -10,7 +10,6 @@ import com.example.campusbuy.models.User
 import com.example.campusbuy.utils.Constants
 import com.example.campusbuy.utils.GlideLoader
 import kotlinx.android.synthetic.main.activity_check_product_details.*
-import kotlinx.android.synthetic.main.activity_settings.*
 
 class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
 
@@ -71,9 +70,14 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
         FireStoreClass().getCheckProductDetaiils(this@CheckProductDetailsActivity, mProductId)
     }
 
-    override fun onClick(p0: View?) {
-
-        updateInterestedArray()
+    override fun onClick(view: View?) {
+        if(view != null) {
+            when (view.id) {
+                R.id.btn_offer_chat -> {
+                    updateInterestedArray()
+                }
+            }
+        }
     }
 
     private fun getUserDetails() {

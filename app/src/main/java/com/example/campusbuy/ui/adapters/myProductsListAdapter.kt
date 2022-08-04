@@ -13,6 +13,7 @@ import com.example.campusbuy.ui.fragments.ProductsFragment
 import com.example.campusbuy.utils.Constants
 import com.example.campusbuy.utils.GlideLoader
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_check_product_details.view.*
 import kotlinx.android.synthetic.main.item_list_layout.view.*
 
 class myProductsListAdapter(
