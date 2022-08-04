@@ -96,6 +96,9 @@ class FireStoreClass {
                     is SettingsActivity -> {
                         activity.userDetailsSuccess(user)
                     }
+                    is CheckProductDetailsActivity -> {
+                        activity.userDetailsSuccess(user)
+                    }
                 }
             }
             .addOnFailureListener { e ->
@@ -105,6 +108,9 @@ class FireStoreClass {
                     }
 
                     is SettingsActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                    is CheckProductDetailsActivity -> {
                         activity.hideProgressDialog()
                     }
                 }

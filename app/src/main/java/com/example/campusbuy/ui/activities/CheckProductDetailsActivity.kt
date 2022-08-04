@@ -51,9 +51,10 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
     }
 
     fun productDetailsSuccess(product: Product) {
+        hideProgressDialog()
+
         mProductDetails = product
 
-        hideProgressDialog()
         GlideLoader(this@CheckProductDetailsActivity).loadProductPicture(
             product.image,
             iv_check_product_detail_image
@@ -83,6 +84,12 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
     private fun getUserDetails() {
         showProgressDialog(resources.getString(R.string.please_wait))
         FireStoreClass().getUserDetails(this@CheckProductDetailsActivity)
+    }
+
+    fun userDetailsSuccess(user: User) {
+
+        mUserDetails = user
+        hideProgressDialog()
     }
 
     fun productInterestedSuccess() {
