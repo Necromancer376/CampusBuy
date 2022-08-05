@@ -52,7 +52,7 @@ class DashboardItemsListAdapter(
 //            }
 
             holder.itemView.setOnClickListener {
-                
+
                 val intent = Intent(context, CheckProductDetailsActivity::class.java)
                 intent.putExtra(Constants.EXTRA_PRODUCT_ID, model.product_id)
                 intent.putExtra(Constants.EXTRA_PRODUCT_OWNER_ID, model.user_id)
