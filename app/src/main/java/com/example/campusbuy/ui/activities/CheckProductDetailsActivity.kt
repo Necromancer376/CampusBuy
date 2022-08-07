@@ -87,9 +87,8 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
     }
 
     fun userDetailsSuccess(user: User) {
-
-        mUserDetails = user
         hideProgressDialog()
+        mUserDetails = user
     }
 
     fun productInterestedSuccess() {
