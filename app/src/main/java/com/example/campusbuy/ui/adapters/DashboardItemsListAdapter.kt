@@ -2,14 +2,12 @@ package com.example.campusbuy.ui.adapters
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campusbuy.R
 import com.example.campusbuy.models.Product
-import com.example.campusbuy.ui.activities.BaseActivity
 import com.example.campusbuy.ui.activities.CheckProductDetailsActivity
 import com.example.campusbuy.utils.Constants
 import com.example.campusbuy.utils.GlideLoader
@@ -52,7 +50,6 @@ class DashboardItemsListAdapter(
 //            }
 
             holder.itemView.setOnClickListener {
-
                 val intent = Intent(context, CheckProductDetailsActivity::class.java)
                 intent.putExtra(Constants.EXTRA_PRODUCT_ID, model.product_id)
                 intent.putExtra(Constants.EXTRA_PRODUCT_OWNER_ID, model.user_id)

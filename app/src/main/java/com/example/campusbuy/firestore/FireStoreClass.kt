@@ -309,7 +309,7 @@ class FireStoreClass {
             .get()
             .addOnSuccessListener { document ->
 
-                Log.e(activity.javaClass.simpleName, document.toString())
+//                Log.e(activity.javaClass.simpleName, document.toString())
                 val product = document.toObject(Product::class.java)
                 if(product != null) {
                     activity.productDetailsSuccess(product)
