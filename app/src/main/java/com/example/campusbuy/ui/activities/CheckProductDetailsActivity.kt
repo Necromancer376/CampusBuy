@@ -104,7 +104,7 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
 
     fun updateInterestedArray() {
         val userHashMap = HashMap<String, Any>()
-        userHashMap[Constants.PRODUCT_INTERSTED] = mUserDetails.id
+        userHashMap[Constants.PRODUCT_INTERESTED] = mUserDetails.id
 
         FireStoreClass().upadteProductInterestedList(this@CheckProductDetailsActivity, mProductDetails.product_id, userHashMap)
     }
