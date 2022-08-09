@@ -1,6 +1,6 @@
 # CampusBuy
 
-CampusBuy is an Android app that provides a platform for students to sell and buy second-hand items useful for campus life such as books, tech items, etc.
+CampusBuy is an Android app that provides a platform for students to sell and buy second-hand items useful for campus life such as books, tech items, utils, etc.
 
 # Features
 - Signup/Login system
