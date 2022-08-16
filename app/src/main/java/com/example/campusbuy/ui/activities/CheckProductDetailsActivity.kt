@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_check_product_details.*
 class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
 
     private var mProductId: String = ""
+    private var productOwnerId: String = ""
     private lateinit var mProductDetails: Product
     private lateinit var mUserDetails : User
 
@@ -27,7 +28,7 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
         if(intent.hasExtra(Constants.EXTRA_PRODUCT_ID)) {
             mProductId = intent.getStringExtra(Constants.EXTRA_PRODUCT_ID)!!
         }
-        var productOwnerId: String = ""
+
         if(intent.hasExtra(Constants.EXTRA_PRODUCT_OWNER_ID)) {
             productOwnerId = intent.getStringExtra(Constants.EXTRA_PRODUCT_OWNER_ID)!!
         }
