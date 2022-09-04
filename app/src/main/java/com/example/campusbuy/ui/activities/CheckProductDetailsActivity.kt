@@ -82,6 +82,7 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
+
     private fun getUserDetails() {
         showProgressDialog(resources.getString(R.string.please_wait))
         FireStoreClass().getUserDetails(this@CheckProductDetailsActivity)
