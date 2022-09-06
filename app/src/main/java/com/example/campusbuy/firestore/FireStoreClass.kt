@@ -306,7 +306,7 @@ class FireStoreClass {
 
     fun getCheckProductDetaiils(activity: CheckProductDetailsActivity, productId: String) {
 
-        Log.e("id:", productId)
+        activity.hideProgressDialog()
         mFirestore.collection(Constants.PRODUCTS)
             .document(productId)
             .get()
@@ -315,6 +315,7 @@ class FireStoreClass {
 //                Log.e(activity.javaClass.simpleName, document.toString())
                 val product = document.toObject(Product::class.java)
                 if(product != null) {
+//                    activity.hideProgressDialog()
                     activity.productDetailsSuccess(product)
                 }
             }
@@ -329,28 +330,28 @@ class FireStoreClass {
             }
     }
 
-//    fun upadteProductInterestedList(activity: Activity, productId: String, userHashMap: HashMap<String, Any>) {
-//        mFirestore.collection(Constants.PRODUCTS)
-//            .document(productId)
-//            .update(userHashMap)
-//            .addOnSuccessListener {e ->
-//                when(activity) {
-//                    is CheckProductDetailsActivity -> {
-//                        activity.productInterestedSuccess()
-//                    }
-//                }
-//            }
-//            .addOnFailureListener { e ->
-//                when(activity) {
-//                    is CheckProductDetailsActivity -> {
-//                        activity.hideProgressDialog()
-//                    }
-//                }
-//                Log.e(
-//                    activity.javaClass.simpleName,
-//                    "Error while updating profile",
-//                    e
-//                )
-//            }
-//    }
+    fun upadteProductInterestedList(activity: Activity, productId: String, userHashMap: HashMap<String, Any>) {
+        mFirestore.collection(Constants.PRODUCTS)
+            .document(productId)
+            .update(userHashMap)
+            .addOnSuccessListener {e ->
+                when(activity) {
+                    is CheckProductDetailsActivity -> {
+                        activity.productInterestedSuccess()
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                when(activity) {
+                    is CheckProductDetailsActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while updating profile",
+                    e
+                )
+            }
+    }
 }
