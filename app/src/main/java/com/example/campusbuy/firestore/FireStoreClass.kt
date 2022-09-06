@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
-import androidx.fragment.app.Fragment
 import com.example.campusbuy.models.Product
 import com.example.campusbuy.models.User
 import com.example.campusbuy.ui.activities.*
@@ -15,13 +14,14 @@ import com.example.campusbuy.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
 class FireStoreClass {
 
     private val mFirestore = FirebaseFirestore.getInstance()
+    var firebaseStorage = FirebaseStorage.getInstance()
+
 
     fun registerUser(activity: RegisterActivity, userInfo: User) {
 
@@ -261,7 +261,7 @@ class FireStoreClass {
             }
     }
 
-    fun deleteProduct(fragment: ProductsFragment, productId: String) {
+    fun deleteProduct(fragment: ProductsFragment, productId: String, imgUrl: String) {
         mFirestore.collection(Constants.PRODUCTS)
             .document(productId)
             .delete()
@@ -276,10 +276,12 @@ class FireStoreClass {
                     e
                 )
             }
+
+//        val photoRef: StorageReference = mFirestore.getReferenceFromUrl(mImageUrl)
+
     }
 
     fun getProductDetails(activity: ProductDetailsActivity, productId: String) {
-
         mFirestore.collection(Constants.PRODUCTS)
             .document(productId)
             .get()
@@ -304,6 +306,7 @@ class FireStoreClass {
 
     fun getCheckProductDetaiils(activity: CheckProductDetailsActivity, productId: String) {
 
+        Log.e("id:", productId)
         mFirestore.collection(Constants.PRODUCTS)
             .document(productId)
             .get()
@@ -326,28 +329,28 @@ class FireStoreClass {
             }
     }
 
-    fun upadteProductInterestedList(activity: Activity, productId: String, userHashMap: HashMap<String, Any>) {
-        mFirestore.collection(Constants.PRODUCTS)
-            .document(productId)
-            .update(userHashMap)
-            .addOnSuccessListener {e ->
-                when(activity) {
-                    is CheckProductDetailsActivity -> {
-                        activity.productInterestedSuccess()
-                    }
-                }
-            }
-            .addOnFailureListener { e ->
-                when(activity) {
-                    is CheckProductDetailsActivity -> {
-                        activity.hideProgressDialog()
-                    }
-                }
-                Log.e(
-                    activity.javaClass.simpleName,
-                    "Error while updating profile",
-                    e
-                )
-            }
-    }
+//    fun upadteProductInterestedList(activity: Activity, productId: String, userHashMap: HashMap<String, Any>) {
+//        mFirestore.collection(Constants.PRODUCTS)
+//            .document(productId)
+//            .update(userHashMap)
+//            .addOnSuccessListener {e ->
+//                when(activity) {
+//                    is CheckProductDetailsActivity -> {
+//                        activity.productInterestedSuccess()
+//                    }
+//                }
+//            }
+//            .addOnFailureListener { e ->
+//                when(activity) {
+//                    is CheckProductDetailsActivity -> {
+//                        activity.hideProgressDialog()
+//                    }
+//                }
+//                Log.e(
+//                    activity.javaClass.simpleName,
+//                    "Error while updating profile",
+//                    e
+//                )
+//            }
+//    }
 }

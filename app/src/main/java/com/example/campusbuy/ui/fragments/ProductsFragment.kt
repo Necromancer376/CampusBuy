@@ -48,11 +48,11 @@ class ProductsFragment : BaseFragment() {
         }
     }
 
-    fun deleteProduct(productId: String) {
-        showAlertDeleteDialog(productId)
+    fun deleteProduct(productId: String, imgUrl: String) {
+        showAlertDeleteDialog(productId, imgUrl)
     }
 
-    private fun showAlertDeleteDialog(productId: String) {
+    private fun showAlertDeleteDialog(productId: String, imgUrl: String) {
         val builder = AlertDialog.Builder(requireActivity())
 
         builder.setTitle(resources.getString(R.string.delete_dialog_title))
@@ -61,7 +61,7 @@ class ProductsFragment : BaseFragment() {
 
         builder.setPositiveButton(resources.getString(R.string.yes)) { dialogInterface, _ ->
             showProgressDialog(resources.getString(R.string.please_wait))
-            FireStoreClass().deleteProduct(this, productId)
+            FireStoreClass().deleteProduct(this, productId, imgUrl)
             dialogInterface.dismiss()
         }
         builder.setNegativeButton(resources.getString(R.string.no)) { dialogInterface, _ ->

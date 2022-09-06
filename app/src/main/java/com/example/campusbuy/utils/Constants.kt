@@ -8,6 +8,8 @@ import android.graphics.Matrix
 import android.net.Uri
 import android.provider.MediaStore
 import android.webkit.MimeTypeMap
+import androidx.fragment.app.Fragment
+import com.example.campusbuy.ui.fragments.ProductsFragment
 import java.io.ByteArrayOutputStream
 
 

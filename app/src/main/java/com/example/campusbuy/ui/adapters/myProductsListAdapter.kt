@@ -38,6 +38,7 @@ class myProductsListAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
+        val imgUrl = model.image
 
         if(holder is MyViewHolder) {
             GlideLoader(context).loadProductPicture(model.image, holder.itemView.iv_item_image)
@@ -47,7 +48,7 @@ class myProductsListAdapter(
             holder.itemView.tv_product_interested_count.text = model.interested.size.toString()
 
             holder.itemView.ib_delete_product.setOnClickListener{
-                fragment.deleteProduct(model.product_id)
+                fragment.deleteProduct(model.product_id, imgUrl)
             }
 
             holder.itemView.setOnClickListener {

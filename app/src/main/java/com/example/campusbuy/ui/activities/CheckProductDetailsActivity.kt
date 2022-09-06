@@ -52,8 +52,8 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
     }
 
     fun productDetailsSuccess(product: Product) {
-        hideProgressDialog()
 
+        hideProgressDialog()
         mProductDetails = product
 
         GlideLoader(this@CheckProductDetailsActivity).loadProductPicture(
@@ -73,13 +73,13 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
-        if(view != null) {
-            when (view.id) {
-                R.id.btn_offer_chat -> {
-                    updateInterestedArray()
-                }
-            }
-        }
+//        if(view != null) {
+//            when (view.id) {
+//                R.id.btn_offer_chat -> {
+//                    updateInterestedArray()
+//                }
+//            }
+//        }
     }
 
 
@@ -93,21 +93,21 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
         mUserDetails = user
     }
 
-    fun productInterestedSuccess() {
-
-        val internt_chat = Intent(this@CheckProductDetailsActivity, ProductChatActivity::class.java)
-        internt_chat.putExtra(Constants.USER_ID, mProductDetails.user_id)
-        internt_chat.putExtra(Constants.USER_NAME, mProductDetails.user_name)
-        internt_chat.putExtra(Constants.PRODUCT_ID, mProductDetails.product_id)
-        internt_chat.putExtra(Constants.EXTRA_USER_DETAILS, mUserDetails)
-        startActivity(internt_chat)
-        finish()
-    }
-
-    fun updateInterestedArray() {
-        val userHashMap = HashMap<String, Any>()
-        userHashMap[Constants.PRODUCT_INTERESTED] = mUserDetails.id
-
-        FireStoreClass().upadteProductInterestedList(this@CheckProductDetailsActivity, mProductDetails.product_id , userHashMap)
-    }
+//    fun productInterestedSuccess() {
+//
+//        val internt_chat = Intent(this@CheckProductDetailsActivity, ProductChatActivity::class.java)
+//        internt_chat.putExtra(Constants.USER_ID, mProductDetails.user_id)
+//        internt_chat.putExtra(Constants.USER_NAME, mProductDetails.user_name)
+//        internt_chat.putExtra(Constants.PRODUCT_ID, mProductDetails.product_id)
+//        internt_chat.putExtra(Constants.EXTRA_USER_DETAILS, mUserDetails)
+//        startActivity(internt_chat)
+//        finish()
+//    }
+//
+//    fun updateInterestedArray() {
+//        val userHashMap = HashMap<String, Any>()
+//        userHashMap[Constants.PRODUCT_INTERESTED] = mUserDetails.id
+//
+//        FireStoreClass().upadteProductInterestedList(this@CheckProductDetailsActivity, mProductDetails.product_id , userHashMap)
+//    }
 }
