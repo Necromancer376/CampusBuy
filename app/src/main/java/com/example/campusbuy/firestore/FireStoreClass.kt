@@ -330,10 +330,10 @@ class FireStoreClass {
             }
     }
 
-    fun upadteProductInterestedList(activity: Activity, productId: String, userHashMap: HashMap<String, Any>) {
+    fun upadteProductInterestedList(activity: Activity, productId: String, uid: String) {
         mFirestore.collection(Constants.PRODUCTS)
             .document(productId)
-            .update(userHashMap)
+            .update(Constants.PRODUCT_INTERESTED, uid)
             .addOnSuccessListener {e ->
                 when(activity) {
                     is CheckProductDetailsActivity -> {
