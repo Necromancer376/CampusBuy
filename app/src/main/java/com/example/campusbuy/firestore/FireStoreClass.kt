@@ -331,27 +331,27 @@ class FireStoreClass {
     }
 
     fun upadteProductInterestedList(activity: Activity, productId: String, uid: String) {
-        mFirestore.collection(Constants.PRODUCTS)
-            .document(productId)
-            .update(Constants.PRODUCT_INTERESTED, uid)
-            .addOnSuccessListener {e ->
-                when(activity) {
-                    is CheckProductDetailsActivity -> {
-                        activity.productInterestedSuccess()
+            mFirestore.collection(Constants.PRODUCTS)
+                .document(productId)
+                .update(Constants.PRODUCT_INTERESTED, uid)
+                .addOnSuccessListener {e ->
+                    when(activity) {
+                        is CheckProductDetailsActivity -> {
+                            activity.productInterestedSuccess()
+                        }
                     }
                 }
-            }
-            .addOnFailureListener { e ->
-                when(activity) {
-                    is CheckProductDetailsActivity -> {
-                        activity.hideProgressDialog()
+                .addOnFailureListener { e ->
+                    when(activity) {
+                        is CheckProductDetailsActivity -> {
+                            activity.hideProgressDialog()
+                        }
                     }
+                    Log.e(
+                        activity.javaClass.simpleName,
+                        "Error while updating profile",
+                        e
+                    )
                 }
-                Log.e(
-                    activity.javaClass.simpleName,
-                    "Error while updating profile",
-                    e
-                )
-            }
     }
 }
