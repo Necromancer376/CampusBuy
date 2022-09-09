@@ -91,7 +91,7 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
     fun userDetailsSuccess(user: User) {
         hideProgressDialog()
         mUserDetails = user
-        FireStoreClass().upadteProductList(this@CheckProductDetailsActivity, mProductId , mUserDetails!!.id, Constants.PRODUCT_SEENCOUNT)
+        FireStoreClass().upadteProductSeenList(this@CheckProductDetailsActivity, mProductId , mUserDetails!!.id, Constants.PRODUCT_SEENCOUNT)
     }
 
     fun productInterestedSuccess() {
@@ -105,6 +105,6 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
     }
 
     fun updateInterestedArray() {
-        FireStoreClass().upadteProductList(this@CheckProductDetailsActivity, mProductId , mUserDetails.id, Constants.PRODUCT_INTERESTED)
+        FireStoreClass().upadteProductList(this@CheckProductDetailsActivity, mProductId , mUserDetails, Constants.PRODUCT_INTERESTED)
     }
 }

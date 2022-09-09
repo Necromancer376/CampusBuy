@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "199985373885",
+    "firebase_url": "https://campusbuy-79e1a-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "campusbuy-79e1a",
     "storage_bucket": "campusbuy-79e1a.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "199985373885-j31cvfspg1j10cg5f8kijkc6e52qtdpi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.campusbuy",
+            "certificate_hash": "a40137d31266eac0484ad0d37f47fa57a21db2b7"
+          }
+        },
         {
           "client_id": "199985373885-rvaeel660fung4bd6hns140gqpls25bf.apps.googleusercontent.com",
           "client_type": 3

@@ -16,7 +16,7 @@ data class Product (
     var campus: String = "",
     var seenCount: ArrayList<String> = ArrayList<String>(),
     var isSold: Boolean = false,
-    var interested: ArrayList<String> = ArrayList<String>(),
+    var interested: ArrayList<User> = ArrayList<User>(),
     var bidders: ArrayList<String> = ArrayList<String>(),
     var product_id: String = ""
 ): Parcelable

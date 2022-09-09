@@ -42,7 +42,7 @@ class DashboardItemsListAdapter(
                 holder.itemView.iv_dashboard_item_image
             )
             holder.itemView.tv_dashboard_item_title.text = model.title
-            holder.itemView.tv_dashboard_item_price.text = model.price
+            holder.itemView.tv_dashboard_item_price.text = "₹" + model.price
             holder.itemView.tv_dashboard_viewed_count.text = model.seenCount.size.toString()
             holder.itemView.tv_dashboard_interested_count.text = model.interested.size.toString()
 

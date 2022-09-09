@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
+import com.example.campusbuy.models.Message
 import com.example.campusbuy.models.Product
 import com.example.campusbuy.models.User
 import com.example.campusbuy.ui.activities.*
@@ -332,11 +333,11 @@ class FireStoreClass {
             }
     }
 
-    fun upadteProductList(activity: Activity, productId: String, uid: String, listName: String) {
+    fun upadteProductList(activity: Activity, productId: String, user: User, listName: String) {
             Log.e("id", productId)
             mFirestore.collection(Constants.PRODUCTS)
                 .document(productId)
-                .update(listName, FieldValue.arrayUnion(uid))
+                .update(listName, FieldValue.arrayUnion(user))
                 .addOnSuccessListener {e ->
                     when(activity) {
                         is CheckProductDetailsActivity -> {
@@ -359,4 +360,45 @@ class FireStoreClass {
                     )
                 }
     }
+
+    fun upadteProductSeenList(activity: Activity, productId: String, uid: String, listName: String) {
+        Log.e("id", productId)
+        mFirestore.collection(Constants.PRODUCTS)
+            .document(productId)
+            .update(listName, FieldValue.arrayUnion(uid))
+            .addOnSuccessListener {e ->
+                when(activity) {
+                    is CheckProductDetailsActivity -> {
+                        if( listName.equals(Constants.PRODUCT_INTERESTED)) {
+                            activity.productInterestedSuccess()
+                        }
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                when(activity) {
+                    is CheckProductDetailsActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while updating profile",
+                    e
+                )
+            }
+    }
+
+//    fun chatMessageUpload(activity: ProductDetailsActivity, messageObj: Message) {
+//        mFirestore.child("chats").child(senderRoom!!).child("messages").push()
+//            .setValue(messageObject)
+//            .addOnSuccessListener {
+//                Log.e("chat: ", "Success")
+//                mDBref.child("chats").child(recieverRoom!!).child("messages").push()
+//                    .setValue(messageObject)
+//            }
+//            .addOnFailureListener {
+//                Log.e("chat: ", "fail")
+//            }
+//    }
 }
