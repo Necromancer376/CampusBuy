@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campusbuy.R
+import com.example.campusbuy.firestore.FireStoreClass
 import com.example.campusbuy.models.Product
 import com.example.campusbuy.ui.activities.BaseActivity
 import com.example.campusbuy.ui.activities.CheckProductDetailsActivity
@@ -42,7 +43,7 @@ class DashboardItemsListAdapter(
             )
             holder.itemView.tv_dashboard_item_title.text = model.title
             holder.itemView.tv_dashboard_item_price.text = model.price
-            holder.itemView.tv_dashboard_viewed_count.text = model.seenCount.toString()
+            holder.itemView.tv_dashboard_viewed_count.text = model.seenCount.size.toString()
             holder.itemView.tv_dashboard_interested_count.text = model.interested.size.toString()
 
 //            holder.itemView.setOnClickListener {
@@ -52,8 +53,8 @@ class DashboardItemsListAdapter(
 //            }
 
             holder.itemView.setOnClickListener {
-
                 val intent = Intent(context, CheckProductDetailsActivity::class.java)
+                Log.e("pid: ", model.product_id)
                 intent.putExtra(Constants.EXTRA_PRODUCT_ID, model.product_id)
                 intent.putExtra(Constants.EXTRA_PRODUCT_OWNER_ID, model.user_id)
                 context.startActivity(intent)

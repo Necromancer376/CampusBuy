@@ -63,7 +63,7 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
         tv_check_product_details_title.text = product.title
         tv_check_product_details_price.text = product.price
         tv_check_product_details_description.text = product.description
-        tv_check_product_details_viewed_count.text = product.seenCount.toString()
+        tv_check_product_details_viewed_count.text = product.seenCount.size.toString()
         tv_check_product_details_interested_count.text = product.interested.size.toString()
     }
 
@@ -91,6 +91,7 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
     fun userDetailsSuccess(user: User) {
         hideProgressDialog()
         mUserDetails = user
+        FireStoreClass().upadteProductList(this@CheckProductDetailsActivity, mProductId , mUserDetails!!.id, Constants.PRODUCT_SEENCOUNT)
     }
 
     fun productInterestedSuccess() {
@@ -98,13 +99,12 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
         val internt_chat = Intent(this@CheckProductDetailsActivity, ProductChatActivity::class.java)
         internt_chat.putExtra(Constants.USER_ID, mProductDetails.user_id)
         internt_chat.putExtra(Constants.USER_NAME, mProductDetails.user_name)
-        internt_chat.putExtra(Constants.PRODUCT_ID, mProductDetails.product_id)
+        internt_chat.putExtra(Constants.PRODUCT_ID, mProductId)
         internt_chat.putExtra(Constants.EXTRA_USER_DETAILS, mUserDetails)
         startActivity(internt_chat)
-        finish()
     }
 
     fun updateInterestedArray() {
-        FireStoreClass().upadteProductInterestedList(this@CheckProductDetailsActivity, mProductDetails.product_id , mUserDetails.id)
+        FireStoreClass().upadteProductList(this@CheckProductDetailsActivity, mProductId , mUserDetails.id, Constants.PRODUCT_INTERESTED)
     }
 }

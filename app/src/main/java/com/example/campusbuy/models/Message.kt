@@ -8,5 +8,5 @@ class Message (
     val user_id: String = "",
     val message: String = "",
     val product_id: String = "",
-    val id: String = ""
+//    val id: String = ""
 ): Parcelable

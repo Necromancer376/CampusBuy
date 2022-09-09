@@ -2,6 +2,7 @@ package com.example.campusbuy.ui.adapters
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +45,7 @@ class myProductsListAdapter(
             GlideLoader(context).loadProductPicture(model.image, holder.itemView.iv_item_image)
             holder.itemView.tv_item_name.text = model.title
             holder.itemView.tv_item_price.text = "₹${model.price}"
-            holder.itemView.tv_product_viewed_count.text = model.seenCount.toString()
+            holder.itemView.tv_product_viewed_count.text = model.seenCount.size.toString()
             holder.itemView.tv_product_interested_count.text = model.interested.size.toString()
 
             holder.itemView.ib_delete_product.setOnClickListener{
@@ -53,6 +54,7 @@ class myProductsListAdapter(
 
             holder.itemView.setOnClickListener {
                 val intent = Intent(context, ProductDetailsActivity::class.java)
+                Log.e("pid: ", model.product_id)
                 intent.putExtra(Constants.EXTRA_PRODUCT_ID, model.product_id)
                 context.startActivity(intent)
             }

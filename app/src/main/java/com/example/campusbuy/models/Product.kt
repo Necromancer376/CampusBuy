@@ -14,7 +14,7 @@ data class Product (
     val tag: String = "",
     val image: String = "",
     var campus: String = "",
-    var seenCount: Int = 0,
+    var seenCount: ArrayList<String> = ArrayList<String>(),
     var isSold: Boolean = false,
     var interested: ArrayList<String> = ArrayList<String>(),
     var bidders: ArrayList<String> = ArrayList<String>(),

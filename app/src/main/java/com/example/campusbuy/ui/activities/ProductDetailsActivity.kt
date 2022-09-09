@@ -45,7 +45,7 @@ class ProductDetailsActivity : BaseActivity() {
         tv_product_details_title.text = product.title
         tv_product_details_price.text = product.price
         tv_product_details_description.text = product.description
-        tv_product_details_viewed_count.text = product.seenCount.toString()
+        tv_product_details_viewed_count.text = product.seenCount.size.toString()
         tv_product_details_interested_count.text = product.interested.size.toString()
     }
 

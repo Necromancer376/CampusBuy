@@ -12,6 +12,7 @@ import com.example.campusbuy.ui.fragments.DashboardFragment
 import com.example.campusbuy.ui.fragments.ProductsFragment
 import com.example.campusbuy.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
@@ -306,6 +307,7 @@ class FireStoreClass {
 
     fun getCheckProductDetaiils(activity: CheckProductDetailsActivity, productId: String) {
 
+        Log.e("id", productId)
         activity.hideProgressDialog()
         mFirestore.collection(Constants.PRODUCTS)
             .document(productId)
@@ -330,14 +332,17 @@ class FireStoreClass {
             }
     }
 
-    fun upadteProductInterestedList(activity: Activity, productId: String, uid: String) {
+    fun upadteProductList(activity: Activity, productId: String, uid: String, listName: String) {
+            Log.e("id", productId)
             mFirestore.collection(Constants.PRODUCTS)
                 .document(productId)
-                .update(Constants.PRODUCT_INTERESTED, uid)
+                .update(listName, FieldValue.arrayUnion(uid))
                 .addOnSuccessListener {e ->
                     when(activity) {
                         is CheckProductDetailsActivity -> {
-                            activity.productInterestedSuccess()
+                            if( listName.equals(Constants.PRODUCT_INTERESTED)) {
+                                activity.productInterestedSuccess()
+                            }
                         }
                     }
                 }
