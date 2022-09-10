@@ -443,6 +443,30 @@ class FireStoreClass {
 
         mFirestore.collection(Constants.PRODUCTS)
             .document(productId)
+            .update(listName, FieldValue.arrayRemove(uid))
+            .addOnSuccessListener { e ->
+                when (activity) {
+                    is CheckProductDetailsActivity -> {
+                        if (listName.equals(Constants.PRODUCT_INTERESTED)) {
+
+                        }
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                when (activity) {
+                    is CheckProductDetailsActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while updating profile",
+                    e
+                )
+            }
+        mFirestore.collection(Constants.PRODUCTS)
+            .document(productId)
             .update(listName, FieldValue.arrayUnion(uid))
             .addOnSuccessListener { e ->
                 when (activity) {
