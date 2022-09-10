@@ -28,11 +28,23 @@
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
+    <LinearLayout
+        android:id="@+id/ll_propose_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_product_chat_activity"
+        app:layout_constraintBottom_toTopOf="@id/rv_chat"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_chat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_product_chat_activity"
+        app:layout_constraintTop_toBottomOf="@id/ll_propose_price"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
