@@ -362,7 +362,7 @@ class FireStoreClass {
     }
 
     fun upadteProductSeenList(activity: Activity, productId: String, uid: String, listName: String) {
-        Log.e("id", productId)
+
         mFirestore.collection(Constants.PRODUCTS)
             .document(productId)
             .update(listName, FieldValue.arrayUnion(uid))

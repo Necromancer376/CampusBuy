@@ -20,6 +20,11 @@ class ProductChatActivity : AppCompatActivity() {
     private lateinit var mDBref: DatabaseReference
     private lateinit var mUserDetails: User
 
+    private lateinit var name: String
+    private lateinit var recieverUid: String
+    private lateinit var senderUid: String
+    private lateinit var productId: String
+
     var recieverRoom: String? = null
     var senderRoom: String? = null
 
@@ -31,10 +36,10 @@ class ProductChatActivity : AppCompatActivity() {
 
         setupActionBar()
 
-        val name = intent.getStringExtra(Constants.USER_NAME)
-        val recieverUid = intent.getStringExtra(Constants.USER_ID)
-        val senderUid = FireStoreClass().getCurrentUserId()
-        val productId = intent.getStringExtra(Constants.PRODUCT_ID)
+        name = intent.getStringExtra(Constants.USER_NAME).toString()
+        recieverUid = intent.getStringExtra(Constants.USER_ID).toString()
+        senderUid = FireStoreClass().getCurrentUserId().toString()
+        productId = intent.getStringExtra(Constants.PRODUCT_ID).toString()
 
         tv_chat_title.text = name
 
@@ -49,7 +54,7 @@ class ProductChatActivity : AppCompatActivity() {
         rv_chat.layoutManager = LinearLayoutManager(this@ProductChatActivity)
         rv_chat.adapter = messageAdapter
 
-        mDBref.child("chats").child(senderRoom!!).child("messages")
+        mDBref.child("chats").child(productId).child(senderRoom!!).child("messages")
             .addValueEventListener(object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
 
@@ -70,13 +75,13 @@ class ProductChatActivity : AppCompatActivity() {
         btn_send_msg.setOnClickListener {
 
             val message = edt_message_box.text.toString()
-            val messageObject = Message(senderUid, message, productId!!)
+            val messageObject = Message(senderUid, message, productId)
 
             if(!message.equals("")) {
-                mDBref.child("chats").child(senderRoom!!).child("messages").push()
+                mDBref.child("chats").child(productId).child(senderRoom!!).child("messages").push()
                     .setValue(messageObject)
                     .addOnSuccessListener {
-                        mDBref.child("chats").child(recieverRoom!!).child("messages").push()
+                        mDBref.child("chats").child(productId).child(recieverRoom!!).child("messages").push()
                             .setValue(messageObject)
                     }
                     .addOnFailureListener {

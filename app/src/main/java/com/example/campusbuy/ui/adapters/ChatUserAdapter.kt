@@ -18,7 +18,8 @@ import com.example.campusbuy.utils.Constants
 class ChatUserAdapter(
     val context: Context,
     val userList: ArrayList<User>,
-    val product: Product
+    val product: Product,
+    val pid: String
 ): RecyclerView.Adapter<ChatUserAdapter.UserViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -36,7 +37,7 @@ class ChatUserAdapter(
             val intent = Intent(context, ProductChatActivity::class.java)
             intent.putExtra(Constants.USER_ID, currentUser.id)
             intent.putExtra(Constants.USER_NAME, (currentUser.firstName + " " + currentUser.lastName))
-            intent.putExtra(Constants.PRODUCT_ID, product.product_id)
+            intent.putExtra(Constants.PRODUCT_ID, pid)
             intent.putExtra(Constants.EXTRA_USER_DETAILS, currentUser)
             context.startActivity(intent)
         }

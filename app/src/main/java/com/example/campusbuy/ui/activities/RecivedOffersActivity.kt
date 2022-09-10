@@ -35,7 +35,7 @@ class RecivedOffersActivity : BaseActivity() {
         }
 
         userList = productDetails.interested
-        adapter = ChatUserAdapter(this@RecivedOffersActivity, userList, productDetails)
+        adapter = ChatUserAdapter(this@RecivedOffersActivity, userList, productDetails, productId)
 
         rv_received_offers_user.layoutManager = LinearLayoutManager(this@RecivedOffersActivity)
         rv_received_offers_user.adapter = adapter
