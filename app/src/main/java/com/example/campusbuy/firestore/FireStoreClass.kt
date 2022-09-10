@@ -101,9 +101,6 @@ class FireStoreClass {
                     is CheckProductDetailsActivity -> {
                         activity.userDetailsSuccess(user)
                     }
-                    is RecivedOffersActivity -> {
-                        activity.userDetailsSuccess(user)
-                    }
                 }
             }
             .addOnFailureListener { e ->
