@@ -47,7 +47,7 @@ class FireStoreClass {
         val currentUser = FirebaseAuth.getInstance().currentUser
 
         var currentId = ""
-        if(currentUser != null) {
+        if (currentUser != null) {
             currentId = currentUser.uid
         }
 
@@ -74,7 +74,7 @@ class FireStoreClass {
         mFirestore.collection(Constants.USERS)
             .document(getCurrentUserId())
             .get()
-            .addOnSuccessListener { document->
+            .addOnSuccessListener { document ->
                 Log.i(activity.javaClass.simpleName, document.toString())
 
                 val user = document.toObject(User::class.java)!!
@@ -82,7 +82,8 @@ class FireStoreClass {
                 val sharedPreferences =
                     activity.getSharedPreferences(
                         Constants.CAMPUSBUY_PREFERENCES,
-                        Context.MODE_PRIVATE )
+                        Context.MODE_PRIVATE
+                    )
 
                 val editor: SharedPreferences.Editor = sharedPreferences.edit()
                 editor.putString(
@@ -91,7 +92,7 @@ class FireStoreClass {
                 )
                 editor.apply()
 
-                when(activity) {
+                when (activity) {
                     is LoginActivity -> {
                         activity.userLoggedInSuccess(user)
                     }
@@ -101,10 +102,13 @@ class FireStoreClass {
                     is CheckProductDetailsActivity -> {
                         activity.userDetailsSuccess(user)
                     }
+                    is ProductChatActivity -> {
+                        activity.userDetailsSuccess(user)
+                    }
                 }
             }
             .addOnFailureListener { e ->
-                when(activity) {
+                when (activity) {
                     is LoginActivity -> {
                         activity.hideProgressDialog()
                     }
@@ -129,16 +133,42 @@ class FireStoreClass {
         mFirestore.collection(Constants.USERS)
             .document(getCurrentUserId())
             .update(userHashMap)
-            .addOnSuccessListener {e ->
-                when(activity) {
+            .addOnSuccessListener { e ->
+                when (activity) {
                     is UserProfileActivity -> {
                         activity.userProfileUpdateSuccess()
                     }
                 }
             }
             .addOnFailureListener { e ->
-                when(activity) {
+                when (activity) {
                     is UserProfileActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while updating profile",
+                    e
+                )
+            }
+    }
+
+    fun upadteUserOfferedList(activity: Activity, productId: String, user: User) {
+
+        mFirestore.collection(Constants.USERS)
+            .document(user.id)
+            .update("offersOnProducts", FieldValue.arrayUnion(productId))
+            .addOnSuccessListener { e ->
+                when (activity) {
+                    is ProductChatActivity -> {
+                        activity.offersOnProductsSuccess()
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                when (activity) {
+                    is ProductChatActivity -> {
                         activity.hideProgressDialog()
                     }
                 }
@@ -156,7 +186,7 @@ class FireStoreClass {
                     Constants.getFileExtension(activity, imageFileUri)
         )
         sRef.putFile(imageFileUri!!)
-            .addOnSuccessListener { taskSnapshot->
+            .addOnSuccessListener { taskSnapshot ->
                 Log.e(
                     "Firebase Image URL",
                     taskSnapshot.metadata!!.reference!!.downloadUrl.toString()
@@ -164,7 +194,7 @@ class FireStoreClass {
                 taskSnapshot.metadata!!.reference!!.downloadUrl
                     .addOnSuccessListener { uri ->
                         Log.e("Download Image URL ", uri.toString())
-                        when(activity) {
+                        when (activity) {
                             is UserProfileActivity -> {
                                 activity.imageUploadSuccess(uri.toString())
                             }
@@ -176,7 +206,7 @@ class FireStoreClass {
                     }
             }
             .addOnFailureListener { exception ->
-                when(activity) {
+                when (activity) {
                     is UserProfileActivity -> {
                         activity.hideProgressDialog()
                     }
@@ -200,7 +230,7 @@ class FireStoreClass {
             .addOnSuccessListener {
                 activity.productUploadSuccess()
             }
-            .addOnFailureListener { e->
+            .addOnFailureListener { e ->
                 activity.hideProgressDialog()
                 Log.e(
                     activity.javaClass.simpleName,
@@ -218,7 +248,7 @@ class FireStoreClass {
                 Log.e("Products list", document.documents.toString())
                 val productsList: ArrayList<Product> = ArrayList()
 
-                for(i in document.documents) {
+                for (i in document.documents) {
                     val product = i.toObject(Product::class.java)
                     product!!.product_id = i.id
 
@@ -232,10 +262,12 @@ class FireStoreClass {
 //                    }
 //                }
             }
-            .addOnFailureListener{ e ->
+            .addOnFailureListener { e ->
                 fragment.hideProgressDialog()
-                Log.e(fragment.javaClass.simpleName,
-                    "error while getting my products")
+                Log.e(
+                    fragment.javaClass.simpleName,
+                    "error while getting my products"
+                )
             }
     }
 
@@ -247,7 +279,7 @@ class FireStoreClass {
                 Log.e("Products list", document.documents.toString())
                 val productsList: ArrayList<Product> = ArrayList()
 
-                for(i in document.documents) {
+                for (i in document.documents) {
                     val product = i.toObject(Product::class.java)
                     product!!.product_id = i.id
 
@@ -256,10 +288,12 @@ class FireStoreClass {
 
                 fragment.successDashBoardItemsList(productsList)
             }
-            .addOnFailureListener{ e ->
+            .addOnFailureListener { e ->
                 fragment.hideProgressDialog()
-                Log.e(fragment.javaClass.simpleName,
-                    "error while getting dashboard items")
+                Log.e(
+                    fragment.javaClass.simpleName,
+                    "error while getting dashboard items"
+                )
             }
     }
 
@@ -291,7 +325,7 @@ class FireStoreClass {
 
                 Log.e(activity.javaClass.simpleName, document.toString())
                 val product = document.toObject(Product::class.java)
-                if(product != null) {
+                if (product != null) {
                     activity.productDetailsSuccess(product)
                 }
             }
@@ -317,7 +351,7 @@ class FireStoreClass {
 
 //                Log.e(activity.javaClass.simpleName, document.toString())
                 val product = document.toObject(Product::class.java)
-                if(product != null) {
+                if (product != null) {
 //                    activity.hideProgressDialog()
                     activity.productDetailsSuccess(product)
                 }
@@ -334,49 +368,21 @@ class FireStoreClass {
     }
 
     fun upadteProductList(activity: Activity, productId: String, user: User, listName: String) {
-            Log.e("id", productId)
-            mFirestore.collection(Constants.PRODUCTS)
-                .document(productId)
-                .update(listName, FieldValue.arrayUnion(user))
-                .addOnSuccessListener {e ->
-                    when(activity) {
-                        is CheckProductDetailsActivity -> {
-                            if( listName.equals(Constants.PRODUCT_INTERESTED)) {
-                                activity.productInterestedSuccess()
-                            }
-                        }
-                    }
-                }
-                .addOnFailureListener { e ->
-                    when(activity) {
-                        is CheckProductDetailsActivity -> {
-                            activity.hideProgressDialog()
-                        }
-                    }
-                    Log.e(
-                        activity.javaClass.simpleName,
-                        "Error while updating profile",
-                        e
-                    )
-                }
-    }
-
-    fun upadteProductSeenList(activity: Activity, productId: String, uid: String, listName: String) {
-
+        Log.e("id", productId)
         mFirestore.collection(Constants.PRODUCTS)
             .document(productId)
-            .update(listName, FieldValue.arrayUnion(uid))
-            .addOnSuccessListener {e ->
-                when(activity) {
+            .update(listName, FieldValue.arrayUnion(user))
+            .addOnSuccessListener { e ->
+                when (activity) {
                     is CheckProductDetailsActivity -> {
-                        if( listName.equals(Constants.PRODUCT_INTERESTED)) {
+                        if (listName.equals(Constants.PRODUCT_INTERESTED)) {
                             activity.productInterestedSuccess()
                         }
                     }
                 }
             }
             .addOnFailureListener { e ->
-                when(activity) {
+                when (activity) {
                     is CheckProductDetailsActivity -> {
                         activity.hideProgressDialog()
                     }
@@ -389,16 +395,36 @@ class FireStoreClass {
             }
     }
 
-//    fun chatMessageUpload(activity: ProductDetailsActivity, messageObj: Message) {
-//        mFirestore.child("chats").child(senderRoom!!).child("messages").push()
-//            .setValue(messageObject)
-//            .addOnSuccessListener {
-//                Log.e("chat: ", "Success")
-//                mDBref.child("chats").child(recieverRoom!!).child("messages").push()
-//                    .setValue(messageObject)
-//            }
-//            .addOnFailureListener {
-//                Log.e("chat: ", "fail")
-//            }
-//    }
+    fun upadteProductSeenList(
+        activity: Activity,
+        productId: String,
+        uid: String,
+        listName: String
+    ) {
+
+        mFirestore.collection(Constants.PRODUCTS)
+            .document(productId)
+            .update(listName, FieldValue.arrayUnion(uid))
+            .addOnSuccessListener { e ->
+                when (activity) {
+                    is CheckProductDetailsActivity -> {
+                        if (listName.equals(Constants.PRODUCT_INTERESTED)) {
+                            activity.productInterestedSuccess()
+                        }
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                when (activity) {
+                    is CheckProductDetailsActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while updating profile",
+                    e
+                )
+            }
+    }
 }

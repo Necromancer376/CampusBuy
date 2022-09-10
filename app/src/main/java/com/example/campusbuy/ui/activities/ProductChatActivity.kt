@@ -1,6 +1,5 @@
 package com.example.campusbuy.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,8 +12,9 @@ import com.example.campusbuy.utils.Constants
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_product_chat.*
 
-class ProductChatActivity : AppCompatActivity() {
+class ProductChatActivity : BaseActivity() {
 
+    private lateinit var currentUser: User
     private lateinit var messageAdapter: MessageAdapter
     private lateinit var messageList: ArrayList<Message>
     private lateinit var mDBref: DatabaseReference
@@ -35,6 +35,7 @@ class ProductChatActivity : AppCompatActivity() {
         mDBref = FirebaseDatabase.getInstance("https://campusbuy-79e1a-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference()
 
         setupActionBar()
+        getUserDetails()
 
         name = intent.getStringExtra(Constants.USER_NAME).toString()
         recieverUid = intent.getStringExtra(Constants.USER_ID).toString()
@@ -88,8 +89,25 @@ class ProductChatActivity : AppCompatActivity() {
                         Log.e("chat: ", "fail")
                     }
                 edt_message_box.setText("")
+
+                FireStoreClass().upadteUserOfferedList(this@ProductChatActivity, productId, currentUser)
             }
         }
+    }
+
+    private fun getUserDetails() {
+        showProgressDialog(resources.getString(R.string.please_wait))
+
+        FireStoreClass().getUserDetails(this)
+    }
+
+    fun userDetailsSuccess(user: User) {
+        currentUser = user
+        hideProgressDialog()
+    }
+
+    fun offersOnProductsSuccess() {
+//        Log.e("offer", "success")
     }
 
     private fun setupActionBar() {
