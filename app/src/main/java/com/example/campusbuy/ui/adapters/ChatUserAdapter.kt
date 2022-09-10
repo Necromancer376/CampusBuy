@@ -1,18 +1,24 @@
 package com.example.campusbuy.ui.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campusbuy.R
+import com.example.campusbuy.firestore.FireStoreClass
+import com.example.campusbuy.models.Product
 import com.example.campusbuy.models.User
+import com.example.campusbuy.ui.activities.ProductChatActivity
+import com.example.campusbuy.utils.Constants
 
 
 class ChatUserAdapter(
     val context: Context,
-    val userList: ArrayList<User>
+    val userList: ArrayList<User>,
+    val product: Product
 ): RecyclerView.Adapter<ChatUserAdapter.UserViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -23,8 +29,16 @@ class ChatUserAdapter(
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val currentUser = userList[position]
 
-        if(holder is UserViewHolder) {
-//            holder.userName =
+        holder.userName.text = currentUser.firstName + " " + currentUser.lastName
+        holder.price.text = "₹" + product.price.toString()
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, ProductChatActivity::class.java)
+            intent.putExtra(Constants.USER_ID, currentUser.id)
+            intent.putExtra(Constants.USER_NAME, (currentUser.firstName + " " + currentUser.lastName))
+            intent.putExtra(Constants.PRODUCT_ID, product.product_id)
+            intent.putExtra(Constants.EXTRA_USER_DETAILS, currentUser)
+            context.startActivity(intent)
         }
     }
 
@@ -33,8 +47,8 @@ class ChatUserAdapter(
     }
 
     class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val userName = itemView.findViewById<TextureView>(R.id.txt_user_name)
-        val price = itemView.findViewById<TextureView>(R.id.txt_offered_price)
+        val userName = itemView.findViewById<TextView>(R.id.txt_user_name)
+        val price = itemView.findViewById<TextView>(R.id.txt_offered_price)
     }
 
 }

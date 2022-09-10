@@ -13,8 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CampusBuy">
         <activity
-            android:name=".RecivedOffersActivity"
-            android:exported="false" />
+            android:name=".ui.activities.RecivedOffersActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoFullScreen"/>
         <activity
             android:name=".ui.activities.ProductChatActivity"
             android:exported="false"
