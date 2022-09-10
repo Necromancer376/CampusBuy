@@ -80,7 +80,7 @@ class OrdersFragment : BaseFragment() {
 
         rv_my_offers.layoutManager = LinearLayoutManager(activity)
 
-        val adapterOffers = myOffersAdapter(requireActivity(), productsList, this@OrdersFragment)
+        val adapterOffers = myOffersAdapter(requireActivity(), productsList, this@OrdersFragment, mUserDetails)
         rv_my_offers.adapter = adapterOffers
     }
 }
