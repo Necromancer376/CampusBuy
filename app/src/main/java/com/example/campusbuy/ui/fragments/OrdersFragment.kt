@@ -4,18 +4,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import com.example.campusbuy.R
 import com.example.campusbuy.databinding.FragmentOrdersBinding
+import com.example.campusbuy.firestore.FireStoreClass
+import com.example.campusbuy.models.User
+import kotlinx.android.synthetic.main.fragment_orders.*
 
-class OrdersFragment : Fragment() {
+class OrdersFragment : BaseFragment() {
 
     private var _binding: FragmentOrdersBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private lateinit var mUserDetails: User
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,17 +35,40 @@ class OrdersFragment : Fragment() {
         _binding = FragmentOrdersBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-//        notificationsViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
-
-        textView.text = "This is Notifications Fragment"
         return root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        getUserDetails()
+    }
+
+    private fun getUserDetails() {
+        showProgressDialog(resources.getString(R.string.please_wait))
+
+        FireStoreClass().getUserDetailsFragment(this)
+    }
+
+    fun userDetailsFragmentSuccess(user: User) {
+        mUserDetails = user
+        hideProgressDialog()
+
+        var offersList = mUserDetails.offersOnProducts
+
+        if(offersList.size > 0) {
+            rv_my_offers.visibility = View.VISIBLE
+            tv_no_offers_found.visibility = View.GONE
+
+        }
+        else {
+            rv_my_offers.visibility = View.GONE
+            tv_no_offers_found.visibility = View.VISIBLE
+        }
     }
 }

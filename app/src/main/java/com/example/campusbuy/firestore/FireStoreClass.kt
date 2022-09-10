@@ -5,11 +5,14 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
+import androidx.fragment.app.Fragment
 import com.example.campusbuy.models.Message
 import com.example.campusbuy.models.Product
 import com.example.campusbuy.models.User
 import com.example.campusbuy.ui.activities.*
+import com.example.campusbuy.ui.fragments.BaseFragment
 import com.example.campusbuy.ui.fragments.DashboardFragment
+import com.example.campusbuy.ui.fragments.OrdersFragment
 import com.example.campusbuy.ui.fragments.ProductsFragment
 import com.example.campusbuy.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -112,11 +115,13 @@ class FireStoreClass {
                     is LoginActivity -> {
                         activity.hideProgressDialog()
                     }
-
                     is SettingsActivity -> {
                         activity.hideProgressDialog()
                     }
                     is CheckProductDetailsActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                    is ProductChatActivity -> {
                         activity.hideProgressDialog()
                     }
                 }
@@ -237,6 +242,24 @@ class FireStoreClass {
                     "Error while adding product",
                     e
                 )
+            }
+    }
+
+    fun getUserDetailsFragment(fragment: OrdersFragment) {
+
+        mFirestore.collection(Constants.USERS)
+            .document(getCurrentUserId())
+            .get()
+            .addOnSuccessListener { document ->
+                Log.i(fragment.javaClass.simpleName, document.toString())
+
+                val user = document.toObject(User::class.java)!!
+                fragment.userDetailsFragmentSuccess(user)
+
+            }
+            .addOnFailureListener { e ->
+                fragment.hideProgressDialog()
+                Log.e(fragment.javaClass.simpleName, "Error while registering", e)
             }
     }
 
