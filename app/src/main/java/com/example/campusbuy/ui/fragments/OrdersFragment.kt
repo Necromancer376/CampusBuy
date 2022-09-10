@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.campusbuy.R
 import com.example.campusbuy.databinding.FragmentOrdersBinding
 import com.example.campusbuy.firestore.FireStoreClass
+import com.example.campusbuy.models.Product
 import com.example.campusbuy.models.User
+import com.example.campusbuy.ui.adapters.myOffersAdapter
 import kotlinx.android.synthetic.main.fragment_orders.*
 
 class OrdersFragment : BaseFragment() {
@@ -23,6 +26,7 @@ class OrdersFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+
     }
 
     override fun onCreateView(
@@ -64,11 +68,19 @@ class OrdersFragment : BaseFragment() {
         if(offersList.size > 0) {
             rv_my_offers.visibility = View.VISIBLE
             tv_no_offers_found.visibility = View.GONE
-
+            FireStoreClass().getOffersProductList(this@OrdersFragment, user.offersOnProducts)
         }
         else {
             rv_my_offers.visibility = View.GONE
             tv_no_offers_found.visibility = View.VISIBLE
         }
+    }
+
+    fun successProductsListFromFireStore(productsList: ArrayList<Product>) {
+
+        rv_my_offers.layoutManager = LinearLayoutManager(activity)
+
+        val adapterOffers = myOffersAdapter(requireActivity(), productsList, this@OrdersFragment)
+        rv_my_offers.adapter = adapterOffers
     }
 }

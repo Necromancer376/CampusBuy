@@ -229,9 +229,11 @@ class FireStoreClass {
     }
 
     fun uploadProductDetails(activity: AddProductActivity, productInfo: Product) {
-        mFirestore.collection(Constants.PRODUCTS)
-            .document()
-            .set(productInfo, SetOptions.merge())
+        val newRef = mFirestore.collection(Constants.PRODUCTS).document()
+
+        productInfo.product_id = newRef.id
+
+        newRef.set(productInfo, SetOptions.merge())
             .addOnSuccessListener {
                 activity.productUploadSuccess()
             }
@@ -263,6 +265,25 @@ class FireStoreClass {
             }
     }
 
+    fun getOffersProductList(fragment: OrdersFragment, pidList: ArrayList<String>) {
+        Log.e("pidLis: ", pidList.toString())
+        mFirestore.collection(Constants.PRODUCTS)
+            .whereIn(Constants.PRODUCT_ID , pidList)
+            .get()
+            .addOnSuccessListener { document ->
+                val productsList: ArrayList<Product> = ArrayList()
+
+                for (i in document.documents) {
+                    val product = i.toObject(Product::class.java)
+                    product!!.product_id = i.id
+
+                    productsList.add(product)
+                }
+
+                fragment.successProductsListFromFireStore(productsList)
+            }
+    }
+
     fun getProductsList(fragment: ProductsFragment) {
         mFirestore.collection(Constants.PRODUCTS)
             .whereEqualTo(Constants.USER_ID, getCurrentUserId())
@@ -279,11 +300,6 @@ class FireStoreClass {
                 }
 
                 fragment.successProductsListFromFireStore(productsList)
-//                when(fragment) {
-//                    is ProductsFragment -> {
-//                        fragment.successProductsListFromFireStore(productsList)
-//                    }
-//                }
             }
             .addOnFailureListener { e ->
                 fragment.hideProgressDialog()
