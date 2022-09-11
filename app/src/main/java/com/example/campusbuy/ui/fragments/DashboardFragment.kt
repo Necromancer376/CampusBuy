@@ -1,7 +1,6 @@
 package com.example.campusbuy.ui.fragments
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import androidx.recyclerview.widget.GridLayoutManager
@@ -11,7 +10,6 @@ import com.example.campusbuy.databinding.FragmentDashboardBinding
 import com.example.campusbuy.firestore.FireStoreClass
 import com.example.campusbuy.models.Product
 import com.example.campusbuy.ui.activities.CheckProductDetailsActivity
-import com.example.campusbuy.ui.activities.ProductDetailsActivity
 import com.example.campusbuy.ui.activities.SettingsActivity
 import com.example.campusbuy.ui.adapters.DashboardItemsListAdapter
 import com.example.campusbuy.utils.Constants
@@ -31,7 +29,9 @@ class DashboardFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-
+        btn_search.setOnClickListener {
+            getDashboardItemsList()
+        }
         getDashboardItemsList()
     }
 
@@ -74,6 +74,22 @@ class DashboardFragment : BaseFragment() {
     fun successDashBoardItemsList(dashboardItemList: ArrayList<Product>) {
         hideProgressDialog()
 
+        val itemList: ArrayList<Product>
+        val search = getSearchQuerry()
+
+        if(search.isEmpty()) {
+            itemList = dashboardItemList
+        }
+        else {
+            itemList = ArrayList<Product>()
+            for(i in dashboardItemList) {
+                if(i.title.toLowerCase().contains(search.toLowerCase()) ||
+                    i.description.toLowerCase().contains(search.toLowerCase())) {
+                    itemList.add(i)
+                }
+            }
+        }
+
         if(dashboardItemList.isNotEmpty()) {
             rv_dashboard_items.visibility = View.VISIBLE
             tv_no_dashboard_items_found.visibility = View.GONE
@@ -81,7 +97,7 @@ class DashboardFragment : BaseFragment() {
             rv_dashboard_items.layoutManager = GridLayoutManager(activity, 2)
             rv_dashboard_items.setHasFixedSize(true)
 
-            val adapterDashBoardProducts = DashboardItemsListAdapter(requireActivity(), dashboardItemList)
+            val adapterDashBoardProducts = DashboardItemsListAdapter(requireActivity(), itemList)
             rv_dashboard_items.adapter = adapterDashBoardProducts
 
             adapterDashBoardProducts.setOnClickListener(object: DashboardItemsListAdapter.OnClickListener {
@@ -102,5 +118,9 @@ class DashboardFragment : BaseFragment() {
         showProgressDialog(resources.getString(R.string.please_wait))
 
         FireStoreClass().getDashboardItemsList(this@DashboardFragment)
+    }
+
+    fun getSearchQuerry(): String {
+        return edt_search_box.text.toString()
     }
 }

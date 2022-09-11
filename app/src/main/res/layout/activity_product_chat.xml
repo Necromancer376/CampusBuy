@@ -72,6 +72,14 @@
 <!--    android:background="@drawable/chat_send_button_background"-->
 
 
+<!--<com.example.campusbuy.utils.CBButton-->
+<!--android:id="@+id/btn_finalize_sale"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--app:layout_constraintStart_toStartOf="parent"-->
+<!--app:layout_constraintEnd_toEndOf="parent"-->
+<!--app:layout_constraintTop_toBottomOf="@id/toolbar_product_chat_activity" />-->
+
 <!--<LinearLayout-->
 <!--android:id="@+id/ll_propose_price"-->
 <!--android:layout_width="match_parent"-->
