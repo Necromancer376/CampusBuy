@@ -36,8 +36,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_product_chat_activity"
         app:layout_constraintBottom_toTopOf="@id/rv_chat"
+        android:layout_marginHorizontal="10dp"
         android:orientation="horizontal">
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Agree"
+            android:textSize="22sp"
+            android:background="@drawable/button_agree_background"
+            android:backgroundTint="@color/button_agree_red"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:textSize="22sp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:background="@drawable/background_revieved_offers_item"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

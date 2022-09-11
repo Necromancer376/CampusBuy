@@ -8,5 +8,7 @@ class Message (
     val user_id: String = "",
     val message: String = "",
     val product_id: String = "",
-//    val id: String = ""
+    var price: Int = 0,
+    var agreeSeller: Boolean = false,
+    var agreeBuyer: Boolean = false
 ): Parcelable
