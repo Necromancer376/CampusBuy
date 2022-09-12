@@ -10,6 +10,7 @@ import android.media.ExifInterface
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -138,10 +139,14 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             if(requestCode == Constants.CAMERA) {
                 if(data != null) {
                     try {
+
                         val img = data!!.extras!!.get("data")
-                        val orientation = getOrientation(img.toString())
+
+//                        val orientation = getOrientation(img.toString())
+//                        Log.e("orientation", "success ${orientation}")
                         val imgBitmap = img as Bitmap
-                        val newImgBitmap = imgBitmap.rotate(orientation.toFloat())
+//                        val newImgBitmap = imgBitmap.rotate(orientation.toFloat())
+                        val newImgBitmap = imgBitmap.rotate(0f)
                         mSelectedImageFileUri = getImageUriFromBitmap(this, newImgBitmap)
                         GlideLoader(this@AddProductActivity).loadProductPicture(mSelectedImageFileUri!!, iv_product_image)
                     }
