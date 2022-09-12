@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.media.ExifInterface
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
@@ -137,8 +138,10 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             if(requestCode == Constants.CAMERA) {
                 if(data != null) {
                     try {
-                        val imgBitmap = data!!.extras!!.get("data") as Bitmap
-                        val newImgBitmap = imgBitmap.rotate(90f)
+                        val img = data!!.extras!!.get("data")
+                        val orientation = getOrientation(img.toString())
+                        val imgBitmap = img as Bitmap
+                        val newImgBitmap = imgBitmap.rotate(orientation.toFloat())
                         mSelectedImageFileUri = getImageUriFromBitmap(this, newImgBitmap)
                         GlideLoader(this@AddProductActivity).loadProductPicture(mSelectedImageFileUri!!, iv_product_image)
                     }
@@ -241,5 +244,26 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
         )
 
         FireStoreClass().uploadProductDetails(this@AddProductActivity, product)
+    }
+
+    private fun getOrientation(img: String):Int {
+        var ei = ExifInterface(img)
+        var orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED)
+
+        when(orientation) {
+            ExifInterface.ORIENTATION_ROTATE_90 -> {
+                return 90
+            }
+            ExifInterface.ORIENTATION_ROTATE_180 -> {
+                return 180
+            }
+            ExifInterface.ORIENTATION_ROTATE_270 -> {
+                return 270
+            }
+            ExifInterface.ORIENTATION_NORMAL -> {
+                return 0
+            }
+        }
+        return 0
     }
 }
