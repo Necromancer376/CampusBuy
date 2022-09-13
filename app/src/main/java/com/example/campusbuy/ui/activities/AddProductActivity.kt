@@ -141,12 +141,11 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                     try {
 
                         val img = data!!.extras!!.get("data")
-
-//                        val orientation = getOrientation(img.toString())
-//                        Log.e("orientation", "success ${orientation}")
+                        Log.e("orientation", "error")
+                        val orientation = getOrientation(img.toString())
+                        Log.e("orientation", "success ${orientation}")
                         val imgBitmap = img as Bitmap
-//                        val newImgBitmap = imgBitmap.rotate(orientation.toFloat())
-                        val newImgBitmap = imgBitmap.rotate(0f)
+                        val newImgBitmap = imgBitmap.rotate(orientation.toFloat())
                         mSelectedImageFileUri = getImageUriFromBitmap(this, newImgBitmap)
                         GlideLoader(this@AddProductActivity).loadProductPicture(mSelectedImageFileUri!!, iv_product_image)
                     }
