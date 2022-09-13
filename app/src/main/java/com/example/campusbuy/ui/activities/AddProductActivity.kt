@@ -140,10 +140,8 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                 if(data != null) {
                     try {
 
-                        val img = data!!.extras!!.get("data")
-                        Log.e("orientation", "error")
+                        val img = data.extras!!.get("data")
                         val orientation = getOrientation(img.toString())
-                        Log.e("orientation", "success ${orientation}")
                         val imgBitmap = img as Bitmap
                         val newImgBitmap = imgBitmap.rotate(orientation.toFloat())
                         mSelectedImageFileUri = getImageUriFromBitmap(this, newImgBitmap)
