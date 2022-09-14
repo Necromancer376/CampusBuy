@@ -23,6 +23,7 @@ import com.example.campusbuy.utils.Constants.getImageUriFromBitmap
 import com.example.campusbuy.utils.Constants.rotate
 import com.example.campusbuy.utils.GlideLoader
 import kotlinx.android.synthetic.main.activity_add_product.*
+import java.io.File
 import java.io.IOException
 
 class AddProductActivity : BaseActivity(), View.OnClickListener {
@@ -113,7 +114,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             }
             else {
                 Toast.makeText(this,
-                    "Permission To Denied Go to Settings to Give Permisson",
+                    "Permission To Denied Go to Settings to Give Permission",
                     Toast.LENGTH_LONG
                 ).show()
             }
@@ -139,9 +140,8 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             if(requestCode == Constants.CAMERA) {
                 if(data != null) {
                     try {
-
                         val img = data.extras!!.get("data")
-                        val orientation = getOrientation(img.toString())
+                        val orientation = getOrientation(img as File)
                         val imgBitmap = img as Bitmap
                         val newImgBitmap = imgBitmap.rotate(orientation.toFloat())
                         mSelectedImageFileUri = getImageUriFromBitmap(this, newImgBitmap)
@@ -248,7 +248,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
         FireStoreClass().uploadProductDetails(this@AddProductActivity, product)
     }
 
-    private fun getOrientation(img: String):Int {
+    private fun getOrientation(img: File):Int {
         var ei = ExifInterface(img)
         var orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED)
 
