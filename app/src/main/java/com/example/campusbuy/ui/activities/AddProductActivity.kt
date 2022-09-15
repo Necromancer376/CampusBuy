@@ -141,7 +141,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                 if(data != null) {
                     try {
                         val img = data.extras!!.get("data")
-                        val orientation = getOrientation(img as File)
+                        val orientation = getOrientation(img.toString())
                         val imgBitmap = img as Bitmap
                         val newImgBitmap = imgBitmap.rotate(orientation.toFloat())
                         mSelectedImageFileUri = getImageUriFromBitmap(this, newImgBitmap)
@@ -248,7 +248,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
         FireStoreClass().uploadProductDetails(this@AddProductActivity, product)
     }
 
-    private fun getOrientation(img: File):Int {
+    private fun getOrientation(img: String):Int {
         var ei = ExifInterface(img)
         var orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED)
 
