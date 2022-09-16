@@ -69,6 +69,10 @@ class ProductChatActivity : BaseActivity() {
             btn_agree_buyer.setBackgroundColor(R.color.button_agree_red)
         }
 
+        if(mProductDetails.sellerAgree && mProductDetails.buyerAgree) {
+            setProductBooleans("isSold", true)
+        }
+
         mDBref.child("chats").child(productId).child(senderRoom!!).child("messages")
             .addValueEventListener(object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -107,6 +111,14 @@ class ProductChatActivity : BaseActivity() {
                 FireStoreClass().upadteUserOfferedList(this@ProductChatActivity, productId, currentUser)
             }
         }
+
+        btn_agree_seller.setOnClickListener {
+            setProductBooleans("sellerAgree", !mProductDetails.sellerAgree)
+        }
+
+        btn_agree_buyer.setOnClickListener {
+            setProductBooleans("buyerAgree", !mProductDetails.buyerAgree)
+        }
     }
 
     private fun getUserDetails() {
@@ -143,6 +155,11 @@ class ProductChatActivity : BaseActivity() {
 
     fun productDetailsSuccess(product: Product) {
         mProductDetails = product
+    }
+
+    private fun setProductBooleans(field: String, status: Boolean) {
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FireStoreClass().updateProducBoolean(this@ProductChatActivity, productId, field, status)
     }
 
     fun getUpdatatedProduct() {
