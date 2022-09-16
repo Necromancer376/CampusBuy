@@ -18,5 +18,7 @@ data class Product (
     var isSold: Boolean = false,
     var interested: ArrayList<User> = ArrayList<User>(),
     var bidders: ArrayList<String> = ArrayList<String>(),
-    var product_id: String = ""
+    var product_id: String = "",
+    var sellerAgree: Boolean = false,
+    var buyerAgree: Boolean = false
 ): Parcelable
