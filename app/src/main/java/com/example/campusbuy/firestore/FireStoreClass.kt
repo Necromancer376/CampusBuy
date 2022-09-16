@@ -356,7 +356,7 @@ class FireStoreClass {
 
     }
 
-    fun getProductDetails(activity: ProductDetailsActivity, productId: String) {
+    fun getProductDetails(activity: Activity, productId: String) {
         mFirestore.collection(Constants.PRODUCTS)
             .document(productId)
             .get()
@@ -365,11 +365,22 @@ class FireStoreClass {
                 Log.e(activity.javaClass.simpleName, document.toString())
                 val product = document.toObject(Product::class.java)
                 if (product != null) {
-                    activity.productDetailsSuccess(product)
+                    when(activity) {
+                        is ProductDetailsActivity -> {
+                            activity.productDetailsSuccess(product)
+                        }
+                        is ProductChatActivity -> {
+                            activity.productDetailsSuccess(product)
+                        }
+                    }
                 }
             }
             .addOnFailureListener { e ->
-                activity.hideProgressDialog()
+                when(activity) {
+                    is ProductDetailsActivity -> { activity.hideProgressDialog() }
+
+                    is ProductChatActivity -> { activity.hideProgressDialog() }
+                }
                 Log.e(
                     activity.javaClass.simpleName,
                     "error while deleating",

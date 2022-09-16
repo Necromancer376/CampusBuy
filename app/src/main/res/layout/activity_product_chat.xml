@@ -28,13 +28,73 @@
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
+    <LinearLayout
+        android:id="@+id/ll_propose_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_product_chat_activity"
+        app:layout_constraintBottom_toTopOf="@id/rv_chat"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:background="@drawable/background_revieved_offers_item">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+            <com.example.campusbuy.utils.CBButton
+                android:id="@+id/btn_agree_buyer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agree"
+                android:textSize="18sp"
+                android:background="@drawable/button_agree_background"
+                android:backgroundTint="@color/button_agree_red"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="5dp" />
+
+            <com.example.campusbuy.utils.CBTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Buyer"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+            <com.example.campusbuy.utils.CBButton
+                android:id="@+id/btn_agree_seller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agree"
+                android:textSize="18sp"
+                android:background="@drawable/button_agree_background"
+                android:backgroundTint="@color/button_agree_red"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="5dp" />
+
+            <com.example.campusbuy.utils.CBTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seller"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_chat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_product_chat_activity"
+        app:layout_constraintTop_toBottomOf="@id/ll_propose_price"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -80,82 +140,23 @@
 <!--app:layout_constraintEnd_toEndOf="parent"-->
 <!--app:layout_constraintTop_toBottomOf="@id/toolbar_product_chat_activity" />-->
 
-<!--<LinearLayout-->
-<!--android:id="@+id/ll_propose_price"-->
-<!--android:layout_width="match_parent"-->
+
+<!--<TextView-->
+<!--android:layout_width="wrap_content"-->
 <!--android:layout_height="wrap_content"-->
-<!--app:layout_constraintStart_toStartOf="parent"-->
-<!--app:layout_constraintEnd_toEndOf="parent"-->
-<!--app:layout_constraintTop_toBottomOf="@+id/toolbar_product_chat_activity"-->
-<!--app:layout_constraintBottom_toTopOf="@id/rv_chat"-->
-<!--android:orientation="horizontal"-->
-<!--android:paddingBottom="10dp"-->
-<!--android:gravity="center"-->
-<!--android:background="@drawable/background_revieved_offers_item">-->
-
-<!--<LinearLayout-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:gravity="center"-->
-<!--    android:orientation="vertical">-->
-<!--    <com.example.campusbuy.utils.CBButton-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Agree"-->
-<!--        android:textSize="18sp"-->
-<!--        android:background="@drawable/button_agree_background"-->
-<!--        android:backgroundTint="@color/button_agree_red"-->
-<!--        android:layout_marginHorizontal="20dp"-->
-<!--        android:layout_marginVertical="5dp" />-->
-
-<!--    <com.example.campusbuy.utils.CBTextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Buyer"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="16sp" />-->
-<!--</LinearLayout>-->
+<!--android:text="100"-->
+<!--android:textSize="22sp"-->
+<!--android:paddingHorizontal="10dp"-->
+<!--android:paddingVertical="5dp"-->
+<!--android:layout_marginHorizontal="10dp"-->
+<!--android:background="@drawable/background_revieved_offers_item" />-->
 
 <!--<TextView-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:text="100"-->
-<!--    android:textSize="22sp"-->
-<!--    android:paddingHorizontal="10dp"-->
-<!--    android:paddingVertical="5dp"-->
-<!--    android:layout_marginHorizontal="10dp"-->
-<!--    android:background="@drawable/background_revieved_offers_item" />-->
-
-<!--<TextView-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:text="100"-->
-<!--    android:textSize="22sp"-->
-<!--    android:paddingHorizontal="10dp"-->
-<!--    android:paddingVertical="5dp"-->
-<!--    android:layout_marginHorizontal="10dp"-->
-<!--    android:background="@drawable/background_revieved_offers_item" />-->
-
-<!--<LinearLayout-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:gravity="center"-->
-<!--    android:orientation="vertical">-->
-<!--    <com.example.campusbuy.utils.CBButton-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Agree"-->
-<!--        android:textSize="18sp"-->
-<!--        android:background="@drawable/button_agree_background"-->
-<!--        android:backgroundTint="@color/button_agree_red"-->
-<!--        android:layout_marginHorizontal="20dp"-->
-<!--        android:layout_marginVertical="5dp" />-->
-
-<!--    <com.example.campusbuy.utils.CBTextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Seller"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="16sp" />-->
-<!--</LinearLayout>-->
-<!--</LinearLayout>-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:text="100"-->
+<!--android:textSize="22sp"-->
+<!--android:paddingHorizontal="10dp"-->
+<!--android:paddingVertical="5dp"-->
+<!--android:layout_marginHorizontal="10dp"-->
+<!--android:background="@drawable/background_revieved_offers_item" />-->
