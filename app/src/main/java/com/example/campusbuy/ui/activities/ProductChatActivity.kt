@@ -144,4 +144,8 @@ class ProductChatActivity : BaseActivity() {
     fun productDetailsSuccess(product: Product) {
         mProductDetails = product
     }
+
+    fun getUpdatatedProduct() {
+        getProductDetails()
+    }
 }
