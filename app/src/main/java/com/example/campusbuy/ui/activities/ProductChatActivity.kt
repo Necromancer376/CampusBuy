@@ -38,6 +38,7 @@ class ProductChatActivity : BaseActivity() {
 
         setupActionBar()
         getUserDetails()
+        mProductDetails = Product()
 
         name = intent.getStringExtra(Constants.USER_NAME).toString()
         recieverUid = intent.getStringExtra(Constants.USER_ID).toString()
@@ -71,6 +72,14 @@ class ProductChatActivity : BaseActivity() {
 
         if(mProductDetails.sellerAgree && mProductDetails.buyerAgree) {
             setProductBooleans("isSold", true)
+        }
+
+        btn_agree_seller.setOnClickListener {
+            setProductBooleans("sellerAgree", !mProductDetails.sellerAgree)
+        }
+
+        btn_agree_buyer.setOnClickListener {
+            setProductBooleans("buyerAgree", !mProductDetails.buyerAgree)
         }
 
         mDBref.child("chats").child(productId).child(senderRoom!!).child("messages")
@@ -108,31 +117,25 @@ class ProductChatActivity : BaseActivity() {
                     }
                 edt_message_box.setText("")
 
-                FireStoreClass().upadteUserOfferedList(this@ProductChatActivity, productId, currentUser)
+                if(mProductDetails.user_id != mUserDetails.id){
+                    FireStoreClass().upadteUserOfferedList(this@ProductChatActivity, productId, currentUser)
+                }
             }
-        }
-
-        btn_agree_seller.setOnClickListener {
-            setProductBooleans("sellerAgree", !mProductDetails.sellerAgree)
-        }
-
-        btn_agree_buyer.setOnClickListener {
-            setProductBooleans("buyerAgree", !mProductDetails.buyerAgree)
         }
     }
 
     private fun getUserDetails() {
         showProgressDialog(resources.getString(R.string.please_wait))
-
         FireStoreClass().getUserDetails(this)
     }
 
     fun userDetailsSuccess(user: User) {
-        currentUser = user
         hideProgressDialog()
+        currentUser = user
     }
 
     fun offersOnProductsSuccess() {
+        hideProgressDialog()
 //        Log.e("offer", "success")
     }
 
@@ -154,7 +157,9 @@ class ProductChatActivity : BaseActivity() {
     }
 
     fun productDetailsSuccess(product: Product) {
+        hideProgressDialog()
         mProductDetails = product
+        Log.i("Product Details", mProductDetails.toString())
     }
 
     private fun setProductBooleans(field: String, status: Boolean) {
@@ -163,6 +168,8 @@ class ProductChatActivity : BaseActivity() {
     }
 
     fun getUpdatatedProduct() {
+        hideProgressDialog()
+        Log.i("Product Details", mProductDetails.toString())
         getProductDetails()
     }
 }

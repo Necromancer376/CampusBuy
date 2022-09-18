@@ -167,6 +167,7 @@ class FireStoreClass {
             .addOnSuccessListener { e ->
                 when (activity) {
                     is ProductChatActivity -> {
+                        activity.hideProgressDialog()
                         activity.offersOnProductsSuccess()
                     }
                 }
@@ -483,7 +484,7 @@ class FireStoreClass {
                 when (activity) {
                     is CheckProductDetailsActivity -> {
                         if (listName.equals(Constants.PRODUCT_INTERESTED)) {
-
+                            activity.hideProgressDialog()
                         }
                     }
                 }
@@ -507,6 +508,7 @@ class FireStoreClass {
                 when (activity) {
                     is CheckProductDetailsActivity -> {
                         if (listName.equals(Constants.PRODUCT_INTERESTED)) {
+                            activity.hideProgressDialog()
                             activity.productInterestedSuccess()
                         }
                     }
@@ -527,17 +529,24 @@ class FireStoreClass {
     }
 
     fun updateProducBoolean(activity: Activity, productId: String, field: String, status: Boolean) {
+        Log.e("here", "update bool")
         mFirestore.collection(Constants.PRODUCTS)
             .document(productId)
             .update(field, status)
             .addOnSuccessListener {
                 when(activity) {
                     is ProductChatActivity -> {
+                        activity.hideProgressDialog()
                         activity.getUpdatatedProduct()
                     }
                 }
             }
             .addOnFailureListener { e ->
+                when(activity) {
+                    is ProductChatActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
                 Log.e(
                     activity.javaClass.simpleName,
                     "Error while updating profile",

@@ -76,7 +76,9 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
         if(view != null) {
             when (view.id) {
                 R.id.btn_offer_chat -> {
-                    updateInterestedArray()
+                    if(mProductDetails.user_id != mUserDetails.id) {
+                        updateInterestedArray()
+                    }
                 }
             }
         }
