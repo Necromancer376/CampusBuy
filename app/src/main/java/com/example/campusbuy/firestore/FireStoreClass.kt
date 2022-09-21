@@ -371,6 +371,7 @@ class FireStoreClass {
                             activity.productDetailsSuccess(product)
                         }
                         is ProductChatActivity -> {
+                            activity.hideProgressDialog()
                             activity.productDetailsSuccess(product)
                         }
                     }

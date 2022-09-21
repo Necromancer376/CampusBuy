@@ -117,7 +117,7 @@ class ProductChatActivity : BaseActivity() {
                     }
                 edt_message_box.setText("")
 
-                if(mProductDetails.user_id != mUserDetails.id){
+                if(mProductDetails.user_id != currentUser.id){
                     FireStoreClass().upadteUserOfferedList(this@ProductChatActivity, productId, currentUser)
                 }
             }
@@ -132,6 +132,7 @@ class ProductChatActivity : BaseActivity() {
     fun userDetailsSuccess(user: User) {
         hideProgressDialog()
         currentUser = user
+        Log.i("user:", currentUser.toString())
     }
 
     fun offersOnProductsSuccess() {
