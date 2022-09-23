@@ -34,6 +34,7 @@ class ProductChatActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_chat)
 
+
         mDBref = FirebaseDatabase.getInstance("https://campusbuy-79e1a-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference()
 
         setupActionBar()
@@ -105,11 +106,12 @@ class ProductChatActivity : BaseActivity() {
             val message = edt_message_box.text.toString()
             val messageObject = Message(senderUid, message, productId)
 
-            if(!message.equals("")) {
+            if (!message.equals("")) {
                 mDBref.child("chats").child(productId).child(senderRoom!!).child("messages").push()
                     .setValue(messageObject)
                     .addOnSuccessListener {
-                        mDBref.child("chats").child(productId).child(recieverRoom!!).child("messages").push()
+                        mDBref.child("chats").child(productId).child(recieverRoom!!)
+                            .child("messages").push()
                             .setValue(messageObject)
                     }
                     .addOnFailureListener {
@@ -117,8 +119,12 @@ class ProductChatActivity : BaseActivity() {
                     }
                 edt_message_box.setText("")
 
-                if(mProductDetails.user_id != currentUser.id){
-                    FireStoreClass().upadteUserOfferedList(this@ProductChatActivity, productId, currentUser)
+                if (mProductDetails.user_id != currentUser.id) {
+                    FireStoreClass().upadteUserOfferedList(
+                        this@ProductChatActivity,
+                        productId,
+                        currentUser
+                    )
                 }
             }
         }
