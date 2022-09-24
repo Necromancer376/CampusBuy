@@ -106,6 +106,7 @@ class FireStoreClass {
                         activity.userDetailsSuccess(user)
                     }
                     is ProductChatActivity -> {
+                        Log.e("here", "user details $activity")
                         activity.userDetailsSuccess(user)
                     }
                 }
@@ -371,7 +372,8 @@ class FireStoreClass {
                             activity.productDetailsSuccess(product)
                         }
                         is ProductChatActivity -> {
-                            activity.hideProgressDialog()
+                            Log.e("here: ", "user details")
+//                            activity.hideProgressDialog()
                             activity.productDetailsSuccess(product)
                         }
                     }
@@ -537,7 +539,8 @@ class FireStoreClass {
             .addOnSuccessListener {
                 when(activity) {
                     is ProductChatActivity -> {
-                        activity.hideProgressDialog()
+                        Log.e("here: ", "user details")
+//                        activity.hideProgressDialog()
                         activity.getUpdatatedProduct()
                     }
                 }

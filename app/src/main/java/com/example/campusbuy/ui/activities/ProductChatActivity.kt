@@ -43,9 +43,10 @@ class ProductChatActivity : BaseActivity() {
 
         name = intent.getStringExtra(Constants.USER_NAME).toString()
         recieverUid = intent.getStringExtra(Constants.USER_ID).toString()
-        senderUid = FireStoreClass().getCurrentUserId().toString()
+        senderUid = FireStoreClass().getCurrentUserId()
         mUserDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
         productId = intent.getStringExtra(Constants.PRODUCT_ID).toString()
+
         getProductDetails()
 
         tv_chat_title.text = name
@@ -128,6 +129,11 @@ class ProductChatActivity : BaseActivity() {
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        hideProgressDialog()
     }
 
     private fun getUserDetails() {
