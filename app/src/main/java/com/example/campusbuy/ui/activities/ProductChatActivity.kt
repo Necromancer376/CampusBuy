@@ -143,6 +143,7 @@ class ProductChatActivity : BaseActivity() {
 
     fun userDetailsSuccess(user: User) {
         hideProgressDialog()
+        hideProgressDialog()
         currentUser = user
         Log.i("user:", currentUser.toString())
     }
@@ -170,6 +171,7 @@ class ProductChatActivity : BaseActivity() {
     }
 
     fun productDetailsSuccess(product: Product) {
+        hideProgressDialog()
         hideProgressDialog()
         mProductDetails = product
         Log.i("Product Details", mProductDetails.toString())
