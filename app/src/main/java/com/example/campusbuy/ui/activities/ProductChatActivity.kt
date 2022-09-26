@@ -44,6 +44,7 @@ class ProductChatActivity : BaseActivity() {
         name = intent.getStringExtra(Constants.USER_NAME).toString()
         recieverUid = intent.getStringExtra(Constants.USER_ID).toString()
         senderUid = FireStoreClass().getCurrentUserId()
+        hideProgressDialog()
         mUserDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
         productId = intent.getStringExtra(Constants.PRODUCT_ID).toString()
 
