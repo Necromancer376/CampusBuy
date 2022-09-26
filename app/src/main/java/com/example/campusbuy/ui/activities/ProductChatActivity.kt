@@ -2,6 +2,7 @@ package com.example.campusbuy.ui.activities
 
 import android.os.Bundle
 import android.util.Log
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.campusbuy.R
 import com.example.campusbuy.firestore.FireStoreClass
@@ -60,29 +61,24 @@ class ProductChatActivity : BaseActivity() {
         rv_chat.layoutManager = LinearLayoutManager(this@ProductChatActivity)
         rv_chat.adapter = messageAdapter
 
-        if(mProductDetails.sellerAgree) {
-            btn_agree_seller.setBackgroundColor(R.color.button_agree_green)
-        }
-        else {
-            btn_agree_seller.setBackgroundColor(R.color.button_agree_red)
-        }
-        if(mProductDetails.buyerAgree) {
-            btn_agree_buyer.setBackgroundColor(R.color.button_agree_green)
-        }
-        else {
-            btn_agree_buyer.setBackgroundColor(R.color.button_agree_red)
-        }
+        updateButton()
 
         if(mProductDetails.sellerAgree && mProductDetails.buyerAgree) {
             setProductBooleans("isSold", true)
         }
 
         btn_agree_seller.setOnClickListener {
-            setProductBooleans("sellerAgree", !mProductDetails.sellerAgree)
+            if(currentUser.id == mProductDetails.user_id) {
+                Log.e("button", "seller")
+                setProductBooleans("sellerAgree", !mProductDetails.sellerAgree)
+            }
         }
 
         btn_agree_buyer.setOnClickListener {
-            setProductBooleans("buyerAgree", !mProductDetails.buyerAgree)
+            if(currentUser.id != mProductDetails.user_id) {
+                Log.e("button", "buyer")
+                setProductBooleans("buyerAgree", !mProductDetails.buyerAgree)
+            }
         }
 
         mDBref.child("chats").child(productId).child(senderRoom!!).child("messages")
@@ -137,6 +133,21 @@ class ProductChatActivity : BaseActivity() {
         hideProgressDialog()
     }
 
+    private fun updateButton(){
+        if(mProductDetails.sellerAgree) {
+            btn_agree_seller.setBackgroundColor(R.color.button_agree_green)
+        }
+        else {
+            btn_agree_seller.setBackgroundColor(R.color.button_agree_red)
+        }
+        if(mProductDetails.buyerAgree) {
+            btn_agree_buyer.setBackgroundColor(R.color.button_agree_green)
+        }
+        else {
+            btn_agree_buyer.setBackgroundColor(R.color.button_agree_red)
+        }
+    }
+
     private fun getUserDetails() {
         showProgressDialog(resources.getString(R.string.please_wait))
         FireStoreClass().getUserDetails(this)
@@ -146,7 +157,6 @@ class ProductChatActivity : BaseActivity() {
         hideProgressDialog()
         hideProgressDialog()
         currentUser = user
-        Log.i("user:", currentUser.toString())
     }
 
     fun offersOnProductsSuccess() {
@@ -175,6 +185,7 @@ class ProductChatActivity : BaseActivity() {
         hideProgressDialog()
         hideProgressDialog()
         mProductDetails = product
+        updateButton()
         Log.i("Product Details", mProductDetails.toString())
     }
 
@@ -185,7 +196,6 @@ class ProductChatActivity : BaseActivity() {
 
     fun getUpdatatedProduct() {
         hideProgressDialog()
-        Log.i("Product Details", mProductDetails.toString())
         getProductDetails()
     }
 }
