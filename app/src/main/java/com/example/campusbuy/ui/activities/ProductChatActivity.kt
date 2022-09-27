@@ -63,20 +63,19 @@ class ProductChatActivity : BaseActivity() {
 
         updateButton()
 
-        if(mProductDetails.sellerAgree && mProductDetails.buyerAgree) {
+        if((mProductDetails.sellerAgree && mProductDetails.buyerAgree) &&
+            (mProductDetails.buyerAgree == mProductDetails.sellerAgree)) {
             setProductBooleans("isSold", true)
         }
 
         btn_agree_seller.setOnClickListener {
             if(currentUser.id == mProductDetails.user_id) {
-                Log.e("button", "seller")
                 setProductBooleans("sellerAgree", !mProductDetails.sellerAgree)
             }
         }
 
         btn_agree_buyer.setOnClickListener {
             if(currentUser.id != mProductDetails.user_id) {
-                Log.e("button", "buyer")
                 setProductBooleans("buyerAgree", !mProductDetails.buyerAgree)
             }
         }
@@ -117,7 +116,7 @@ class ProductChatActivity : BaseActivity() {
                     }
                 edt_message_box.setText("")
 
-                if (mProductDetails.user_id != currentUser.id) {
+                if (mProductDetails.user_id != currentUser.id && !currentUser.offersOnProducts.contains(productId)) {
                     FireStoreClass().upadteUserOfferedList(
                         this@ProductChatActivity,
                         productId,
@@ -161,7 +160,6 @@ class ProductChatActivity : BaseActivity() {
 
     fun offersOnProductsSuccess() {
         hideProgressDialog()
-//        Log.e("offer", "success")
     }
 
     private fun setupActionBar() {
