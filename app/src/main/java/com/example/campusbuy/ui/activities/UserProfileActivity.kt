@@ -133,6 +133,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             userHashMap[Constants.LASTNAME] = lastName
         }
 
+        //TODO implement
         userHashMap[Constants.COMPLETE_PROFILE] = 1
         userHashMap[Constants.CAMPUS] = "VIT Vellore"
 
