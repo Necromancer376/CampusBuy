@@ -4,10 +4,12 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -30,6 +32,11 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
 
+
+
+        val typeface: Typeface = Typeface.createFromAsset(assets, "Montserrat-Regular.ttf")
+//        var adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, )
+
         if(intent.hasExtra(Constants.EXTRA_USER_DETAILS)) {
              mUserDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
         }
@@ -38,6 +45,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         et_first_name_profile.setText(mUserDetails.firstName)
         et_last_name_profile.setText(mUserDetails.lastName)
         et_email_profile.setText(mUserDetails.email)
+        ac_campus_select.setTypeface(typeface)
 
         if(mUserDetails.profileCompleted == 0) {
             tv_title_user_profile.text = resources.getString(R.string.title_complete_profile)
