@@ -27,6 +27,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
     private lateinit var mUserDetails: User
     private var mSelectedImageFileUri: Uri? = null
     private var mUserProfileImageURL: String = ""
+    var campusList: ArrayList<String> = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

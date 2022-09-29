@@ -21,6 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import java.io.File
 
 class FireStoreClass {
 
@@ -554,5 +555,30 @@ class FireStoreClass {
                     e
                 )
             }
+    }
+
+    fun getCampusList(activity: Activity): ArrayList<String> {
+        val sRef: StorageReference = FirebaseStorage.getInstance().reference.child("campus.txt")
+        var array: ArrayList<String> = ArrayList<String>()
+        val tempFile = File.createTempFile("campus", "txt")
+
+        sRef.getFile(tempFile).addOnSuccessListener {
+            tempFile.forEachLine {
+                array.add(it)
+            }
+        }
+            .addOnFailureListener {
+                Log.e(activity.javaClass.simpleName, "Error while downloading file")
+            }
+
+        return array
+    }
+
+    fun updateCampusList(activity: Activity, newName: String) {
+        val sRef: StorageReference = FirebaseStorage.getInstance().reference.child("campus.txt")
+        var array: ArrayList<String> = ArrayList<String>()
+        val tempFile = File.createTempFile("campus", "txt")
+
+
     }
 }
