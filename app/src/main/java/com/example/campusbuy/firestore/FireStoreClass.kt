@@ -579,6 +579,5 @@ class FireStoreClass {
         var array: ArrayList<String> = ArrayList<String>()
         val tempFile = File.createTempFile("campus", "txt")
 
-
     }
 }
