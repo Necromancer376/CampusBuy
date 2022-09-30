@@ -239,9 +239,11 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
     fun campusListSuccess(list: ArrayList<String>) {
         campusList = list
-        var acAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, campusList)
+        var acAdapter = ArrayAdapter(this, R.drawable.item_campus_list, campusList)
+//        var acAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, campusList)
         ac_campus_select.threshold = 0
         ac_campus_select.setAdapter(acAdapter)
+        ac_campus_select.dropDownVerticalOffset = 0
 //       ac_campus_select.setOnFocusChangeListener { view, b ->
 //            if(b)
 //                ac_campus_select.showDropDown()

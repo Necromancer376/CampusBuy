@@ -182,6 +182,9 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/til_select_campus"
                         android:layout_marginTop="10dp"
+                        android:popupBackground="#EFEEEC"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
                         android:completionThreshold="1"/>
 
 <!--                    <com.example.campusbuy.utils.CBEditText-->
