@@ -133,6 +133,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         val mobileNumber = et_mobile_number_profile.text.toString().trim {it <= ' '}
         val firstName = et_first_name_profile.text.toString().trim {it <= ' '}
         val lastName = et_last_name_profile.text.toString().trim {it <= ' '}
+        val campus = ac_campus_select.text.toString().trim {it <= ' '}
 
         if(mUserProfileImageURL.isNotEmpty()) {
             userHashMap[Constants.IMAGE] = mUserProfileImageURL
@@ -150,9 +151,8 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             userHashMap[Constants.LASTNAME] = lastName
         }
 
-        //TODO implement
         userHashMap[Constants.COMPLETE_PROFILE] = 1
-        userHashMap[Constants.CAMPUS] = "VIT Vellore"
+        userHashMap[Constants.CAMPUS] = campus
 
         FireStoreClass().updateUserDetails(this, userHashMap)
     }
