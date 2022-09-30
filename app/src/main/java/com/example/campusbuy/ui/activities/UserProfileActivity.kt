@@ -8,6 +8,7 @@ import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -27,16 +28,15 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
     private lateinit var mUserDetails: User
     private var mSelectedImageFileUri: Uri? = null
     private var mUserProfileImageURL: String = ""
-    var campusList: ArrayList<String> = ArrayList<String>()
+    var campusList: ArrayList<String> = ArrayList<>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
 
-
-
         val typeface: Typeface = Typeface.createFromAsset(assets, "Montserrat-Regular.ttf")
-//        var adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, )
+
+        getCampusList()
 
         if(intent.hasExtra(Constants.EXTRA_USER_DETAILS)) {
              mUserDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
@@ -47,6 +47,10 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         et_last_name_profile.setText(mUserDetails.lastName)
         et_email_profile.setText(mUserDetails.email)
         ac_campus_select.setTypeface(typeface)
+
+        var acAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, campusList)
+        ac_campus_select.threshold = 0
+        ac_campus_select.setAdapter(acAdapter)
 
         if(mUserDetails.profileCompleted == 0) {
             tv_title_user_profile.text = resources.getString(R.string.title_complete_profile)
@@ -223,5 +227,14 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
     fun imageUploadSuccess(imageURL: String) {
         mUserProfileImageURL = imageURL
         updateUserProfileDetails()
+    }
+
+    fun getCampusList() {
+        FireStoreClass().getCampusList(this@UserProfileActivity)
+    }
+
+    fun campusListSuccess(list: ArrayList<String>) {
+        campusList = list
+        Log.e("list", campusList.toString())
     }
 }

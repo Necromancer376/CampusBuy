@@ -557,7 +557,7 @@ class FireStoreClass {
             }
     }
 
-    fun getCampusList(activity: Activity): ArrayList<String> {
+    fun getCampusList(activity: Activity) {
         val sRef: StorageReference = FirebaseStorage.getInstance().reference.child("campus.txt")
         var array: ArrayList<String> = ArrayList<String>()
         val tempFile = File.createTempFile("campus", "txt")
@@ -565,13 +565,18 @@ class FireStoreClass {
         sRef.getFile(tempFile).addOnSuccessListener {
             tempFile.forEachLine {
                 array.add(it)
+                Log.e("it", it.toString())
             }
+            when(activity) {
+                is UserProfileActivity -> {
+                    activity.campusListSuccess(array)
+                }
+            }
+
         }
             .addOnFailureListener {
                 Log.e(activity.javaClass.simpleName, "Error while downloading file")
             }
-
-        return array
     }
 
     fun updateCampusList(activity: Activity, newName: String) {
@@ -579,5 +584,6 @@ class FireStoreClass {
         var array: ArrayList<String> = ArrayList<String>()
         val tempFile = File.createTempFile("campus", "txt")
 
+        tempFile.appendText(newName)
     }
 }
