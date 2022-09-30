@@ -176,22 +176,23 @@
                     android:hint="@string/et_hint_select_campus"
                     android:textColorHint="#666666">
 
-                    <com.example.campusbuy.utils.CBEditText
-                        android:id="@+id/et_campus_select"
+                    <AutoCompleteTextView
+                        android:id="@+id/ac_campus_select"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="@dimen/edittext_padding"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/edittext_textSize" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_below="@id/til_select_campus"
+                        android:layout_marginTop="10dp"
+                        android:completionThreshold="1"/>
 
-                <AutoCompleteTextView
-                    android:id="@+id/ac_campus_select"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/til_select_campus"
-                    android:layout_marginTop="10dp"/>
+<!--                    <com.example.campusbuy.utils.CBEditText-->
+<!--                        android:id="@+id/et_campus_select"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:inputType="text"-->
+<!--                        android:padding="@dimen/edittext_padding"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="@dimen/edittext_textSize" />-->
+                </com.google.android.material.textfield.TextInputLayout>
             </RelativeLayout>
 
             <com.example.campusbuy.utils.CBButton

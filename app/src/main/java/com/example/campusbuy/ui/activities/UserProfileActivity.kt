@@ -28,14 +28,13 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
     private lateinit var mUserDetails: User
     private var mSelectedImageFileUri: Uri? = null
     private var mUserProfileImageURL: String = ""
-    var campusList: ArrayList<String> = ArrayList<>()
+    private lateinit var campusList: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
 
-        val typeface: Typeface = Typeface.createFromAsset(assets, "Montserrat-Regular.ttf")
-
+        campusList = ArrayList()
         getCampusList()
 
         if(intent.hasExtra(Constants.EXTRA_USER_DETAILS)) {
@@ -46,11 +45,16 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         et_first_name_profile.setText(mUserDetails.firstName)
         et_last_name_profile.setText(mUserDetails.lastName)
         et_email_profile.setText(mUserDetails.email)
-        ac_campus_select.setTypeface(typeface)
 
-        var acAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, campusList)
-        ac_campus_select.threshold = 0
-        ac_campus_select.setAdapter(acAdapter)
+
+        Log.e("list", campusList.toString())
+//        var acAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, campusList)
+//        ac_campus_select.threshold = 0
+//        ac_campus_select.setAdapter(acAdapter)
+//        ac_campus_select.setOnFocusChangeListener { view, b ->
+//            if(b)
+//                ac_campus_select.showDropDown()
+//        }
 
         if(mUserDetails.profileCompleted == 0) {
             tv_title_user_profile.text = resources.getString(R.string.title_complete_profile)
@@ -235,6 +239,13 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
     fun campusListSuccess(list: ArrayList<String>) {
         campusList = list
+        var acAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, campusList)
+        ac_campus_select.threshold = 0
+        ac_campus_select.setAdapter(acAdapter)
+//       ac_campus_select.setOnFocusChangeListener { view, b ->
+//            if(b)
+//                ac_campus_select.showDropDown()
+//        }
         Log.e("list", campusList.toString())
     }
 }
