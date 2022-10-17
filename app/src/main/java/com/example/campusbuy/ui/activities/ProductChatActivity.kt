@@ -134,16 +134,16 @@ class ProductChatActivity : BaseActivity() {
 
     private fun updateButton(){
         if(mProductDetails.sellerAgree) {
-            btn_agree_seller.setBackgroundColor(R.color.button_agree_green)
+            btn_agree_seller.setBackgroundResource(R.color.button_agree_green)
         }
         else {
-            btn_agree_seller.setBackgroundColor(R.color.button_agree_red)
+            btn_agree_seller.setBackgroundResource(R.color.button_agree_red)
         }
         if(mProductDetails.buyerAgree) {
-            btn_agree_buyer.setBackgroundColor(R.color.button_agree_green)
+            btn_agree_buyer.setBackgroundResource(R.color.button_agree_green)
         }
         else {
-            btn_agree_buyer.setBackgroundColor(R.color.button_agree_red)
+            btn_agree_buyer.setBackgroundResource(R.color.button_agree_red)
         }
     }
 
