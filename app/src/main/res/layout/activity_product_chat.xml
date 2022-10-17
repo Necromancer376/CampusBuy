@@ -53,7 +53,6 @@
                 android:text="Agree"
                 android:textSize="18sp"
                 android:background="@drawable/button_agree_background"
-                android:backgroundTint="@color/button_agree_red"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="5dp" />
 
@@ -77,7 +76,6 @@
                 android:text="Agree"
                 android:textSize="18sp"
                 android:background="@drawable/button_agree_background"
-                android:backgroundTint="@color/button_agree_red"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="5dp" />
 
