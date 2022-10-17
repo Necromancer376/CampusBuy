@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campusbuy.R
 import com.example.campusbuy.firestore.FireStoreClass
@@ -45,6 +46,13 @@ class DashboardItemsListAdapter(
             holder.itemView.tv_dashboard_item_price.text = "₹" + model.price
             holder.itemView.tv_dashboard_viewed_count.text = model.seenCount.size.toString()
             holder.itemView.tv_dashboard_interested_count.text = model.interested.size.toString()
+            if(model.isSold) {
+                holder.itemView.foreground = ContextCompat.getDrawable(context, R.drawable.sold_overlay1)
+            }
+            else {
+                holder.itemView.foreground = null
+            }
+
 
 //            holder.itemView.setOnClickListener {
 //                if(onClickListener != null) {
