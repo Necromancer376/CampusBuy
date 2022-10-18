@@ -62,11 +62,8 @@ class ProductChatActivity : BaseActivity() {
         rv_chat.adapter = messageAdapter
 
         updateButton()
-
-        if((mProductDetails.sellerAgree && mProductDetails.buyerAgree) &&
-            (mProductDetails.buyerAgree == mProductDetails.sellerAgree)) {
-            setProductBooleans("isSold", true)
-        }
+//        (mProductDetails.buyerAgree == mProductDetails.sellerAgree)
+        updateIsSold()
 
         btn_agree_seller.setOnClickListener {
             if(currentUser.id == mProductDetails.user_id) {
@@ -194,6 +191,13 @@ class ProductChatActivity : BaseActivity() {
 
     fun getUpdatatedProduct() {
         hideProgressDialog()
+        updateIsSold()
         getProductDetails()
+    }
+
+    fun updateIsSold() {
+        if((mProductDetails.sellerAgree && mProductDetails.buyerAgree)) {
+            setProductBooleans("isSold", true)
+        }
     }
 }
