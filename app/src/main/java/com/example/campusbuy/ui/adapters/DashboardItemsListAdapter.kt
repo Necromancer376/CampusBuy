@@ -46,7 +46,8 @@ class DashboardItemsListAdapter(
             holder.itemView.tv_dashboard_item_price.text = "₹" + model.price
             holder.itemView.tv_dashboard_viewed_count.text = model.seenCount.size.toString()
             holder.itemView.tv_dashboard_interested_count.text = model.interested.size.toString()
-            if(model.isSold) {
+            if(model.sold) {
+                Log.e("here: ", "overlay")
                 holder.itemView.foreground = ContextCompat.getDrawable(context, R.drawable.sold_overlay1)
             }
             else {

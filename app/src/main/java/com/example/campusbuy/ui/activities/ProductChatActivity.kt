@@ -191,13 +191,12 @@ class ProductChatActivity : BaseActivity() {
 
     fun getUpdatatedProduct() {
         hideProgressDialog()
-        updateIsSold()
         getProductDetails()
     }
 
     fun updateIsSold() {
-        if((mProductDetails.sellerAgree && mProductDetails.buyerAgree)) {
-            setProductBooleans("isSold", true)
+        if((mProductDetails.sellerAgree && mProductDetails.buyerAgree) && !mProductDetails.sold) {
+            setProductBooleans("sold", true)
         }
     }
 }

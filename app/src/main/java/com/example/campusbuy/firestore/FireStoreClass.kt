@@ -530,15 +530,13 @@ class FireStoreClass {
     }
 
     fun updateProducBoolean(activity: Activity, productId: String, field: String, status: Boolean) {
-        Log.e("bool", status.toString())
         mFirestore.collection(Constants.PRODUCTS)
             .document(productId)
             .update(field, status)
             .addOnSuccessListener {
                 when(activity) {
                     is ProductChatActivity -> {
-                        Log.e("here", field.toString())
-//                        activity.hideProgressDialog()
+                        Log.e("here", field)
                         activity.getUpdatatedProduct()
                     }
                 }
