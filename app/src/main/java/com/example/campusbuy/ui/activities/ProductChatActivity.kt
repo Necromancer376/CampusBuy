@@ -178,7 +178,7 @@ class ProductChatActivity : BaseActivity() {
 
     fun productDetailsSuccess(product: Product) {
         hideProgressDialog()
-        hideProgressDialog()
+        Log.e("product", product.toString())
         mProductDetails = product
         updateButton()
         Log.i("Product Details", mProductDetails.toString())
