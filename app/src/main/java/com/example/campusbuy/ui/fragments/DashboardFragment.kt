@@ -83,8 +83,8 @@ class DashboardFragment : BaseFragment() {
         else {
             itemList = ArrayList<Product>()
             for(i in dashboardItemList) {
-                if(i.title.toLowerCase().contains(search.toLowerCase()) ||
-                    i.description.toLowerCase().contains(search.toLowerCase())) {
+                if(i.title.lowercase().contains(search.lowercase()) ||
+                    i.description.lowercase().contains(search.lowercase())) {
                     itemList.add(i)
                 }
             }
