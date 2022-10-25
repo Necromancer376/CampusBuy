@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campusbuy.R
 import com.example.campusbuy.models.Product
@@ -50,6 +51,14 @@ class myProductsListAdapter(
 
             holder.itemView.ib_delete_product.setOnClickListener{
                 fragment.deleteProduct(model.product_id, imgUrl)
+            }
+
+            if(model.sold) {
+                Log.e("here: ", "overlay")
+                holder.itemView.foreground = ContextCompat.getDrawable(context, R.drawable.sold_overlay1)
+            }
+            else {
+                holder.itemView.foreground = null
             }
 
             holder.itemView.setOnClickListener {
