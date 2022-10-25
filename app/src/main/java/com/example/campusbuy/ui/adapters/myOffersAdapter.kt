@@ -2,9 +2,11 @@ package com.example.campusbuy.ui.adapters
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campusbuy.R
 import com.example.campusbuy.models.Product
@@ -40,6 +42,14 @@ class myOffersAdapter (
             GlideLoader(context).loadProductPicture(model.image, holder.itemView.iv_item_image)
             holder.itemView.tv_item_name.text = model.title
             holder.itemView.tv_item_price.text = "₹${model.price}"
+
+            if(model.sold) {
+                Log.e("here: ", "overlay")
+                holder.itemView.foreground = ContextCompat.getDrawable(context, R.drawable.sold_overlay1)
+            }
+            else {
+                holder.itemView.foreground = null
+            }
 
             holder.itemView.setOnClickListener {
                 val intent = Intent(context, ProductChatActivity::class.java)

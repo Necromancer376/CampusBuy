@@ -125,41 +125,22 @@
             android:textSize="@dimen/settings_information_text_size"
             tools:text="123456789" />
 
-        <LinearLayout
-            android:id="@+id/ll_address"
-            android:layout_width="match_parent"
+        <com.example.campusbuy.utils.CBTextViewBold
+            android:id="@+id/tv_campus"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_mobile_number"
-            android:layout_marginStart="@dimen/settings_address_margin"
-            android:layout_marginTop="@dimen/settings_address_margin"
-            android:layout_marginEnd="@dimen/settings_address_margin"
-            android:layout_marginBottom="@dimen/settings_address_margin"
-            android:background="@drawable/item_grey_border_background"
-            android:foreground="?attr/selectableItemBackground"
-            android:orientation="horizontal"
-            android:padding="@dimen/settings_address_padding">
-
-            <com.example.campusbuy.utils.CBTextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/settings_lbl_addresses_margin"
-                android:layout_weight="1"
-                android:text="@string/lbl_addresses"
-                android:textColor="#666666"
-                android:textSize="@dimen/settings_lbl_addresses_textSize" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/content_description"
-                android:src="@drawable/ic_vector_chevron_right" />
-        </LinearLayout>
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/settings_info_marginTop"
+            android:textColor="#666666"
+            android:textSize="@dimen/settings_information_text_size"
+            tools:text="VIT Vellore" />
 
         <com.example.campusbuy.utils.CBButton
             android:id="@+id/btn_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ll_address"
+            android:layout_below="@id/tv_campus"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/settings_button_marginStartEnd"
             android:layout_marginTop="@dimen/settings_button_marginTopBottom"
@@ -174,5 +155,34 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/btn_textSize" />
     </RelativeLayout>
-
 </ScrollView>
+
+<!--<LinearLayout-->
+<!--android:id="@+id/ll_address"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_below="@id/tv_mobile_number"-->
+<!--android:layout_marginStart="@dimen/settings_address_margin"-->
+<!--android:layout_marginTop="@dimen/settings_address_margin"-->
+<!--android:layout_marginEnd="@dimen/settings_address_margin"-->
+<!--android:layout_marginBottom="@dimen/settings_address_margin"-->
+<!--android:background="@drawable/item_grey_border_background"-->
+<!--android:foreground="?attr/selectableItemBackground"-->
+<!--android:orientation="horizontal"-->
+<!--android:padding="@dimen/settings_address_padding">-->
+
+<!--<com.example.campusbuy.utils.CBTextView-->
+<!--    android:layout_width="0dp"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_margin="@dimen/settings_lbl_addresses_margin"-->
+<!--    android:layout_weight="1"-->
+<!--    android:text="@string/lbl_addresses"-->
+<!--    android:textColor="#666666"-->
+<!--    android:textSize="@dimen/settings_lbl_addresses_textSize" />-->
+
+<!--<ImageView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:contentDescription="@string/content_description"-->
+<!--    android:src="@drawable/ic_vector_chevron_right" />-->
+<!--</LinearLayout>-->

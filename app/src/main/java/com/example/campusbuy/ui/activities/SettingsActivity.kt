@@ -52,6 +52,7 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
         tv_name.text = "${user.firstName} ${user.lastName}"
         tv_email.text = user.email
         tv_mobile_number.text = "${user.mobile}"
+        tv_campus.text = user.campus
     }
 
     override fun onResume() {
