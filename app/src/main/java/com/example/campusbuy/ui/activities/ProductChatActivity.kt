@@ -196,6 +196,7 @@ class ProductChatActivity : BaseActivity() {
 
     fun updateIsSold() {
         if((mProductDetails.sellerAgree && mProductDetails.buyerAgree) && !mProductDetails.sold) {
+            Log.e("sold", mProductDetails.sold.toString())
             setProductBooleans("sold", true)
         }
     }
