@@ -3,6 +3,7 @@ package com.example.campusbuy.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import com.example.campusbuy.R
 import com.example.campusbuy.firestore.FireStoreClass
 import com.example.campusbuy.models.Product
@@ -63,8 +64,18 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
         tv_check_product_details_title.text = product.title
         tv_check_product_details_price.text = product.price
         tv_check_product_details_description.text = product.description
+        tv_product_seller.text = product.user_name
         tv_check_product_details_viewed_count.text = product.seenCount.size.toString()
         tv_check_product_details_interested_count.text = product.interested.size.toString()
+
+        if(mProductDetails.sold) {
+            btn_offer_chat.isVisible = false
+            sold_overlay.isVisible = true
+        }
+        else {
+            btn_offer_chat.isVisible = true
+            sold_overlay.isVisible = false
+        }
     }
 
     private fun getProductDetails() {

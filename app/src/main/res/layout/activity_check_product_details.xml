@@ -110,14 +110,45 @@
                 tools:text="This is product details description." />
 
             <LinearLayout
+                android:id="@+id/ll_seller"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginHorizontal="7dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_check_product_details_description">
+
+                <com.example.campusbuy.utils.CBTextViewBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/seller_product"
+                    android:textColor="@color/item_value_text_color"
+                    android:textSize="@dimen/product_details_title_textSize"/>
+
+                <com.example.campusbuy.utils.CBTextView
+                    android:id="@+id/tv_product_seller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/item_value_text_color"
+                    android:textSize="@dimen/product_details_title_textSize"
+                    android:text="test"
+                    android:layout_marginLeft="5dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/ll_stats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@+id/tv_check_product_details_description"
+                app:layout_constraintTop_toBottomOf="@+id/ll_seller"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -181,21 +212,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="40dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ll_stats"
             android:paddingHorizontal="20dp">
-
-<!--            <com.example.campusbuy.utils.CBButton-->
-<!--                android:id="@+id/btn_interested"-->
-<!--                android:layout_weight="1"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:background="@drawable/button_background"-->
-<!--                android:foreground="?attr/selectableItemBackground"-->
-<!--                android:layout_marginHorizontal="20dp"-->
-<!--                android:text="interested" />-->
 
             <com.example.campusbuy.utils.CBButton
                 android:id="@+id/btn_offer_chat"
@@ -208,6 +229,28 @@
                 android:text="@string/offer_button_text"/>
             </LinearLayout>
 
+            <ImageView
+                android:id="@+id/sold_overlay"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_stats"
+                android:paddingHorizontal="20dp"
+                android:src="@drawable/sold_overlay3" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--            <com.example.campusbuy.utils.CBButton-->
+    <!--                android:id="@+id/btn_interested"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:background="@drawable/button_background"-->
+    <!--                android:foreground="?attr/selectableItemBackground"-->
+    <!--                android:layout_marginHorizontal="20dp"-->
+    <!--                android:text="interested" />-->

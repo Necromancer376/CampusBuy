@@ -55,7 +55,6 @@ class OrdersFragment : BaseFragment() {
 
     private fun getUserDetails() {
         showProgressDialog(resources.getString(R.string.please_wait))
-
         FireStoreClass().getUserDetailsFragment(this)
     }
 
@@ -63,7 +62,7 @@ class OrdersFragment : BaseFragment() {
         mUserDetails = user
         hideProgressDialog()
 
-        var offersList = mUserDetails.offersOnProducts
+        val offersList = mUserDetails.offersOnProducts
 
         if(offersList.size > 0) {
             rv_my_offers.visibility = View.VISIBLE

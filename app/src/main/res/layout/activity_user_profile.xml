@@ -183,19 +183,12 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/til_select_campus"
                         android:layout_marginTop="10dp"
+                        android:dropDownAnchor="@id/et_email_profile"
+                        android:dropDownHeight="200dp"
                         android:completionThreshold="1"
                         android:popupBackground="#EFEEEC"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
-
-                    <!--                    <com.example.campusbuy.utils.CBEditText-->
-                    <!--                        android:id="@+id/et_campus_select"-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:inputType="text"-->
-                    <!--                        android:padding="@dimen/edittext_padding"-->
-                    <!--                        android:textColor="@color/black"-->
-                    <!--                        android:textSize="@dimen/edittext_textSize" />-->
                 </com.google.android.material.textfield.TextInputLayout>
             </RelativeLayout>
 
@@ -225,3 +218,13 @@
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--<com.example.campusbuy.utils.CBEditText-->
+    <!--android:id="@+id/et_campus_select"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:inputType="text"-->
+    <!--android:padding="@dimen/edittext_padding"-->
+    <!--android:textColor="@color/black"-->
+    <!--android:textSize="@dimen/edittext_textSize" />-->

@@ -71,7 +71,11 @@
                 tools:text="₹100.00" />
         </LinearLayout>
 
-
+        <ImageView
+            android:id="@+id/sold_overlay_products"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:src="@drawable/sold_overlay3" />
 
         <LinearLayout
             android:id="@+id/ll_product_extra_details"

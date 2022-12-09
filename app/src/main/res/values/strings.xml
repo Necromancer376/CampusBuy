@@ -96,5 +96,7 @@
     <string name="offer_button_text">offer &amp; chat</string>
     <string name="see_product_chats_text">See Offers</string>
     <string name="et_hint_select_campus">Select Campus</string>
+    <string name="seller_product">Seller:</string>
+    <string name="enter_campus">Please Enter Campus</string>
 
 </resources>

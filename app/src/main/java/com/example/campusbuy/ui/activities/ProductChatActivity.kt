@@ -2,7 +2,6 @@ package com.example.campusbuy.ui.activities
 
 import android.os.Bundle
 import android.util.Log
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.campusbuy.R
 import com.example.campusbuy.firestore.FireStoreClass
@@ -62,18 +61,18 @@ class ProductChatActivity : BaseActivity() {
         rv_chat.adapter = messageAdapter
 
         updateButton()
-//        (mProductDetails.buyerAgree == mProductDetails.sellerAgree)
-        updateIsSold()
 
         btn_agree_seller.setOnClickListener {
             if(currentUser.id == mProductDetails.user_id) {
                 setProductBooleans("sellerAgree", !mProductDetails.sellerAgree)
+//                updateIsSold()
             }
         }
 
         btn_agree_buyer.setOnClickListener {
-            if(currentUser.id != mProductDetails.user_id) {
+            if(currentUser.id != mProductDetails.user_id && !mProductDetails.sold) {
                 setProductBooleans("buyerAgree", !mProductDetails.buyerAgree)
+//                updateIsSold()
             }
         }
 
@@ -185,8 +184,14 @@ class ProductChatActivity : BaseActivity() {
     }
 
     private fun setProductBooleans(field: String, status: Boolean) {
+        var isSold = false
+        if(((status && mProductDetails.buyerAgree) && !mProductDetails.sold)
+            || ((status && mProductDetails.sellerAgree) && !mProductDetails.sold)) {
+            isSold = true
+        }
+
         showProgressDialog(resources.getString(R.string.please_wait))
-        FireStoreClass().updateProducBoolean(this@ProductChatActivity, productId, field, status)
+        FireStoreClass().updateProducBoolean(this@ProductChatActivity, productId, field, status, isSold)
     }
 
     fun getUpdatatedProduct() {
@@ -194,10 +199,13 @@ class ProductChatActivity : BaseActivity() {
         getProductDetails()
     }
 
-    fun updateIsSold() {
-        if((mProductDetails.sellerAgree && mProductDetails.buyerAgree) && !mProductDetails.sold) {
-            Log.e("sold", mProductDetails.sold.toString())
-            setProductBooleans("sold", true)
-        }
-    }
+//    fun updateIsSold() {
+//        if((mProductDetails.sellerAgree && mProductDetails.buyerAgree) && !mProductDetails.sold) {
+//            Log.e("sold", mProductDetails.sold.toString())
+//            setProductBooleans("sold", true)
+//        }
+//        else {
+//            setProductBooleans("sold", true)
+//        }
+//    }
 }

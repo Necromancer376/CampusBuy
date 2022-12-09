@@ -9,18 +9,19 @@ import com.example.campusbuy.R
 import com.example.campusbuy.databinding.FragmentDashboardBinding
 import com.example.campusbuy.firestore.FireStoreClass
 import com.example.campusbuy.models.Product
+import com.example.campusbuy.models.User
 import com.example.campusbuy.ui.activities.CheckProductDetailsActivity
 import com.example.campusbuy.ui.activities.SettingsActivity
 import com.example.campusbuy.ui.adapters.DashboardItemsListAdapter
 import com.example.campusbuy.utils.Constants
 import kotlinx.android.synthetic.main.fragment_dashboard.*
-import kotlinx.android.synthetic.main.item_dashboard_layout.view.*
 
 class DashboardFragment : BaseFragment() {
 
     private var _binding: FragmentDashboardBinding? = null
 
     private val binding get() = _binding!!
+    private lateinit var mUserDetails: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +30,10 @@ class DashboardFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
+        getUserDetails()
         btn_search.setOnClickListener {
             getDashboardItemsList()
         }
-        getDashboardItemsList()
     }
 
     override fun onCreateView(
@@ -117,7 +118,18 @@ class DashboardFragment : BaseFragment() {
     private fun getDashboardItemsList() {
         showProgressDialog(resources.getString(R.string.please_wait))
 
-        FireStoreClass().getDashboardItemsList(this@DashboardFragment)
+        FireStoreClass().getDashboardItemsList(this@DashboardFragment, mUserDetails.campus)
+    }
+
+    private fun getUserDetails() {
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FireStoreClass().getUserDetailsFragment(this@DashboardFragment)
+    }
+
+    fun userDetailsFragmentSuccess(user: User) {
+        mUserDetails = user
+        hideProgressDialog()
+        getDashboardItemsList()
     }
 
     fun getSearchQuerry(): String {

@@ -4,7 +4,6 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
@@ -20,8 +19,8 @@ import com.example.campusbuy.models.User
 import com.example.campusbuy.utils.Constants
 import com.example.campusbuy.utils.GlideLoader
 import kotlinx.android.synthetic.main.activity_user_profile.*
-import kotlinx.android.synthetic.main.activity_user_profile.iv_user_photo
 import java.io.IOException
+
 
 class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
@@ -45,6 +44,13 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         et_first_name_profile.setText(mUserDetails.firstName)
         et_last_name_profile.setText(mUserDetails.lastName)
         et_email_profile.setText(mUserDetails.email)
+        ac_campus_select.setText(mUserDetails.campus)
+
+//        ac_campus_select.setOnFocusChangeListener(OnFocusChangeListener { v, hasFocus ->
+//            if (hasFocus) {
+//                ac_campus_select.showDropDown()
+//            }
+//        })
 
 
         Log.e("list", campusList.toString())
@@ -222,6 +228,10 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_mobile_number), true)
                 false
             }
+            TextUtils.isEmpty(ac_campus_select.text.toString().trim{ it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.enter_campus), true)
+                false
+            }
             else -> {
                 true
             }
@@ -239,7 +249,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
     fun campusListSuccess(list: ArrayList<String>) {
         campusList = list
-        var acAdapter = ArrayAdapter(this, R.drawable.item_campus_list, campusList)
+        val acAdapter = ArrayAdapter(this, R.drawable.item_campus_list, campusList)
 //        var acAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, campusList)
         ac_campus_select.threshold = 0
         ac_campus_select.setAdapter(acAdapter)

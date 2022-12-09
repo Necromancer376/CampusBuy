@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.campusbuy.R
 import com.example.campusbuy.firestore.FireStoreClass
 import com.example.campusbuy.models.Product
+import com.example.campusbuy.models.User
 import com.example.campusbuy.ui.activities.BaseActivity
 import com.example.campusbuy.ui.activities.CheckProductDetailsActivity
 import com.example.campusbuy.utils.Constants

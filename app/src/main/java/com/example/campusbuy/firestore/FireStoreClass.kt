@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
+import androidx.fragment.app.Fragment
 import com.example.campusbuy.models.Product
 import com.example.campusbuy.models.User
 import com.example.campusbuy.ui.activities.*
@@ -23,7 +24,7 @@ import java.io.File
 class FireStoreClass {
 
     private val mFirestore = FirebaseFirestore.getInstance()
-    var firebaseStorage = FirebaseStorage.getInstance()
+//    var firebaseStorage = FirebaseStorage.getInstance()
 
 
     fun registerUser(activity: RegisterActivity, userInfo: User) {
@@ -57,7 +58,7 @@ class FireStoreClass {
 
     fun getCurrentCampus(): String {
 //        var wrapper = String(){ var campus: String = "" }
-        var currentCampus: String = ""
+        var currentCampus = ""
         mFirestore.collection(Constants.USERS)
             .document(getCurrentUserId())
             .get()
@@ -104,6 +105,9 @@ class FireStoreClass {
                         activity.userDetailsSuccess(user)
                     }
                     is ProductChatActivity -> {
+                        activity.userDetailsSuccess(user)
+                    }
+                    is AddProductActivity -> {
                         activity.userDetailsSuccess(user)
                     }
                 }
@@ -246,7 +250,7 @@ class FireStoreClass {
             }
     }
 
-    fun getUserDetailsFragment(fragment: OrdersFragment) {
+    fun getUserDetailsFragment(fragment: Fragment) {
 
         mFirestore.collection(Constants.USERS)
             .document(getCurrentUserId())
@@ -255,11 +259,25 @@ class FireStoreClass {
                 Log.i(fragment.javaClass.simpleName, document.toString())
 
                 val user = document.toObject(User::class.java)!!
-                fragment.userDetailsFragmentSuccess(user)
+                when(fragment) {
+                    is OrdersFragment -> {
+                        fragment.userDetailsFragmentSuccess(user)
+                    }
+                    is DashboardFragment -> {
+                        fragment.userDetailsFragmentSuccess(user)
+                    }
+                }
 
             }
             .addOnFailureListener { e ->
-                fragment.hideProgressDialog()
+                when(fragment) {
+                    is OrdersFragment -> {
+                        fragment.hideProgressDialog()
+                    }
+                    is DashboardFragment -> {
+                        fragment.hideProgressDialog()
+                    }
+                }
                 Log.e(fragment.javaClass.simpleName, "Error while registering", e)
             }
     }
@@ -309,9 +327,11 @@ class FireStoreClass {
             }
     }
 
-    fun getDashboardItemsList(fragment: DashboardFragment) {
+    fun getDashboardItemsList(fragment: DashboardFragment, campus: String) {
+        Log.e("campus" , getCurrentCampus())
         mFirestore.collection(Constants.PRODUCTS)
             .whereNotEqualTo(Constants.USER_ID, getCurrentUserId())
+//            .whereEqualTo(Constants.CAMPUS, campus)
             .get()
             .addOnSuccessListener { document ->
                 Log.e("Products list", document.documents.toString())
@@ -320,8 +340,10 @@ class FireStoreClass {
                 for (i in document.documents) {
                     val product = i.toObject(Product::class.java)
                     product!!.product_id = i.id
-
-                    productsList.add(product)
+                    if(product.campus == campus) {
+                        productsList.add(product)
+                    }
+//                    productsList.add(product)
                 }
 
                 fragment.successDashBoardItemsList(productsList)
@@ -335,7 +357,26 @@ class FireStoreClass {
             }
     }
 
-    fun deleteProduct(fragment: ProductsFragment, productId: String, imgUrl: String) {
+    fun deleteProductImage(fragment: ProductsFragment, productId: String, imgUrl: String) {
+        val sRef = FirebaseStorage.getInstance()
+        val photoRef: StorageReference = sRef.getReferenceFromUrl(imgUrl)
+
+        photoRef
+            .delete()
+            .addOnSuccessListener {
+                fragment.imgDeleteSuccess(productId)
+            }
+            .addOnFailureListener { e ->
+                fragment.hideProgressDialog()
+                Log.e(
+                    fragment.requireActivity().javaClass.simpleName,
+                    "error while deleting",
+                    e
+                )
+            }
+    }
+
+    fun deleteProduct(fragment: ProductsFragment, productId: String) {
         mFirestore.collection(Constants.PRODUCTS)
             .document(productId)
             .delete()
@@ -526,10 +567,10 @@ class FireStoreClass {
             }
     }
 
-    fun updateProducBoolean(activity: Activity, productId: String, field: String, status: Boolean) {
+    fun updateProducBoolean(activity: Activity, productId: String, field: String, status: Boolean, isSold: Boolean) {
         mFirestore.collection(Constants.PRODUCTS)
             .document(productId)
-            .update(field, status)
+            .update(field, status, "sold", isSold)
             .addOnSuccessListener {
                 when(activity) {
                     is ProductChatActivity -> {

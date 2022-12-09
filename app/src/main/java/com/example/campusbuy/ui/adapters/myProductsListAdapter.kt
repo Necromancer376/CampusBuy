@@ -6,7 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campusbuy.R
 import com.example.campusbuy.models.Product
@@ -15,8 +15,10 @@ import com.example.campusbuy.ui.fragments.ProductsFragment
 import com.example.campusbuy.utils.Constants
 import com.example.campusbuy.utils.GlideLoader
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_check_product_details.view.*
 import kotlinx.android.synthetic.main.item_list_layout.view.*
+import kotlinx.android.synthetic.main.item_list_layout.view.iv_item_image
+import kotlinx.android.synthetic.main.item_list_layout.view.tv_item_name
+import kotlinx.android.synthetic.main.item_list_layout.view.tv_item_price
 
 class myProductsListAdapter(
     private val context: Context,
@@ -55,10 +57,10 @@ class myProductsListAdapter(
 
             if(model.sold) {
                 Log.e("here: ", "overlay")
-                holder.itemView.foreground = ContextCompat.getDrawable(context, R.drawable.sold_overlay1)
+                holder.itemView.sold_overlay_products.isVisible = true
             }
             else {
-                holder.itemView.foreground = null
+                holder.itemView.sold_overlay_products.isVisible = false
             }
 
             holder.itemView.setOnClickListener {

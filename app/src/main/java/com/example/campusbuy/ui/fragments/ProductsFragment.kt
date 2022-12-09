@@ -61,7 +61,7 @@ class ProductsFragment : BaseFragment() {
 
         builder.setPositiveButton(resources.getString(R.string.yes)) { dialogInterface, _ ->
             showProgressDialog(resources.getString(R.string.please_wait))
-            FireStoreClass().deleteProduct(this, productId, imgUrl)
+            FireStoreClass().deleteProductImage(this, productId, imgUrl)
             dialogInterface.dismiss()
         }
         builder.setNegativeButton(resources.getString(R.string.no)) { dialogInterface, _ ->
@@ -71,6 +71,10 @@ class ProductsFragment : BaseFragment() {
         val alterDialog: AlertDialog = builder.create()
         alterDialog.setCancelable(false)
         alterDialog.show()
+    }
+
+    fun imgDeleteSuccess(productId: String){
+        FireStoreClass().deleteProduct(this, productId)
     }
 
     fun productDeleteSuccess() {

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campusbuy.R
 import com.example.campusbuy.models.Product
@@ -45,10 +46,11 @@ class myOffersAdapter (
 
             if(model.sold) {
                 Log.e("here: ", "overlay")
-                holder.itemView.foreground = ContextCompat.getDrawable(context, R.drawable.sold_overlay1)
+//                holder.itemView.foreground = ContextCompat.getDrawable(context, R.drawable.sold_overlay3)
+                holder.itemView.sold_overlay_offers.isVisible = true
             }
             else {
-                holder.itemView.foreground = null
+                holder.itemView.sold_overlay_offers.isVisible = false
             }
 
             holder.itemView.setOnClickListener {

@@ -10,7 +10,6 @@ import android.media.ExifInterface
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -18,24 +17,26 @@ import androidx.core.content.ContextCompat
 import com.example.campusbuy.R
 import com.example.campusbuy.firestore.FireStoreClass
 import com.example.campusbuy.models.Product
+import com.example.campusbuy.models.User
 import com.example.campusbuy.utils.Constants
 import com.example.campusbuy.utils.Constants.getImageUriFromBitmap
 import com.example.campusbuy.utils.Constants.rotate
 import com.example.campusbuy.utils.GlideLoader
 import kotlinx.android.synthetic.main.activity_add_product.*
-import java.io.File
 import java.io.IOException
 
 class AddProductActivity : BaseActivity(), View.OnClickListener {
 
     private var mSelectedImageFileUri: Uri? = null
     private var mProductImageURL: String = ""
+    private lateinit var mUserDetails: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_product)
 
         setupActionBar()
+        getUserDetails()
 
         iv_add_update_product_galary.setOnClickListener(this@AddProductActivity)
         iv_add_update_product.setOnClickListener(this@AddProductActivity)
@@ -52,6 +53,17 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
         }
 
         toolbar_add_product_activity.setNavigationOnClickListener{ onBackPressed() }
+    }
+
+    private fun getUserDetails() {
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FireStoreClass().getUserDetails(this)
+    }
+
+    fun userDetailsSuccess(user: User) {
+        hideProgressDialog()
+        hideProgressDialog()
+        mUserDetails = user
     }
 
     override fun onClick(view: View?) {
@@ -242,6 +254,13 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             et_product_description.text.toString().trim { it <= ' ' },
             et_product_tag.text.toString().trim { it <= ' ' },
             mProductImageURL,
+            mUserDetails.campus,
+            ArrayList<String>(),
+            false,
+            ArrayList<User>(),
+            ArrayList<String>(),
+            false,
+            false,
             FireStoreClass().getCurrentCampus(),
         )
 
@@ -249,8 +268,8 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun getOrientation(img: String):Int {
-        var ei = ExifInterface(img)
-        var orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED)
+        val ei = ExifInterface(img)
+        val orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED)
 
         when(orientation) {
             ExifInterface.ORIENTATION_ROTATE_90 -> {
