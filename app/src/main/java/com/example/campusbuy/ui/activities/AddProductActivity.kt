@@ -69,7 +69,6 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(view: View?) {
 
         if(view != null) {
-
             when(view.id) {
                 R.id.iv_add_update_product_galary -> {
                     if(ContextCompat.checkSelfPermission(
