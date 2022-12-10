@@ -11,7 +11,7 @@ CampusBuy is an Android app that provides a platform for students to sell and bu
 - Chat with the seller to negotiate price / FAQ
 
 # Build
-APK: https://github.com/Necromancer376/CampusBuy/blob/master/Documentation/app-debug.apk
+APK: [https://github.com/Necromancer376/CampusBuy/blob/master/Documentation/app-debug.apk]
 
 <h2>Layout: </h2>
 <table>
