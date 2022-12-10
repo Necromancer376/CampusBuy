@@ -26,6 +26,11 @@ class DashboardFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+
+        try {
+            hideProgressDialog()
+        }
+        catch (e: Exception) { }
     }
 
     override fun onResume() {
