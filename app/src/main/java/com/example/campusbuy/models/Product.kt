@@ -20,6 +20,7 @@ data class Product (
     var bidders: ArrayList<String> = ArrayList<String>(),
     var sellerAgree: Boolean = false,
     var buyerAgree: Boolean = false,
+
     var product_id: String = "",
 //    var sellerPrice: Int = 0,
 //    var buyerPrice: Int = 0
