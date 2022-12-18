@@ -3,6 +3,8 @@ package com.example.campusbuy.models
 import android.os.Parcelable
 import com.google.firebase.firestore.DocumentId
 import kotlinx.android.parcel.Parcelize
+import java.util.*
+import kotlin.collections.ArrayList
 
 @Parcelize
 data class Product (
@@ -18,9 +20,10 @@ data class Product (
     var sold: Boolean = false,
     var interested: ArrayList<User> = ArrayList<User>(),
     var bidders: ArrayList<String> = ArrayList<String>(),
-    var sellerAgree: Boolean = false,
-    var buyerAgree: Boolean = false,
-
+    var buyerAgree: ArrayList<String> = ArrayList<String>(),
+    var sellerAgree: ArrayList<String> = ArrayList<String>(),
+    var buyer_id: String = "",
+    var soldDate: Int = 0,
     var product_id: String = "",
 //    var sellerPrice: Int = 0,
 //    var buyerPrice: Int = 0

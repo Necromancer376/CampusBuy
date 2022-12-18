@@ -567,10 +567,10 @@ class FireStoreClass {
             }
     }
 
-    fun updateProducBoolean(activity: Activity, productId: String, field: String, status: Boolean, isSold: Boolean) {
+    fun updateProducBoolean(activity: Activity, productId: String, field: String, status: Boolean, isSold: Boolean, buyerId: String) {
         mFirestore.collection(Constants.PRODUCTS)
             .document(productId)
-            .update(field, status, "sold", isSold)
+            .update(field, status, "sold", isSold, "buyer_id", buyerId)
             .addOnSuccessListener {
                 when(activity) {
                     is ProductChatActivity -> {

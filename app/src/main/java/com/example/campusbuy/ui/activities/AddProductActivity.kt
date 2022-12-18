@@ -258,9 +258,11 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             false,
             ArrayList<User>(),
             ArrayList<String>(),
-            false,
-            false,
-            FireStoreClass().getCurrentCampus(),
+            ArrayList<String>(),
+            ArrayList<String>(),
+            "",
+            0,
+//            FireStoreClass().getCurrentCampus(),
         )
 
         FireStoreClass().uploadProductDetails(this@AddProductActivity, product)

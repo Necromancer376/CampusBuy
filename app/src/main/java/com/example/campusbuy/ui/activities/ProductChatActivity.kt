@@ -27,6 +27,10 @@ class ProductChatActivity : BaseActivity() {
     private lateinit var senderUid: String
     private lateinit var productId: String
 
+    var isSeller = false
+    var sellerAgree = false
+    var buyerAgree = false
+
     var recieverRoom: String? = null
     var senderRoom: String? = null
 
@@ -59,6 +63,27 @@ class ProductChatActivity : BaseActivity() {
 
         rv_chat.layoutManager = LinearLayoutManager(this@ProductChatActivity)
         rv_chat.adapter = messageAdapter
+
+        if(currentUser.id == mProductDetails.user_id) {
+            isSeller = true
+        }
+
+        if(isSeller) {
+            if(mProductDetails.sellerAgree.contains(mUserDetails.id)) {
+                sellerAgree = true
+            }
+            if(mProductDetails.buyerAgree.contains(mUserDetails.id)) {
+                buyerAgree = true
+            }
+        }
+        else {
+            if(mProductDetails.sellerAgree.contains(mUserDetails.id)) {
+                sellerAgree = true
+            }
+            if(mProductDetails.buyerAgree.contains(currentUser.id)) {
+                buyerAgree = true
+            }
+        }
 
         updateButton()
 
@@ -129,17 +154,31 @@ class ProductChatActivity : BaseActivity() {
     }
 
     private fun updateButton(){
-        if(mProductDetails.sellerAgree) {
-            btn_agree_seller.setBackgroundResource(R.color.button_agree_green)
+        if(!isSeller) {
+            if (mProductDetails.sellerAgree.contains(currentUser.id)) {
+                btn_agree_seller.setBackgroundResource(R.color.button_agree_green)
+            } else {
+                btn_agree_seller.setBackgroundResource(R.color.button_agree_red)
+            }
+            if(mProductDetails.buyerAgree.contains(mUserDetails.id)) {
+                btn_agree_buyer.setBackgroundResource(R.color.button_agree_green)
+            }
+            else {
+                btn_agree_buyer.setBackgroundResource(R.color.button_agree_red)
+            }
         }
         else {
-            btn_agree_seller.setBackgroundResource(R.color.button_agree_red)
-        }
-        if(mProductDetails.buyerAgree) {
-            btn_agree_buyer.setBackgroundResource(R.color.button_agree_green)
-        }
-        else {
-            btn_agree_buyer.setBackgroundResource(R.color.button_agree_red)
+            if (mProductDetails.sellerAgree.contains(mUserDetails.id)) {
+                btn_agree_seller.setBackgroundResource(R.color.button_agree_green)
+            } else {
+                btn_agree_seller.setBackgroundResource(R.color.button_agree_red)
+            }
+            if(mProductDetails.buyerAgree.contains(currentUser.id)) {
+                btn_agree_buyer.setBackgroundResource(R.color.button_agree_green)
+            }
+            else {
+                btn_agree_buyer.setBackgroundResource(R.color.button_agree_red)
+            }
         }
     }
 
@@ -185,13 +224,24 @@ class ProductChatActivity : BaseActivity() {
 
     private fun setProductBooleans(field: String, status: Boolean) {
         var isSold = false
+        var buyerId = ""
+
         if(((status && mProductDetails.buyerAgree) && !mProductDetails.sold)
             || ((status && mProductDetails.sellerAgree) && !mProductDetails.sold)) {
             isSold = true
         }
 
+        if(isSold) {
+            if(currentUser.id == mProductDetails.user_id) {
+                buyerId = ""
+            }
+            else {
+                buyerId = currentUser.id
+            }
+        }
+
         showProgressDialog(resources.getString(R.string.please_wait))
-        FireStoreClass().updateProducBoolean(this@ProductChatActivity, productId, field, status, isSold)
+        FireStoreClass().updateProducBoolean(this@ProductChatActivity, productId, field, status, isSold, buyerId)
     }
 
     fun getUpdatatedProduct() {
