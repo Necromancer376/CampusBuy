@@ -27,21 +27,22 @@ class ProductChatActivity : BaseActivity() {
     private lateinit var senderUid: String
     private lateinit var productId: String
 
-    var isSeller = false
-    var sellerAgree = false
-    var buyerAgree = false
+    private var isSeller = false
+    private var sellerAgree = false
+    private var buyerAgree = false
 
-    var recieverRoom: String? = null
-    var senderRoom: String? = null
+    private var recieverRoom: String? = null
+    private var senderRoom: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_chat)
 
 
-        mDBref = FirebaseDatabase.getInstance("https://campusbuy-79e1a-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference()
+        mDBref = FirebaseDatabase.getInstance("https://campusbuy-79e1a-default-rtdb.asia-southeast1.firebasedatabase.app/").reference
 
         setupActionBar()
+
         getUserDetails()
         mProductDetails = Product()
 
@@ -64,6 +65,14 @@ class ProductChatActivity : BaseActivity() {
         rv_chat.layoutManager = LinearLayoutManager(this@ProductChatActivity)
         rv_chat.adapter = messageAdapter
 
+        var tempBuffer = 0
+        while(!::currentUser.isInitialized) {
+            tempBuffer++
+        }
+
+//        runBlocking {
+//            getData.join()
+//        }
         if(currentUser.id == mProductDetails.user_id) {
             isSeller = true
         }
@@ -89,14 +98,14 @@ class ProductChatActivity : BaseActivity() {
 
         btn_agree_seller.setOnClickListener {
             if(currentUser.id == mProductDetails.user_id) {
-                setProductBooleans("sellerAgree", !mProductDetails.sellerAgree)
+                setProductBooleans("sellerAgree", isSellerAgree())
 //                updateIsSold()
             }
         }
 
         btn_agree_buyer.setOnClickListener {
             if(currentUser.id != mProductDetails.user_id && !mProductDetails.sold) {
-                setProductBooleans("buyerAgree", !mProductDetails.buyerAgree)
+                setProductBooleans("buyerAgree", isBuyerAgree())
 //                updateIsSold()
             }
         }
@@ -124,7 +133,7 @@ class ProductChatActivity : BaseActivity() {
             val message = edt_message_box.text.toString()
             val messageObject = Message(senderUid, message, productId)
 
-            if (!message.equals("")) {
+            if (message != "") {
                 mDBref.child("chats").child(productId).child(senderRoom!!).child("messages").push()
                     .setValue(messageObject)
                     .addOnSuccessListener {
@@ -188,9 +197,11 @@ class ProductChatActivity : BaseActivity() {
     }
 
     fun userDetailsSuccess(user: User) {
+        Log.e("user", "success")
         hideProgressDialog()
         hideProgressDialog()
         currentUser = user
+
     }
 
     fun offersOnProductsSuccess() {
@@ -226,8 +237,8 @@ class ProductChatActivity : BaseActivity() {
         var isSold = false
         var buyerId = ""
 
-        if(((status && mProductDetails.buyerAgree) && !mProductDetails.sold)
-            || ((status && mProductDetails.sellerAgree) && !mProductDetails.sold)) {
+        if(((status && isBuyerAgree()) && !mProductDetails.sold)
+            || ((status && isSellerAgree()) && !mProductDetails.sold)) {
             isSold = true
         }
 
@@ -258,4 +269,22 @@ class ProductChatActivity : BaseActivity() {
 //            setProductBooleans("sold", true)
 //        }
 //    }
+
+    private fun isSellerAgree(): Boolean {
+        if(!isSeller) {
+            return mProductDetails.sellerAgree.contains(currentUser.id)
+        }
+        else {
+            return mProductDetails.sellerAgree.contains(mUserDetails.id)
+        }
+    }
+
+    fun isBuyerAgree(): Boolean {
+        if(!isSeller) {
+            return mProductDetails.buyerAgree.contains(mUserDetails.id)
+        }
+        else {
+            return mProductDetails.buyerAgree.contains(currentUser.id)
+        }
+    }
 }

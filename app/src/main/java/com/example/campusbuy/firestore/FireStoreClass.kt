@@ -72,11 +72,12 @@ class FireStoreClass {
     }
 
     fun getUserDetails(activity: Activity) {
-
+        Log.e("gerUserdetails", "called")
         mFirestore.collection(Constants.USERS)
             .document(getCurrentUserId())
             .get()
             .addOnSuccessListener { document ->
+                Log.e("gerUserdetails", "success")
                 Log.i(activity.javaClass.simpleName, document.toString())
 
                 val user = document.toObject(User::class.java)!!
