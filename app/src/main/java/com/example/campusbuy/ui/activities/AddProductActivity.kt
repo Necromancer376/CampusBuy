@@ -10,7 +10,10 @@ import android.media.ExifInterface
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -30,6 +33,8 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
     private var mSelectedImageFileUri: Uri? = null
     private var mProductImageURL: String = ""
     private lateinit var mUserDetails: User
+    private lateinit var tagList: Array<String>
+    private lateinit var tag: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +42,25 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
 
         setupActionBar()
         getUserDetails()
+
+        tagList = resources.getStringArray(R.array.Tags)
+
+        if (sp_select_tag != null) {
+            val adapter = ArrayAdapter(this, R.layout.item_tag_list, tagList)
+            sp_select_tag.adapter = adapter
+
+            sp_select_tag.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                    tag = tagList[position]
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    // write code to perform some action
+                }
+            }
+        }
+
+
 
         iv_add_update_product_galary.setOnClickListener(this@AddProductActivity)
         iv_add_update_product.setOnClickListener(this@AddProductActivity)
@@ -205,7 +229,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_product_description), true)
                 false
             }
-            TextUtils.isEmpty(et_product_tag.text.toString().trim { it <= ' ' }) -> {
+            TextUtils.isEmpty(tag.trim { it <= ' ' }) -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_product_tag), true)
                 false
             }
@@ -251,7 +275,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             et_product_title.text.toString().trim { it <= ' ' },
             et_product_price.text.toString().trim { it <= ' ' },
             et_product_description.text.toString().trim { it <= ' ' },
-            et_product_tag.text.toString().trim { it <= ' ' },
+            tag.trim { it <= ' ' },
             mProductImageURL,
             mUserDetails.campus,
             ArrayList<String>(),

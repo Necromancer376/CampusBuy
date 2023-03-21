@@ -99,4 +99,12 @@
     <string name="seller_product">Seller:</string>
     <string name="enter_campus">Please Enter Campus</string>
 
+    <string-array name="Tags">
+        <item>Technology</item>
+        <item>Education</item>
+        <item>Utility</item>
+        <item>Food</item>
+        <item>Other</item>
+    </string-array>
+
 </resources>

@@ -25,6 +25,4 @@ data class Product (
     var buyer_id: String = "",
     var soldDate: Int = 0,
     var product_id: String = "",
-//    var sellerPrice: Int = 0,
-//    var buyerPrice: Int = 0
 ): Parcelable

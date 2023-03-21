@@ -154,28 +154,32 @@
                     android:textSize="@dimen/edittext_textSize"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_product_tag"
+            <LinearLayout
+                android:id="@+id/rl_tag_selector"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:hint="@string/et_hint_product_tag"
-                android:textColorHint="#666666"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_product_description">
 
-                <com.example.campusbuy.utils.CBEditText
-                    android:id="@+id/et_product_tag"
-                    android:layout_width="match_parent"
+                <com.example.campusbuy.utils.CBTextViewBold
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:padding="@dimen/edittext_padding"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/edittext_textSize"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:text="Tag: "
+                    android:textSize="16sp"
+                    android:layout_margin="10dp"/>
+
+                <Spinner
+                    android:id="@+id/sp_select_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
             
             <com.example.campusbuy.utils.CBButton
                 android:id="@+id/btn_submit_product"
@@ -197,8 +201,31 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_product_tag"/>
+                app:layout_constraintTop_toBottomOf="@id/rl_tag_selector"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--<com.google.android.material.textfield.TextInputLayout-->
+<!--android:id="@+id/til_product_tag"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_marginStart="16dp"-->
+<!--android:layout_marginTop="16dp"-->
+<!--android:layout_marginEnd="16dp"-->
+<!--android:hint="@string/et_hint_product_tag"-->
+<!--android:textColorHint="#666666"-->
+<!--app:layout_constraintEnd_toEndOf="parent"-->
+<!--app:layout_constraintStart_toStartOf="parent"-->
+<!--app:layout_constraintTop_toBottomOf="@id/til_product_description">-->
+
+<!--<com.example.campusbuy.utils.CBEditText-->
+<!--    android:id="@+id/et_product_tag"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:inputType="text"-->
+<!--    android:padding="@dimen/edittext_padding"-->
+<!--    android:textColor="@color/black"-->
+<!--    android:textSize="@dimen/edittext_textSize"/>-->
+<!--</com.google.android.material.textfield.TextInputLayout>-->

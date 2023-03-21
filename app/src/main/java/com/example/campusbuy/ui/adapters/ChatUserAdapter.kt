@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campusbuy.R
@@ -13,6 +14,7 @@ import com.example.campusbuy.models.Product
 import com.example.campusbuy.models.User
 import com.example.campusbuy.ui.activities.ProductChatActivity
 import com.example.campusbuy.utils.Constants
+import com.example.campusbuy.utils.GlideLoader
 
 
 class ChatUserAdapter(
@@ -32,6 +34,7 @@ class ChatUserAdapter(
 
         holder.userName.text = currentUser.firstName + " " + currentUser.lastName
         holder.price.text = "₹" + product.price.toString()
+        GlideLoader(context).loadUserPicture(currentUser.image, holder.img)
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ProductChatActivity::class.java)
@@ -50,6 +53,7 @@ class ChatUserAdapter(
     class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val userName = itemView.findViewById<TextView>(R.id.txt_user_name)
         val price = itemView.findViewById<TextView>(R.id.txt_offered_price)
+        val img = itemView.findViewById<ImageView>(R.id.iv_user_offer_img)
     }
 
 }

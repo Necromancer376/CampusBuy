@@ -53,7 +53,6 @@ class ProductChatActivity : BaseActivity() {
         mUserDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
         productId = intent.getStringExtra(Constants.PRODUCT_ID).toString()
 
-        getProductDetails()
 
         tv_chat_title.text = name
         senderRoom = recieverUid + senderUid
@@ -65,58 +64,14 @@ class ProductChatActivity : BaseActivity() {
         rv_chat.layoutManager = LinearLayoutManager(this@ProductChatActivity)
         rv_chat.adapter = messageAdapter
 
-        var tempBuffer = 0
-        while(!::currentUser.isInitialized) {
-            tempBuffer++
-        }
-
-//        runBlocking {
-//            getData.join()
-//        }
-        if(currentUser.id == mProductDetails.user_id) {
-            isSeller = true
-        }
-
-        if(isSeller) {
-            if(mProductDetails.sellerAgree.contains(mUserDetails.id)) {
-                sellerAgree = true
-            }
-            if(mProductDetails.buyerAgree.contains(mUserDetails.id)) {
-                buyerAgree = true
-            }
-        }
-        else {
-            if(mProductDetails.sellerAgree.contains(mUserDetails.id)) {
-                sellerAgree = true
-            }
-            if(mProductDetails.buyerAgree.contains(currentUser.id)) {
-                buyerAgree = true
-            }
-        }
-
-        updateButton()
-
-        btn_agree_seller.setOnClickListener {
-            if(currentUser.id == mProductDetails.user_id) {
-                setProductBooleans("sellerAgree", isSellerAgree())
-//                updateIsSold()
-            }
-        }
-
-        btn_agree_buyer.setOnClickListener {
-            if(currentUser.id != mProductDetails.user_id && !mProductDetails.sold) {
-                setProductBooleans("buyerAgree", isBuyerAgree())
-//                updateIsSold()
-            }
-        }
 
         mDBref.child("chats").child(productId).child(senderRoom!!).child("messages")
-            .addValueEventListener(object: ValueEventListener{
+            .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
 
                     messageList.clear()
 
-                    for(postSnapshot in snapshot.children) {
+                    for (postSnapshot in snapshot.children) {
                         val msg = postSnapshot.getValue(Message::class.java)
                         messageList.add(msg!!)
                     }
@@ -128,33 +83,6 @@ class ProductChatActivity : BaseActivity() {
                 }
             })
 
-        btn_send_msg.setOnClickListener {
-
-            val message = edt_message_box.text.toString()
-            val messageObject = Message(senderUid, message, productId)
-
-            if (message != "") {
-                mDBref.child("chats").child(productId).child(senderRoom!!).child("messages").push()
-                    .setValue(messageObject)
-                    .addOnSuccessListener {
-                        mDBref.child("chats").child(productId).child(recieverRoom!!)
-                            .child("messages").push()
-                            .setValue(messageObject)
-                    }
-                    .addOnFailureListener {
-                        Log.e("chat: ", "fail")
-                    }
-                edt_message_box.setText("")
-
-                if (mProductDetails.user_id != currentUser.id && !currentUser.offersOnProducts.contains(productId)) {
-                    FireStoreClass().upadteUserOfferedList(
-                        this@ProductChatActivity,
-                        productId,
-                        currentUser
-                    )
-                }
-            }
-        }
     }
 
     override fun onDestroy() {
@@ -164,6 +92,7 @@ class ProductChatActivity : BaseActivity() {
 
     private fun updateButton(){
         if(!isSeller) {
+            Log.e("current user:", currentUser.toString())
             if (mProductDetails.sellerAgree.contains(currentUser.id)) {
                 btn_agree_seller.setBackgroundResource(R.color.button_agree_green)
             } else {
@@ -182,7 +111,7 @@ class ProductChatActivity : BaseActivity() {
             } else {
                 btn_agree_seller.setBackgroundResource(R.color.button_agree_red)
             }
-            if(mProductDetails.buyerAgree.contains(currentUser.id)) {
+            if(mProductDetails.buyerAgree.contains(mUserDetails.id)) {
                 btn_agree_buyer.setBackgroundResource(R.color.button_agree_green)
             }
             else {
@@ -201,6 +130,89 @@ class ProductChatActivity : BaseActivity() {
         hideProgressDialog()
         hideProgressDialog()
         currentUser = user
+        getProductDetails()
+
+        if (currentUser.id == mProductDetails.user_id) {
+            isSeller = true
+            Log.e("seller", isSeller.toString())
+        }
+
+        if (isSeller) {
+            if (mProductDetails.sellerAgree.contains(mUserDetails.id)) {
+                sellerAgree = true
+            }
+            if (mProductDetails.buyerAgree.contains(mUserDetails.id)) {
+                buyerAgree = true
+            }
+        } else {
+            if (mProductDetails.sellerAgree.contains(mUserDetails.id)) {
+                sellerAgree = true
+            }
+            if (mProductDetails.buyerAgree.contains(currentUser.id)) {
+                buyerAgree = true
+            }
+        }
+
+        btn_agree_seller.setOnClickListener {
+
+            if(currentUser.id == mProductDetails.user_id) {
+                if(mProductDetails.sellerAgree.contains(mUserDetails.id) || !mProductDetails.sold) {
+                    isSeller = true
+                    if (isSellerAgree()) {
+                        mProductDetails.sellerAgree.remove(mUserDetails.id)
+                    } else {
+                        if (mProductDetails.sellerAgree.isEmpty()) {
+                            mProductDetails.sellerAgree.add(mUserDetails.id)
+                        }
+                    }
+                    setProductBooleans("sellerAgree", mProductDetails.sellerAgree)
+                }
+            }
+        }
+
+        btn_agree_buyer.setOnClickListener {
+            if (currentUser.id != mProductDetails.user_id && !mProductDetails.sold) {
+                if(isBuyerAgree()) {
+                    mProductDetails.buyerAgree.remove(currentUser.id)
+                }
+                else {
+                    mProductDetails.buyerAgree.add(currentUser.id)
+                }
+                setProductBooleans("buyerAgree", mProductDetails.buyerAgree)
+            }
+        }
+
+        btn_send_msg.setOnClickListener {
+
+            val message = edt_message_box.text.toString()
+            val messageObject = Message(senderUid, message, productId)
+
+            if (message != "") {
+                mDBref.child("chats").child(productId).child(senderRoom!!).child("messages")
+                    .push()
+                    .setValue(messageObject)
+                    .addOnSuccessListener {
+                        mDBref.child("chats").child(productId).child(recieverRoom!!)
+                            .child("messages").push()
+                            .setValue(messageObject)
+                    }
+                    .addOnFailureListener {
+                        Log.e("chat: ", "fail")
+                    }
+                edt_message_box.setText("")
+
+                if (mProductDetails.user_id != currentUser.id && !currentUser.offersOnProducts.contains(
+                        productId
+                    )
+                ) {
+                    FireStoreClass().upadteUserOfferedList(
+                        this@ProductChatActivity,
+                        productId,
+                        currentUser
+                    )
+                }
+            }
+        }
 
     }
 
@@ -233,12 +245,11 @@ class ProductChatActivity : BaseActivity() {
         Log.i("Product Details", mProductDetails.toString())
     }
 
-    private fun setProductBooleans(field: String, status: Boolean) {
+    private fun setProductBooleans(field: String, list: ArrayList<String>) {
         var isSold = false
         var buyerId = ""
 
-        if(((status && isBuyerAgree()) && !mProductDetails.sold)
-            || ((status && isSellerAgree()) && !mProductDetails.sold)) {
+        if((isBuyerAgree() && isSellerAgree() && !mProductDetails.sold)) {
             isSold = true
         }
 
@@ -252,23 +263,15 @@ class ProductChatActivity : BaseActivity() {
         }
 
         showProgressDialog(resources.getString(R.string.please_wait))
-        FireStoreClass().updateProducBoolean(this@ProductChatActivity, productId, field, status, isSold, buyerId)
+        FireStoreClass().updateProducBoolean(this@ProductChatActivity, productId, field, list, isSold, buyerId)
     }
 
-    fun getUpdatatedProduct() {
+    fun getUpdatetedProduct() {
         hideProgressDialog()
+        updateButton()
         getProductDetails()
     }
 
-//    fun updateIsSold() {
-//        if((mProductDetails.sellerAgree && mProductDetails.buyerAgree) && !mProductDetails.sold) {
-//            Log.e("sold", mProductDetails.sold.toString())
-//            setProductBooleans("sold", true)
-//        }
-//        else {
-//            setProductBooleans("sold", true)
-//        }
-//    }
 
     private fun isSellerAgree(): Boolean {
         if(!isSeller) {
@@ -281,10 +284,10 @@ class ProductChatActivity : BaseActivity() {
 
     fun isBuyerAgree(): Boolean {
         if(!isSeller) {
-            return mProductDetails.buyerAgree.contains(mUserDetails.id)
+            return mProductDetails.buyerAgree.contains(currentUser.id)
         }
         else {
-            return mProductDetails.buyerAgree.contains(currentUser.id)
+            return mProductDetails.buyerAgree.contains(mUserDetails.id)
         }
     }
 }

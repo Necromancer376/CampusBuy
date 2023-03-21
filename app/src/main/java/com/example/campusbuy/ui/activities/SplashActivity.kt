@@ -11,7 +11,7 @@ import com.example.campusbuy.R
 import com.google.firebase.auth.FirebaseAuth
 
 
-class 1SplashActivity : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)

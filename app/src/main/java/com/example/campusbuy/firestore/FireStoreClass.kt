@@ -332,7 +332,7 @@ class FireStoreClass {
         Log.e("campus" , getCurrentCampus())
         mFirestore.collection(Constants.PRODUCTS)
             .whereNotEqualTo(Constants.USER_ID, getCurrentUserId())
-//            .whereEqualTo(Constants.CAMPUS, campus)
+//            .whereEqualTo("campus", campus)
             .get()
             .addOnSuccessListener { document ->
                 Log.e("Products list", document.documents.toString())
@@ -344,6 +344,7 @@ class FireStoreClass {
                     if(product.campus == campus) {
                         productsList.add(product)
                     }
+//                    Log.e("campus", product.campus)
 //                    productsList.add(product)
                 }
 
@@ -353,7 +354,7 @@ class FireStoreClass {
                 fragment.hideProgressDialog()
                 Log.e(
                     fragment.javaClass.simpleName,
-                    "error while getting dashboard items"
+                    "error while getting dashboard items " + campus
                 )
             }
     }
@@ -430,6 +431,7 @@ class FireStoreClass {
 
             }
     }
+
 
     fun getCheckProductDetaiils(activity: CheckProductDetailsActivity, productId: String) {
 
@@ -568,15 +570,15 @@ class FireStoreClass {
             }
     }
 
-    fun updateProducBoolean(activity: Activity, productId: String, field: String, status: Boolean, isSold: Boolean, buyerId: String) {
+    fun updateProducBoolean(activity: Activity, productId: String, field: String, list: ArrayList<String>, isSold: Boolean, buyerId: String) {
         mFirestore.collection(Constants.PRODUCTS)
             .document(productId)
-            .update(field, status, "sold", isSold, "buyer_id", buyerId)
+            .update(field, list, "sold", isSold, "buyer_id", buyerId)
             .addOnSuccessListener {
                 when(activity) {
                     is ProductChatActivity -> {
                         Log.e("here", field)
-                        activity.getUpdatatedProduct()
+                        activity.getUpdatetedProduct()
                     }
                 }
             }
