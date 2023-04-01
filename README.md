@@ -18,8 +18,21 @@ APK: [CampusBuy](https://github.com/Necromancer376/CampusBuy/blob/master/Documen
 # Layout
 <table>
   <tr>
+    <td>Login</td>
+    <td>Register</td>
+  </tr>
+  <tr>
     <td><img src = "https://github.com/Necromancer376/CampusBuy/blob/master/Documentation/image_login.jpeg"/></td>
+    <td><img src = "https://github.com/Necromancer376/CampusBuy/blob/master/Documentation/image_register.png" /></td>
+  </tr>
+  <tr>
+    <td>Dashboard</td>
+    <td>My Products</td>
+    <td>My Offers</td>
+  </tr>
+  <tr>
     <td><img src = "https://github.com/Necromancer376/CampusBuy/blob/master/Documentation/image_dashboard.png" /></td>
-    <td><img src = "https://github.com/Necromancer376/CampusBuy/blob/master/Documentation/image_myproducts.png" /></td>
+    <td><img src = "https://github.com/Necromancer376/CampusBuy/blob/master/Documentation/image_myproducts.png"/></td>
+    <td><img src = "https://github.com/Necromancer376/CampusBuy/blob/master/Documentation/image_myoffers.png" /></td>
   </tr>
 </table>
