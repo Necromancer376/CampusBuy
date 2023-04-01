@@ -48,7 +48,7 @@ APK: [CampusBuy](https://github.com/Necromancer376/CampusBuy/blob/master/Documen
     <td>Product Chat</td>
   </tr>
   <tr>
-    <td><img src = "https://github.com/Necromancer376/CampusBuy/blob/master/Documentation/image_productoffers.png" /></td>
+    <td><img src = "https://github.com/Necromancer376/CampusBuy/blob/master/Documentation/image_procuctoffers.png" /></td>
     <td><img src = "https://github.com/Necromancer376/CampusBuy/blob/master/Documentation/image_productchat.png" /></td>
   </tr>
 </table>
