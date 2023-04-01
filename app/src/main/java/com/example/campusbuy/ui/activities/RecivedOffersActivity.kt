@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_recived_offers.*
 class RecivedOffersActivity : BaseActivity() {
 
     private lateinit var productId: String
+    private lateinit var interestedUsers: ArrayList<String>
     private lateinit var userList: ArrayList<User>
     private lateinit var adapter: ChatUserAdapter
     private lateinit var productDetails: Product
@@ -34,11 +35,10 @@ class RecivedOffersActivity : BaseActivity() {
             productDetails = intent.getParcelableExtra<Product>("product")!!
         }
 
-        userList = productDetails.interested
-        adapter = ChatUserAdapter(this@RecivedOffersActivity, userList, productDetails, productId)
+//        userList = productDetails.interested
+        interestedUsers = productDetails.interested
 
-        rv_received_offers_user.layoutManager = LinearLayoutManager(this@RecivedOffersActivity)
-        rv_received_offers_user.adapter = adapter
+        getUserList()
     }
 
 
@@ -52,5 +52,19 @@ class RecivedOffersActivity : BaseActivity() {
         }
 
         toolbar_recieved_offeres_activity.setNavigationOnClickListener{ onBackPressed() }
+    }
+
+    private fun getUserList() {
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FireStoreClass().getUsersOffersList(this@RecivedOffersActivity, interestedUsers)
+    }
+
+    fun getUserListSuccess(list: ArrayList<User>) {
+        hideProgressDialog()
+        userList = list
+
+        adapter = ChatUserAdapter(this@RecivedOffersActivity, userList, productDetails, productId)
+        rv_received_offers_user.layoutManager = LinearLayoutManager(this@RecivedOffersActivity)
+        rv_received_offers_user.adapter = adapter
     }
 }

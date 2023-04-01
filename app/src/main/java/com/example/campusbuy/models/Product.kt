@@ -18,7 +18,7 @@ data class Product (
     var campus: String = "",
     var seenCount: ArrayList<String> = ArrayList<String>(),
     var sold: Boolean = false,
-    var interested: ArrayList<User> = ArrayList<User>(),
+    var interested: ArrayList<String> = ArrayList<String>(),
     var bidders: ArrayList<String> = ArrayList<String>(),
     var buyerAgree: ArrayList<String> = ArrayList<String>(),
     var sellerAgree: ArrayList<String> = ArrayList<String>(),

@@ -14,6 +14,7 @@ import com.example.campusbuy.ui.fragments.OrdersFragment
 import com.example.campusbuy.ui.fragments.ProductsFragment
 import com.example.campusbuy.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -128,6 +129,31 @@ class FireStoreClass {
                         activity.hideProgressDialog()
                     }
                 }
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while registering",
+                    e
+                )
+            }
+    }
+
+    fun getUsersOffersList(activity: RecivedOffersActivity, ids: ArrayList<String>){
+        Log.i("list", ids.toString())
+        mFirestore.collection(Constants.USERS)
+            .whereIn("id", ids)
+            .get()
+            .addOnSuccessListener { document ->
+                val userList: ArrayList<User> = ArrayList()
+
+                for (i in document.documents) {
+                    Log.i("user", i.toString())
+                    val user = i.toObject(User::class.java)
+                    userList.add(user!!)
+                }
+                activity.getUserListSuccess(userList)
+            }
+            .addOnFailureListener { e ->
+                activity.hideProgressDialog()
                 Log.e(
                     activity.javaClass.simpleName,
                     "Error while registering",
@@ -431,7 +457,6 @@ class FireStoreClass {
 
             }
     }
-
 
     fun getCheckProductDetaiils(activity: CheckProductDetailsActivity, productId: String) {
 
