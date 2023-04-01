@@ -130,7 +130,8 @@ class ProductChatActivity : BaseActivity() {
         hideProgressDialog()
         hideProgressDialog()
         currentUser = user
-        Log.e("current", currentUser.toString())
+        Log.e("current", currentUser.id)
+        Log.e("muser", mUserDetails.id)
         getProductDetails()
 
         if (currentUser.id == mProductDetails.user_id) {
