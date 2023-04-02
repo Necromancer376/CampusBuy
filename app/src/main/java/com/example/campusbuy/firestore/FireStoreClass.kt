@@ -485,7 +485,7 @@ class FireStoreClass {
             }
     }
 
-    fun upadteProductList(activity: Activity, productId: String, user: User, listName: String) {
+    fun upadteProductList(activity: Activity, productId: String, user: String, listName: String) {
         Log.e("id", productId)
         mFirestore.collection(Constants.PRODUCTS)
             .document(productId)

@@ -118,6 +118,6 @@ class CheckProductDetailsActivity : BaseActivity(), View.OnClickListener {
     }
 
     fun updateInterestedArray() {
-        FireStoreClass().upadteProductList(this@CheckProductDetailsActivity, mProductId , mUserDetails, Constants.PRODUCT_INTERESTED)
+        FireStoreClass().upadteProductList(this@CheckProductDetailsActivity, mProductId , mUserDetails.id, Constants.PRODUCT_INTERESTED)
     }
 }

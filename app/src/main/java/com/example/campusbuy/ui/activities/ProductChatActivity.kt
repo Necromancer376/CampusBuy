@@ -107,8 +107,10 @@ class ProductChatActivity : BaseActivity() {
         }
         else {
             if (mProductDetails.sellerAgree.contains(mUserDetails.id)) {
+                Log.e("seller agree", "true")
                 btn_agree_seller.setBackgroundResource(R.color.button_agree_green)
             } else {
+                Log.e("seller agree", "false")
                 btn_agree_seller.setBackgroundResource(R.color.button_agree_red)
             }
             if(mProductDetails.buyerAgree.contains(mUserDetails.id)) {
@@ -134,10 +136,6 @@ class ProductChatActivity : BaseActivity() {
         Log.e("muser", mUserDetails.id)
         getProductDetails()
 
-        if (currentUser.id == mProductDetails.user_id) {
-            isSeller = true
-            Log.e("seller", isSeller.toString())
-        }
 
         if (isSeller) {
             if (mProductDetails.sellerAgree.contains(mUserDetails.id)) {
@@ -243,6 +241,11 @@ class ProductChatActivity : BaseActivity() {
         hideProgressDialog()
         Log.e("product", product.toString())
         mProductDetails = product
+
+        if (currentUser.id == mProductDetails.user_id) {
+            isSeller = true
+            Log.e("seller", isSeller.toString())
+        }
         updateButton()
         Log.i("Product Details", mProductDetails.toString())
     }
