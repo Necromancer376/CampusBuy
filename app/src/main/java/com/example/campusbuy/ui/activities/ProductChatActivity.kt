@@ -95,7 +95,6 @@ class ProductChatActivity : BaseActivity() {
 
     private fun updateButton(){
         if(!isSeller) {
-            Log.e("current user:", currentUser.toString())
             if (mProductDetails.sellerAgree.contains(currentUser.id)) {
                 btn_agree_seller.setBackgroundResource(R.color.button_agree_green)
             } else {
@@ -110,10 +109,8 @@ class ProductChatActivity : BaseActivity() {
         }
         else {
             if (mProductDetails.sellerAgree.contains(mUserDetails.id)) {
-                Log.e("seller agree", "true")
                 btn_agree_seller.setBackgroundResource(R.color.button_agree_green)
             } else {
-                Log.e("seller agree", "false")
                 btn_agree_seller.setBackgroundResource(R.color.button_agree_red)
             }
             if(mProductDetails.buyerAgree.contains(mUserDetails.id)) {
@@ -131,12 +128,9 @@ class ProductChatActivity : BaseActivity() {
     }
 
     fun userDetailsSuccess(user: User) {
-        Log.e("user", "success")
         hideProgressDialog()
         hideProgressDialog()
         currentUser = user
-        Log.e("current", currentUser.id)
-        Log.e("muser", mUserDetails.id)
         getProductDetails()
 
 
@@ -242,12 +236,10 @@ class ProductChatActivity : BaseActivity() {
 
     fun productDetailsSuccess(product: Product) {
         hideProgressDialog()
-        Log.e("product", product.toString())
         mProductDetails = product
 
         if (currentUser.id == mProductDetails.user_id) {
             isSeller = true
-            Log.e("seller", isSeller.toString())
         }
         updateButton()
         Log.i("Product Details", mProductDetails.toString())
