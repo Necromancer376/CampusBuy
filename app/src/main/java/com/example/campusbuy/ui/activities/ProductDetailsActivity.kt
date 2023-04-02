@@ -2,7 +2,6 @@ package com.example.campusbuy.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import com.example.campusbuy.R
 import com.example.campusbuy.firestore.FireStoreClass
 import com.example.campusbuy.models.Product

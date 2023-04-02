@@ -12,6 +12,9 @@ import com.example.campusbuy.ui.adapters.MessageAdapter
 import com.example.campusbuy.utils.Constants
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_product_chat.*
+import java.text.DateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ProductChatActivity : BaseActivity() {
 
@@ -252,10 +255,12 @@ class ProductChatActivity : BaseActivity() {
 
     private fun setProductBooleans(field: String, list: ArrayList<String>) {
         var isSold = false
+        var date: Long = 0
         var buyerId = ""
 
         if((isBuyerAgree() && isSellerAgree() && !mProductDetails.sold)) {
             isSold = true
+            date = System.currentTimeMillis()
         }
 
         if(isSold) {
@@ -268,7 +273,7 @@ class ProductChatActivity : BaseActivity() {
         }
 
         showProgressDialog(resources.getString(R.string.please_wait))
-        FireStoreClass().updateProducBoolean(this@ProductChatActivity, productId, field, list, isSold, buyerId)
+        FireStoreClass().updateProducBoolean(this@ProductChatActivity, productId, field, list, isSold, buyerId, date)
     }
 
     fun getUpdatetedProduct() {

@@ -23,6 +23,6 @@ data class Product (
     var buyerAgree: ArrayList<String> = ArrayList<String>(),
     var sellerAgree: ArrayList<String> = ArrayList<String>(),
     var buyer_id: String = "",
-    var soldDate: Int = 0,
+    var soldDate: Long = 0L,
     var product_id: String = "",
 ): Parcelable
