@@ -1,6 +1,7 @@
 package com.example.campusbuy.firestore
 
 import android.app.Activity
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
@@ -650,5 +651,22 @@ class FireStoreClass {
         val tempFile = File.createTempFile("campus", "txt")
 
         tempFile.appendText(newName)
+    }
+
+    fun getNotification(activity: Activity, userid: String) {
+        mFirestore.collection(Constants.PRODUCTS)
+            .whereEqualTo("user_id", userid)
+            .addSnapshotListener { value, e ->
+                if(e != null) {
+                    Log.w(TAG, "Listen Fail")
+                    return@addSnapshotListener
+                }
+
+                val products = ArrayList<Product>()
+
+                for(doc in value!!) {
+
+                }
+            }
     }
 }
