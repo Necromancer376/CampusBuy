@@ -1,6 +1,7 @@
 package com.example.campusbuy.ui.activities
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -36,6 +37,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
     private lateinit var tagList: Array<String>
     private lateinit var tag: String
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_product)
@@ -57,6 +59,10 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                 override fun onNothingSelected(parent: AdapterView<*>) {
                     // write code to perform some action
                 }
+            }
+            sp_select_tag.setOnTouchListener { view, motionEvent ->
+                view.hideKeyboard()
+                true
             }
         }
 
@@ -270,7 +276,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             .getString(Constants.LOGGED_IN_USERNAME, "")!!
 
         val product = Product(
-            FireStoreClass().getCurrentUserId(),
+            mUserDetails.id,
             username,
             et_product_title.text.toString().trim { it <= ' ' },
             et_product_price.text.toString().trim { it <= ' ' },
@@ -280,14 +286,12 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             mUserDetails.campus,
             ArrayList<String>(),
             false,
-//            ArrayList<User>(),
             ArrayList<String>(),
             ArrayList<String>(),
             ArrayList<String>(),
             ArrayList<String>(),
             "",
             0,
-//            FireStoreClass().getCurrentCampus(),
         )
 
         FireStoreClass().uploadProductDetails(this@AddProductActivity, product)
