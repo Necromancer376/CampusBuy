@@ -66,8 +66,6 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             }
         }
 
-
-
         iv_add_update_product_galary.setOnClickListener(this@AddProductActivity)
         iv_add_update_product.setOnClickListener(this@AddProductActivity)
         btn_submit_product.setOnClickListener(this@AddProductActivity)
